@@ -9,9 +9,9 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>security</artifactId>
-	<name>AdvancedBattleships Security</name>
-	<description>Handles security queries</description>
+	<artifactId>utility-services</artifactId>
+	<name>Utility Services</name>
+	<description>Provides some utility services which are used by multiple modules</description>
 
     <packaging>jar</packaging>
 
@@ -22,8 +22,21 @@
     <dependencies>
 		<dependency>
 			<groupId>com.advancedbattleships</groupId>
-			<artifactId>security-data-service-spec</artifactId>
+			<artifactId>common-lang</artifactId>
 			<version>${parent.version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>javax.annotation</groupId>
+		    <artifactId>javax.annotation-api</artifactId>
 		</dependency>
 
 		<dependency>
@@ -31,28 +44,7 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>
     </dependencies>
-
 </project>
 
 

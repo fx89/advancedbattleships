@@ -1,6 +1,8 @@
 package com.advancedbattleships.security.dataservice.model;
 
-public interface Authority {
+import java.io.Serializable;
+
+public interface Authority extends Serializable {
 	String getName();
 
 	void setName(String name);

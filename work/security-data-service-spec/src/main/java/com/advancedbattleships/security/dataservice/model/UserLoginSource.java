@@ -1,6 +1,8 @@
 package com.advancedbattleships.security.dataservice.model;
 
-public interface UserLoginSource {
+import java.io.Serializable;
+
+public interface UserLoginSource extends Serializable {
 
 	LoginSource getLoginSource();
 

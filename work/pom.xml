@@ -27,6 +27,8 @@
 		<module>security</module>
 		<module>security-data-service-spec</module>
 		<module>security-data-service-springdata</module>
+		<module>utility-services</module>
+		<module>common-lang</module>
 	</modules>
 
 	<dependencies>

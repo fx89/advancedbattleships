@@ -1,6 +1,9 @@
 package com.advancedbattleships.security.dataservice.model;
 
-public interface Group {
+import java.io.Serializable;
+import java.util.Set;
+
+public interface Group extends Serializable {
 	String getName();
 
 	void setName(String name);
@@ -9,7 +12,7 @@ public interface Group {
 
 	void setDescription(String description);
 
-	Iterable<Authority> getAuthorities();
+	Set<Authority> getAuthorities();
 
-	void setAuthorities(Iterable<Authority> authorities);
+	void setAuthorities(Set<Authority> authorities);
 }

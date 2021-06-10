@@ -24,8 +24,10 @@ import com.advancedbattleships.security.exception.UnknownLoginProviderException;
 @Service
 public class SecurityService {
 
+	private static String USR_GRP_NAME = "USERS";
+	
 	@Autowired
-	SecurityDataService securityDataService;
+	private SecurityDataService securityDataService;
 	
 	public Authentication resolveInternalAuthentication(Authentication externalAuthentication) {
 		
@@ -84,6 +86,8 @@ public class SecurityService {
 	private User resolveUserByLoginSourceAndLoginToken(
 			String userName, String pictureUrl, String primaryEmail, LoginSource loginSource, String loginToken
 	) {
+		User ret = null;
+
 		UserLoginSource userLoginSource
 			= securityDataService.getUserLoginSourceByLoginSourceAndLoginToken(loginSource, loginToken);
 
@@ -93,7 +97,13 @@ public class SecurityService {
 			);
 		}
 
-		return userLoginSource.getUser();
+		ret = userLoginSource.getUser();
+
+		if (ret.getGroups() == null || ret.getGroups().stream().noneMatch(g -> g.getName().equals(USR_GRP_NAME) )) {
+			ret = securityDataService.mapUserToGroup(userLoginSource.getUser(), securityDataService.findGroupByName(USR_GRP_NAME));
+		}
+
+		return ret;
 	}
 
 	private String extractLoginTokenFromUserPropertiesByLoginSource(LoginSource loginSource, Map<String, Object> userProperties) {

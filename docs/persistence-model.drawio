@@ -1,34 +1,34 @@
 <mxfile>
     <diagram id="Q96f5WNDCmfQpQFSebxe" name="Page-1">
-        <mxGraphModel dx="804" dy="430" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="804" dy="469" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="100" value="User Data" style="shape=umlFrame;whiteSpace=wrap;html=1;width=120;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;swimlaneFillColor=#262626;" vertex="1" parent="1">
+                <mxCell id="100" value="User Data" style="shape=umlFrame;whiteSpace=wrap;html=1;width=120;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;swimlaneFillColor=#262626;" parent="1" vertex="1">
                     <mxGeometry x="480" y="20" width="250" height="400" as="geometry"/>
                 </mxCell>
-                <mxCell id="95" value="Assets" style="shape=umlFrame;whiteSpace=wrap;html=1;width=120;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;swimlaneFillColor=#262626;" vertex="1" parent="1">
+                <mxCell id="95" value="Assets" style="shape=umlFrame;whiteSpace=wrap;html=1;width=120;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;swimlaneFillColor=#262626;" parent="1" vertex="1">
                     <mxGeometry x="450" y="430" width="1100" height="670" as="geometry"/>
                 </mxCell>
-                <mxCell id="89" value="Security" style="shape=umlFrame;whiteSpace=wrap;html=1;width=120;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;swimlaneFillColor=#262626;" vertex="1" parent="1">
-                    <mxGeometry x="745" y="20" width="350" height="300" as="geometry"/>
+                <mxCell id="89" value="Security" style="shape=umlFrame;whiteSpace=wrap;html=1;width=120;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;swimlaneFillColor=#262626;" parent="1" vertex="1">
+                    <mxGeometry x="745" y="20" width="350" height="310" as="geometry"/>
                 </mxCell>
-                <mxCell id="90" value="Ladder" style="shape=umlFrame;whiteSpace=wrap;html=1;width=120;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;swimlaneFillColor=#262626;" vertex="1" parent="1">
+                <mxCell id="90" value="Ladder" style="shape=umlFrame;whiteSpace=wrap;html=1;width=120;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;swimlaneFillColor=#262626;" parent="1" vertex="1">
                     <mxGeometry y="220" width="440" height="420" as="geometry"/>
                 </mxCell>
-                <mxCell id="80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="78">
+                <mxCell id="105" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="2" target="101" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="2" value="User" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="535" y="210" width="140" height="110" as="geometry"/>
+                    <mxGeometry x="535" y="210" width="140" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="#unrankedBattles&lt;br&gt;#unrankedWins&lt;br&gt;name&lt;br&gt;pictureUrl&lt;br&gt;primaryEmailAddress" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="2" vertex="1">
-                    <mxGeometry y="29" width="140" height="81" as="geometry"/>
+                <mxCell id="4" value="#unrankedBattles&lt;br&gt;#unrankedWins&lt;br&gt;UNIQUE_TOKEN" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="2" vertex="1">
+                    <mxGeometry y="29" width="140" height="51" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" value="BatleshipTemplate" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="520" y="480" width="170" height="170" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="name - check for bad words&lt;br&gt;hullSize : Point2D&lt;br&gt;hull : Array&amp;lt;boolean&amp;gt;&lt;br&gt;---&lt;br&gt;the cost will be calculated by&lt;br&gt;summing all SubsystemRef's&lt;br&gt;and adding the total hull cost&lt;br&gt;based on the cost of a ship&lt;br&gt;hull cell, which is looked up in&lt;br&gt;the GeneralParameter table" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="9" vertex="1">
+                <mxCell id="10" value="name - check for bad words&lt;br&gt;hullSize : Point2D&lt;br&gt;hull : Array&amp;lt;boolean&amp;gt;&lt;br&gt;---&lt;br&gt;the cost will be calculated by&lt;br&gt;summing all SubsystemRef's&lt;br&gt;and adding the total hull cost&lt;br&gt;based on the cost of a ship&lt;br&gt;hull cell, which is looked up in&lt;br&gt;the GeneralParameter table" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="9" vertex="1">
                     <mxGeometry y="29" width="170" height="141" as="geometry"/>
                 </mxCell>
                 <mxCell id="27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="11" target="17" edge="1">
@@ -40,13 +40,13 @@
                 <mxCell id="11" value="SubsystemRef" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1070" y="733.5" width="140" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" value="name&lt;br&gt;type&lt;br&gt;cost" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="11" vertex="1">
+                <mxCell id="12" value="name&lt;br&gt;type&lt;br&gt;cost" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="11" vertex="1">
                     <mxGeometry y="29" width="140" height="51" as="geometry"/>
                 </mxCell>
                 <mxCell id="17" value="SubsystemType" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1395" y="728.5" width="140" height="90" as="geometry"/>
                 </mxCell>
-                <mxCell id="18" value="name&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; - power system&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; - weapons system&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; - storage system" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="17" vertex="1">
+                <mxCell id="18" value="name&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; - power system&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; - weapons system&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; - storage system" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="17" vertex="1">
                     <mxGeometry y="29" width="140" height="61" as="geometry"/>
                 </mxCell>
                 <mxCell id="29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="19" target="21" edge="1">
@@ -58,13 +58,13 @@
                 <mxCell id="19" value="SubsystemRefResourceSpec - generated resources (i.e. pwr) minus consumed resources - must be positive to validate the template" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="745" y="850" width="790" height="240" as="geometry"/>
                 </mxCell>
-                <mxCell id="20" value="SubsystemRef&lt;br&gt;ResourceType&lt;br&gt;Amount (&amp;lt;0 =&amp;gt; consumed, &amp;gt;0 =&amp;gt; produced)&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;--- if a given griid loses a reactor in battle and consumes more than it produces,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; then systems with smaller consumption are prioritized, while the others are shout down&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; --- run this after each successful shot:&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; filter for amount &amp;gt;= 0&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; sort in ascending order by amount&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; pwr_remaining = sum(amount where amount &amp;gt; 0)&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; for (element in sorted_array) {&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;pwr_remaining -= amount&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;subsystem.functional = pwr_remaining &amp;gt;= 0 // subsystem is not of class SubsystemRef&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;   there will be a separate set of classes for the actual game&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; // this set of classes is for persistence only&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; }" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="19" vertex="1">
+                <mxCell id="20" value="SubsystemRef&lt;br&gt;ResourceType&lt;br&gt;Amount (&amp;lt;0 =&amp;gt; consumed, &amp;gt;0 =&amp;gt; produced)&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;--- if a given griid loses a reactor in battle and consumes more than it produces,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; then systems with smaller consumption are prioritized, while the others are shout down&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; --- run this after each successful shot:&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; filter for amount &amp;gt;= 0&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; sort in ascending order by amount&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; pwr_remaining = sum(amount where amount &amp;gt; 0)&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; for (element in sorted_array) {&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;pwr_remaining -= amount&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;subsystem.functional = pwr_remaining &amp;gt;= 0 // subsystem is not of class SubsystemRef&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;   there will be a separate set of classes for the actual game&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; // this set of classes is for persistence only&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; }" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="19" vertex="1">
                     <mxGeometry y="29" width="790" height="211" as="geometry"/>
                 </mxCell>
                 <mxCell id="21" value="ResourceType" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="460" y="945" width="250" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="22" value="name - POWER will be the only one for now" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="21" vertex="1">
+                <mxCell id="22" value="name - POWER will be the only one for now" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="21" vertex="1">
                     <mxGeometry y="29" width="250" height="21" as="geometry"/>
                 </mxCell>
                 <mxCell id="34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="23" target="9" edge="1">
@@ -73,7 +73,7 @@
                 <mxCell id="23" value="BattleshipTemplateSubsystemRef" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="460" y="698.5" width="470" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="24" value="BattleshipTemplate&lt;br&gt;SubsystemRef&lt;br&gt;position : Point2D - subsystems should not overlap&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;- one subsystem takes up one square&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;- there must be one square of hull between any 2 subsystems&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;- there must be one square of hull on each side of each subsystem" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="23" vertex="1">
+                <mxCell id="24" value="BattleshipTemplate&lt;br&gt;SubsystemRef&lt;br&gt;position : Point2D - subsystems should not overlap&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;- one subsystem takes up one square&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;- there must be one square of hull between any 2 subsystems&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;- there must be one square of hull on each side of each subsystem" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="23" vertex="1">
                     <mxGeometry y="29" width="470" height="91" as="geometry"/>
                 </mxCell>
                 <mxCell id="25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="24" target="11" edge="1">
@@ -88,7 +88,7 @@
                 <mxCell id="30" value="UserBattleshipTemplate" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="495" y="335" width="220" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" value="User&lt;br&gt;BattleshipTemplate&lt;br&gt;isOfficialTemplate - set to true by admin" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="30" vertex="1">
+                <mxCell id="31" value="User&lt;br&gt;BattleshipTemplate&lt;br&gt;isOfficialTemplate - set to true by admin" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="30" vertex="1">
                     <mxGeometry y="29" width="220" height="51" as="geometry"/>
                 </mxCell>
                 <mxCell id="40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="35" target="38" edge="1">
@@ -97,34 +97,34 @@
                 <mxCell id="35" value="SubsystemRefStorage" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1300" y="560" width="140" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="36" value="SubsystemRef&lt;br&gt;StoredResource&lt;br&gt;InitialAmount" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="35" vertex="1">
+                <mxCell id="36" value="SubsystemRef&lt;br&gt;StoredResource&lt;br&gt;InitialAmount" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="35" vertex="1">
                     <mxGeometry y="29" width="140" height="51" as="geometry"/>
                 </mxCell>
                 <mxCell id="38" value="StoredResource" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1300" y="450" width="140" height="90" as="geometry"/>
                 </mxCell>
-                <mxCell id="39" value="name&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;- torpedos&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;- railgun slugs&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;- nukes" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="38" vertex="1">
+                <mxCell id="39" value="name&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;- torpedos&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;- railgun slugs&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;- nukes" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="38" vertex="1">
                     <mxGeometry y="29" width="140" height="61" as="geometry"/>
                 </mxCell>
                 <mxCell id="48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="41" target="11" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="99" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="41" target="39">
+                <mxCell id="99" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="41" target="39" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="41" value="SubbsystemRefStoredResourceRequirement" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1000" y="560" width="280" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="42" value="SubsystemRef&lt;br&gt;StoredResource&lt;br&gt;RequiredAmountPerShot - will be decreased from&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;the storage subsystems&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;- if there's not enough in&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;the storage subsystems,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;then the subsystem will&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;be disabled" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="41" vertex="1">
+                <mxCell id="42" value="SubsystemRef&lt;br&gt;StoredResource&lt;br&gt;RequiredAmountPerShot - will be decreased from&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;the storage subsystems&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;- if there's not enough in&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;the storage subsystems,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;then the subsystem will&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;be disabled" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="41" vertex="1">
                     <mxGeometry y="29" width="280" height="121" as="geometry"/>
                 </mxCell>
-                <mxCell id="49" value="Icons will not be stored in the database, but on the filesystem, in subdirectories named after the data types for which the icons are meant. The icon files will be named afeter the IDs of the entities. For example: StoredResource / 1.png" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="49" value="Icons will not be stored in the database, but on the filesystem, in subdirectories named after the data types for which the icons are meant. The icon files will be named afeter the IDs of the entities. For example: StoredResource / 1.png" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1C1C1C;fontColor=#FFFFFF;" parent="1" vertex="1">
                     <mxGeometry x="860" y="435.5" width="360" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="51" value="GeneralParameter&lt;br&gt;(i.e. cost of a ship hull cell)" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="760" y="340" width="180" height="69" as="geometry"/>
                 </mxCell>
-                <mxCell id="52" value="name&lt;br&gt;value" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="51" vertex="1">
+                <mxCell id="52" value="name&lt;br&gt;value" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="51" vertex="1">
                     <mxGeometry y="29" width="180" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="10" target="51" edge="1">
@@ -133,7 +133,7 @@
                 <mxCell id="54" value="Ladder (for official games)" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="25" y="314.5" width="180" height="121" as="geometry"/>
                 </mxCell>
-                <mxCell id="55" value="name&lt;br&gt;visible&lt;br&gt;registrationStartDate&lt;br&gt;startDate&lt;br&gt;endDate&lt;br&gt;startingMoneyForEachGame&lt;br&gt;#minBattlesRequired" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="54" vertex="1">
+                <mxCell id="55" value="name&lt;br&gt;visible&lt;br&gt;registrationStartDate&lt;br&gt;startDate&lt;br&gt;endDate&lt;br&gt;startingMoneyForEachGame&lt;br&gt;#minBattlesRequired" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="54" vertex="1">
                     <mxGeometry y="20" width="180" height="101" as="geometry"/>
                 </mxCell>
                 <mxCell id="58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="56" target="54" edge="1">
@@ -142,7 +142,7 @@
                 <mxCell id="56" value="LadderRanking" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="240" y="250" width="170" height="250" as="geometry"/>
                 </mxCell>
-                <mxCell id="57" value="Ladder&lt;br&gt;User&lt;br&gt;#points&lt;br&gt;#battles&lt;br&gt;#wins&lt;br&gt;---&lt;br&gt;Upon winning, a user gets&lt;br&gt;1 point + 1/2* the loser's&lt;br&gt;points. The loser does not&lt;br&gt;lose points.&amp;nbsp;&lt;br&gt;--&lt;br&gt;Users who haven't fought the&lt;br&gt;#minBattlesRequired number&lt;br&gt;of battles in the ladder will not&lt;br&gt;rank." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="56" vertex="1">
+                <mxCell id="57" value="Ladder&lt;br&gt;User&lt;br&gt;#points&lt;br&gt;#battles&lt;br&gt;#wins&lt;br&gt;---&lt;br&gt;Upon winning, a user gets&lt;br&gt;1 point + 1/2* the loser's&lt;br&gt;points. The loser does not&lt;br&gt;lose points.&amp;nbsp;&lt;br&gt;--&lt;br&gt;Users who haven't fought the&lt;br&gt;#minBattlesRequired number&lt;br&gt;of battles in the ladder will not&lt;br&gt;rank." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="56" vertex="1">
                     <mxGeometry y="29" width="170" height="221" as="geometry"/>
                 </mxCell>
                 <mxCell id="60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="57" target="2" edge="1">
@@ -156,7 +156,7 @@
                 <mxCell id="61" value="LadderBattleshipTemplateCategory" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="10" y="569" width="210" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="62" value="name" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="61" vertex="1">
+                <mxCell id="62" value="name" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="61" vertex="1">
                     <mxGeometry y="29" width="210" height="31" as="geometry"/>
                 </mxCell>
                 <mxCell id="66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="63" target="54" edge="1">
@@ -168,7 +168,7 @@
                 <mxCell id="63" value="LadderBattleshipTemplate" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="10" y="460" width="210" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="64" value="Ladder&lt;br&gt;BatleshipTemplate&lt;br&gt;Category" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="63" vertex="1">
+                <mxCell id="64" value="Ladder&lt;br&gt;BatleshipTemplate&lt;br&gt;Category" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="63" vertex="1">
                     <mxGeometry y="29" width="210" height="51" as="geometry"/>
                 </mxCell>
                 <mxCell id="65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="64" target="9" edge="1">
@@ -189,56 +189,62 @@
                 <mxCell id="72" value="BattleHistory" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="530" y="60" width="150" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="73" value="battleDate&lt;br&gt;durationSec&lt;br&gt;Ladder (null for unranked)&lt;br&gt;winningUser&lt;br&gt;losingUser" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="72" vertex="1">
+                <mxCell id="73" value="battleDate&lt;br&gt;durationSec&lt;br&gt;Ladder (null for unranked)&lt;br&gt;winningUser&lt;br&gt;losingUser" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="72" vertex="1">
                     <mxGeometry y="29" width="150" height="81" as="geometry"/>
                 </mxCell>
-                <mxCell id="87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="76" target="84">
+                <mxCell id="76" value="Group" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="765" y="254.5" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" value="name&lt;br&gt;description" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="76" vertex="1">
+                    <mxGeometry y="29" width="140" height="31" as="geometry"/>
+                </mxCell>
+                <mxCell id="86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="78" target="76" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="76" value="Group" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="765" y="160" width="140" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="77" value="name&lt;br&gt;description" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="76">
-                    <mxGeometry y="29" width="140" height="31" as="geometry"/>
-                </mxCell>
-                <mxCell id="86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="78" target="76">
+                <mxCell id="108" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="78" target="101">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="78" value="UserGroup" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="765" y="250" width="140" height="60" as="geometry"/>
+                <mxCell id="78" value="UserGroup" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="765" y="170" width="140" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="79" value="User&lt;br&gt;Group" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="78">
+                <mxCell id="79" value="User&lt;br&gt;Group" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="78" vertex="1">
                     <mxGeometry y="29" width="140" height="31" as="geometry"/>
                 </mxCell>
-                <mxCell id="82" value="Authoritiey" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="945" y="250" width="140" height="60" as="geometry"/>
+                <mxCell id="82" value="Authoritiey" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="945" y="170" width="140" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="83" value="name&lt;br&gt;description" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="82">
+                <mxCell id="83" value="name&lt;br&gt;description" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="82" vertex="1">
                     <mxGeometry y="29" width="140" height="31" as="geometry"/>
                 </mxCell>
-                <mxCell id="88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="84" target="82">
+                <mxCell id="88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="84" target="82" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="84" value="GroupAuthoritiey" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="945" y="160" width="140" height="60" as="geometry"/>
+                <mxCell id="107" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="84" target="76">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="85" value="name&lt;br&gt;description" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="84">
+                <mxCell id="84" value="GroupAuthoritiey" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="945" y="254.5" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="85" value="name&lt;br&gt;description" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="84" vertex="1">
                     <mxGeometry y="29" width="140" height="31" as="geometry"/>
                 </mxCell>
-                <mxCell id="94" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="91" target="2">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="740" y="100"/>
-                            <mxPoint x="740" y="190"/>
-                            <mxPoint x="605" y="190"/>
-                        </Array>
-                    </mxGeometry>
+                <mxCell id="91" value="UserLoginSource" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="940" y="50" width="140" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="91" value="UserLoginSource" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="765" y="60" width="140" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="92" value="User&lt;br&gt;sourceId&lt;br&gt;loginToken" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="91">
+                <mxCell id="92" value="User&lt;br&gt;sourceId&lt;br&gt;loginToken" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="91" vertex="1">
                     <mxGeometry y="29" width="140" height="51" as="geometry"/>
+                </mxCell>
+                <mxCell id="101" value="User" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="765" y="60" width="140" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="102" value="UNIQUE_TOKEN&lt;br&gt;name&lt;br&gt;pictureUrl&lt;br&gt;primaryEmailAddress" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="101" vertex="1">
+                    <mxGeometry y="29" width="140" height="61" as="geometry"/>
+                </mxCell>
+                <mxCell id="103" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="92" target="101" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="106" value="The UNIQUE_TOKEN is the identification key for any object in the registry and is used for communicating across areas (which may also be different physical registries, maybe even accessible through microservices). It is&amp;nbsp;a string of 12 alphanumeric characters. It is restricted to alphanumeric characters to make sure there are no collation-related issues, regardless of what registry they are put in. There have to be 10 such characters to fit a LONG id + 2 to fit the indices of the service and thred generating the token.&amp;nbsp;&lt;br&gt;&lt;br&gt;Unique tokens will be generated by a specialized service bean. The specialized service bean will be injected into every data service which might need to generate unique tokens.&lt;br&gt;&lt;br&gt;There can be a number of distinct runtime enviromnents (web services / microservices) instantiating one such service bean in their application contexts. Each runtime environment will have its own external application.properties file where the service ID (the first of the +2 chars) will be defined with uniqueness in mind.&lt;br&gt;&lt;br&gt;The second char will be allocated internally by the service bean and will represent the thread used for generating the UNIQUE_TOKEN. Each thread persists its last LONG index in a data file, in a directory defined in the application.properties of the runtime environment. The name of the data file will contain the environment and thread ID characters. There will be one data file for each environment and thread.&lt;br&gt;&lt;br&gt;The UNIQUE_TOKEN should not be an UUID because the UUID has more than 12 characters, hence higher volumes of data will be harder to store and access.&lt;br&gt;&lt;br&gt;The SQL data type should be CHAR and not VARCHAR" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1120" width="440" height="400" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

@@ -9,9 +9,9 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>security</artifactId>
-	<name>AdvancedBattleships Security</name>
-	<description>Handles security queries</description>
+	<artifactId>common-lang</artifactId>
+	<name>Common Lang</name>
+	<description>Common reusable components which do not have any dependencies besides the JDK itself</description>
 
     <packaging>jar</packaging>
 
@@ -19,28 +19,7 @@
 		<java.version>16</java.version>
 	</properties>
 
-    <dependencies>
-		<dependency>
-			<groupId>com.advancedbattleships</groupId>
-			<artifactId>security-data-service-spec</artifactId>
-			<version>${parent.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
-		</dependency>
-
+	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -51,8 +30,7 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-    </dependencies>
-
+	</dependencies>
 </project>
 
 

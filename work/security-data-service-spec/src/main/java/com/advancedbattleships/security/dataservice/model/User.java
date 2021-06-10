@@ -1,6 +1,13 @@
 package com.advancedbattleships.security.dataservice.model;
 
-public interface User {
+import java.io.Serializable;
+import java.util.Set;
+
+public interface User extends Serializable {
+
+	String getUniqueToken();
+
+	void setUniqueToken(String uniqueToken);
 
 	String getName();
 
@@ -14,11 +21,7 @@ public interface User {
 
 	void setPrimaryEmailAddress(String primaryEmailAddress);
 
-	Iterable<UserLoginSource> getLoginSources();
+	Set<Group> getGroups();
 
-	void setLoginSources(Iterable<UserLoginSource> loginSources);
-
-	Iterable<Group> getGroups();
-
-	void setGroups(Iterable<Group> groups);
+	void setGroups(Set<Group> groups);
 }
