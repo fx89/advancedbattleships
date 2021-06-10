@@ -26,6 +26,9 @@
 			<version>${parent.version}</version>
 		</dependency>
 		<dependency> <!-- This might have to be replaced by a more secure or maybe more scalable service -->
+		<!-- By the end of development, this dependency must disappear from the POM.
+		     The JAR will be placed in the class path when starting the app via console.
+		     This will make it easily interchangeable with any other future implementations -->
 			<groupId>com.advancedbattleships</groupId>
 			<artifactId>security-data-service-springdata</artifactId>
 			<version>${parent.version}</version>
