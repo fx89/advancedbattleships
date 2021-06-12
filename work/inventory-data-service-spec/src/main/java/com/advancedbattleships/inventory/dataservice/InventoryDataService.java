@@ -17,7 +17,7 @@ public interface InventoryDataService {
 	 * <br />
 	 * This method does not validate the hull size. That's the job of the calling service.
 	 */
-	BattleshipTemplate createEmptyBattleshipTemplate(String userUniqueToken, String templateName, int hullSizeX, int hullSizeY);
+	BattleshipTemplate createEmptyBattleshipTemplate(String uniqueToken, String userUniqueToken, String templateName, int hullSizeX, int hullSizeY);
 
 	/**
 	 * Removes the referenced battleship template and all of its subsystems.
@@ -44,7 +44,7 @@ public interface InventoryDataService {
 	 * at the specified position. This method does not validate the position. That's
 	 * the job of the calling service.
 	 */
-	BattleshipTemplateSubsystem addBattleshipTemplateSubsystem(BattleshipTemplate battleshipTemplate, SubsystemRef subsystemRef, int posX, int posY);
+	BattleshipTemplateSubsystem addBattleshipTemplateSubsystem(String uniqueToken, BattleshipTemplate battleshipTemplate, SubsystemRef subsystemRef, int posX, int posY);
 
 	/**
 	 * Returns the battleship template subsystem having the given unique token.

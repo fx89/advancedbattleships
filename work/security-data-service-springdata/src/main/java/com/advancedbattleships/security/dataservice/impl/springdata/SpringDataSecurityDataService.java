@@ -17,13 +17,9 @@ import com.advancedbattleships.security.dataservice.model.Group;
 import com.advancedbattleships.security.dataservice.model.LoginSource;
 import com.advancedbattleships.security.dataservice.model.User;
 import com.advancedbattleships.security.dataservice.model.UserLoginSource;
-import com.advancedbattleships.utilityservices.UniqueTokenProviderService;
 
 @Service
 public class SpringDataSecurityDataService implements SecurityDataService {
-
-	@Autowired
-	private UniqueTokenProviderService uniqueTokenProvider;
 
 	@Autowired
 	private UserLoginSourcesRepository userLoginSourcesRepository;
@@ -44,7 +40,7 @@ public class SpringDataSecurityDataService implements SecurityDataService {
 
 	@Override
 	@Transactional
-	public UserLoginSource createUserLoginSource(String name, String pictureUrl, String primaryEmail,
+	public UserLoginSource createUserLoginSource(String uniqueToken, String name, String pictureUrl, String primaryEmail,
 			LoginSource loginSource, String loginToken)
 	{
 		// Create the user
@@ -52,7 +48,7 @@ public class SpringDataSecurityDataService implements SecurityDataService {
 		user.setName(name);
 		user.setPictureUrl(pictureUrl);
 		user.setPrimaryEmailAddress(primaryEmail);
-		user.setUniqueToken(uniqueTokenProvider.provide());
+		user.setUniqueToken(uniqueToken);
 
 		// Save the user into the database
 		user = usersRepository.save(user);

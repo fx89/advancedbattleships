@@ -11,9 +11,12 @@ import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplateSub
 import com.advancedbattleships.inventory.dataservice.model.Point2I;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemRef;
 import com.advancedbattleships.inventory.exception.AdvancedBattleshipsInventoryValidationException;
+import com.advancedbattleships.utilityservices.UniqueTokenProviderService;
 
 @Service
 public class InventoryService {
+	@Autowired
+	private UniqueTokenProviderService uniqueTokenProvider;
 
 	@Autowired
 	private InventoryDataService dataService;
@@ -24,7 +27,10 @@ public class InventoryService {
 
 	public BattleshipTemplate createNewBattleshipTemplate(String userUniqueToken, String templateName, int width, int height) {
 		validateBattleshipHullSize(width, height);
-		return dataService.createEmptyBattleshipTemplate(userUniqueToken, templateName, width, height);
+		return dataService.createEmptyBattleshipTemplate(
+				uniqueTokenProvider.provide(),
+				userUniqueToken, templateName, width, height
+			);
 	}
 
 	public List<BattleshipTemplateSubsystem> getBattleshipTemplateSubsystems(BattleshipTemplate battleshipTemplate) {
@@ -39,7 +45,10 @@ public class InventoryService {
 	) {
 		// TODO: Don't forget to validate that the battleship template is in fact owned by the current user
 		validateSubsystemPlacementOnHull(battleshipTemplate, posX, posY);
-		return dataService.addBattleshipTemplateSubsystem(battleshipTemplate, subsystemRef, posX, posY);
+		return dataService.addBattleshipTemplateSubsystem(
+				uniqueTokenProvider.provide(),
+				battleshipTemplate, subsystemRef, posX, posY
+		);
 	}
 
 	public BattleshipTemplateSubsystem updateBattleshipTemplateSubsystem(BattleshipTemplateSubsystem subsystem) {

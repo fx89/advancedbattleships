@@ -27,7 +27,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.advancedbattleships</groupId>
-			<artifactId>utility-services</artifactId>
+			<artifactId>common-lang</artifactId>
 			<version>${parent.version}</version>
 		</dependency>
 

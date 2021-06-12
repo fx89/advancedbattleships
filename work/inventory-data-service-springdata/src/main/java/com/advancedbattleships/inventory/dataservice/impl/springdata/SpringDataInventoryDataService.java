@@ -18,13 +18,9 @@ import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplate;
 import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplateSubsystem;
 import com.advancedbattleships.inventory.dataservice.model.Point2I;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemRef;
-import com.advancedbattleships.utilityservices.UniqueTokenProviderService;
 
 @Service
 public class SpringDataInventoryDataService implements InventoryDataService {
-
-	@Autowired
-	private UniqueTokenProviderService uniqueTokenProvider;
 
 	@Autowired
 	private BattleshipTemplatesRepository battleshipTemplatesRepository;
@@ -37,6 +33,7 @@ public class SpringDataInventoryDataService implements InventoryDataService {
 
 	@Override
 	public BattleshipTemplate createEmptyBattleshipTemplate(
+		String uniqueToken,
 		String userUniqueToken,
 		String templateName,
 		int hullSizeX,
@@ -50,7 +47,7 @@ public class SpringDataInventoryDataService implements InventoryDataService {
 		ret.setPublic(false);
 		ret.setVisibleInLists(false);
 		ret.setUserUniqueToken(userUniqueToken);
-		ret.setUniqueToken(uniqueTokenProvider.provide());
+		ret.setUniqueToken(uniqueToken);
 
 		return battleshipTemplatesRepository.save(ret);
 	}
@@ -78,6 +75,7 @@ public class SpringDataInventoryDataService implements InventoryDataService {
 
 	@Override
 	public BattleshipTemplateSubsystem addBattleshipTemplateSubsystem(
+			String uniqueToken,
 			BattleshipTemplate battleshipTemplate,
 			SubsystemRef subsystemRef,
 			int posX, int posY
@@ -88,7 +86,7 @@ public class SpringDataInventoryDataService implements InventoryDataService {
 		ret.setBattleshipTemplate(t);
 		ret.setPosition(new Point2I(posX, posY));
 		ret.setSubsystemRef(subsystemRef);
-		ret.setUniqueToken(uniqueTokenProvider.provide());
+		ret.setUniqueToken(uniqueToken);
 
 		return battleshipTemplateSubsystemsRepository.save(ret);
 	}

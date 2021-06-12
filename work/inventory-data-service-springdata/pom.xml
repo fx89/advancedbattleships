@@ -30,11 +30,6 @@
 			<artifactId>common-lang</artifactId>
 			<version>${parent.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.advancedbattleships</groupId>
-			<artifactId>utility-services</artifactId>
-			<version>${parent.version}</version>
-		</dependency>
 
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>

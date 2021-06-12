@@ -20,11 +20,15 @@ import com.advancedbattleships.security.dataservice.model.LoginSource;
 import com.advancedbattleships.security.dataservice.model.User;
 import com.advancedbattleships.security.dataservice.model.UserLoginSource;
 import com.advancedbattleships.security.exception.UnknownLoginProviderException;
+import com.advancedbattleships.utilityservices.UniqueTokenProviderService;
 
 @Service
 public class SecurityService {
 
 	private static String USR_GRP_NAME = "USERS";
+
+	@Autowired
+	private UniqueTokenProviderService uniqueTokenProvider;
 	
 	@Autowired
 	private SecurityDataService securityDataService;
@@ -93,6 +97,7 @@ public class SecurityService {
 
 		if (userLoginSource == null) {
 			userLoginSource = securityDataService.createUserLoginSource(
+					uniqueTokenProvider.provide(),
 					userName, pictureUrl, primaryEmail, loginSource, loginToken
 			);
 		}

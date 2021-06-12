@@ -16,7 +16,7 @@ public interface SecurityDataService {
 	 * Creates a new user with the given name, pictureUrl and primaryEmail. Then creates a new login source
 	 * mapping for the newly created user, using the given loginSource and loginToken. Then returns the mapping.
 	 */
-	UserLoginSource createUserLoginSource(String name, String pictureUrl, String primaryEmail, LoginSource loginSource, String loginToken);
+	UserLoginSource createUserLoginSource(String uniqueToken, String name, String pictureUrl, String primaryEmail, LoginSource loginSource, String loginToken);
 
 	/**
 	 * Creates a mapping record between the referenced user and the referenced group,
