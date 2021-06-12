@@ -1,6 +1,6 @@
 <mxfile>
     <diagram id="OJGOcAma7YuwsuVDb4Vq" name="Page-1">
-        <mxGraphModel dx="1149" dy="670" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="804" dy="440" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -19,7 +19,7 @@
                 <mxCell id="7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="5" target="4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="5" target="12">
+                <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="5" target="12" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="5" value="SECURITY-DATA-SERVICE-SPRINGDATA" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
@@ -28,14 +28,65 @@
                 <mxCell id="11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="6" target="3" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
+                <mxCell id="18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="6" target="15" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
                 <mxCell id="6" value="USER-PROFILE-REST" style="shape=umlFrame;whiteSpace=wrap;html=1;width=160;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
-                    <mxGeometry width="360" height="200" as="geometry"/>
+                    <mxGeometry x="200" width="360" height="200" as="geometry"/>
                 </mxCell>
                 <mxCell id="13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="12" target="2" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="12" value="UTILITY-SERVICES" style="shape=umlFrame;whiteSpace=wrap;html=1;width=130;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
                     <mxGeometry y="960" width="360" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="15" target="16" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="INVENTORY" style="shape=umlFrame;whiteSpace=wrap;html=1;width=120;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="240" width="360" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="INVENTORY-DATA-SERVICE-SPEC" style="shape=umlFrame;whiteSpace=wrap;html=1;width=220;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="480" width="360" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.998;entryY=0.463;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="19" target="2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="INVENTORY-DATA-SERVICE-SPRINGDATA" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="720" width="360" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="SpringDataInventoryDataService" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="480" y="790" width="205" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="InventoryDataService" style="fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="440" y="535" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="Model" style="fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="580" y="595" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="SecurityDataService" style="fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="530" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="Model" style="fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="180" y="590" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="SpringDataSecurityDataService" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="780" width="205" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="UniqueTokenProviderService" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="10" y="1000" width="205" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" value="SecurityService" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="77.5" y="313" width="205" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="InventoryService" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="313" width="205" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="LongTokenizer" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="20" y="1240" width="205" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="Multicast" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="115" y="1310" width="205" height="54" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
