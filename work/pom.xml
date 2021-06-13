@@ -31,6 +31,9 @@
 		<module>inventory-data-service-spec</module>
 		<module>inventory-data-service-springdata</module>
 		<module>utility-services</module>
+		<module>system</module>
+		<module>system-data-service-spec</module>
+		<module>system-data-service-springdata</module>
 		<module>common-lang</module>
 	</modules>
 

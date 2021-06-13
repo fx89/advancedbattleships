@@ -37,6 +37,9 @@ public class SubsystemRefImpl implements SubsystemRef {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(name = "UNIQUE_TOKEN")
+	private String uniqueToken;
+
 	@Column(name = "NAME")
 	private String name;
 
@@ -58,6 +61,16 @@ public class SubsystemRefImpl implements SubsystemRef {
 
 	@OneToMany(mappedBy="subsystemRef")
 	private Set<SubsystemRefGeneratedResourceSpecImpl> generatedResources;
+
+	@Override
+	public String getUniqueToken() {
+		return uniqueToken;
+	}
+
+	@Override
+	public void setUniqueToken(String uniqueToken) {
+		this.uniqueToken = uniqueToken;
+	}
 
 	@Override
 	public String getName() {

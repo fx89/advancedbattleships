@@ -69,4 +69,9 @@ public interface InventoryDataService {
 	 * template. These are defined by the admin and are not editable by users.
 	 */
 	List<SubsystemRef> getSubsystemRefs();
+
+	/**
+	 * Returns a the subsystem reference identified by the given unique token.
+	 */
+	SubsystemRef getSubsystemRefByUniqueToken(String uniqueToken);
 }

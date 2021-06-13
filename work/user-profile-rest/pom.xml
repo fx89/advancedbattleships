@@ -43,6 +43,11 @@
 			<artifactId>inventory-data-service-springdata</artifactId>
 			<version>${parent.version}</version>
 		</dependency>
+		<dependency><!-- This should be removed from here and added to the classpath, so that it may be easily switched for any other implementation if the inventory data service -->
+			<groupId>com.advancedbattleships</groupId>
+			<artifactId>system-data-service-springdata</artifactId>
+			<version>${parent.version}</version>
+		</dependency>
 
         <dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -5,6 +5,10 @@ import java.util.Set;
 
 public interface SubsystemRef extends Serializable {
 
+	String getUniqueToken();
+
+	void setUniqueToken(String uniqueToken);
+
 	String getName();
 
 	void setName(String name);

@@ -130,4 +130,9 @@ public class SpringDataInventoryDataService implements InventoryDataService {
 				);
 		}
 	}
+
+	@Override
+	public SubsystemRef getSubsystemRefByUniqueToken(String uniqueToken) {
+		return subsystemRefsRepository.findFirstByUniqueToken(uniqueToken);
+	}
 }

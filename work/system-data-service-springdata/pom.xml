@@ -9,9 +9,9 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>inventory</artifactId>
-	<name>AdvancedBattleships Inventory Service</name>
-	<description>Handles inventory queries, battleship management, etc</description>
+	<artifactId>system-data-service-springdata</artifactId>
+	<name>AdvancedBattleships System Data Service Srping Data</name>
+	<description>Implementation of the AdvancedBattleships System Data Service Specification using Spring Data JPA</description>
 
     <packaging>jar</packaging>
 
@@ -20,25 +20,15 @@
 	</properties>
 
     <dependencies>
-		<dependency>
+    	<dependency>
 			<groupId>com.advancedbattleships</groupId>
-			<artifactId>inventory-data-service-spec</artifactId>
-			<version>${parent.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.advancedbattleships</groupId>
-			<artifactId>utility-services</artifactId>
-			<version>${parent.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.advancedbattleships</groupId>
-			<artifactId>system</artifactId>
+	        <artifactId>system-data-service-spec</artifactId>
 			<version>${parent.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
+    	<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
 		<dependency>
@@ -46,14 +36,7 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
     </dependencies>
-
 </project>
 
 

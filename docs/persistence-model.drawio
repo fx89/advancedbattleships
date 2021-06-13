@@ -41,10 +41,10 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="11" value="SubsystemRef" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="1070" y="733.5" width="140" height="80" as="geometry"/>
+                    <mxGeometry x="1070" y="728.5" width="140" height="90" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" value="name&lt;br&gt;type&lt;br&gt;cost" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="11" vertex="1">
-                    <mxGeometry y="29" width="140" height="51" as="geometry"/>
+                <mxCell id="12" value="UNIQUE_TOKEN&lt;br&gt;name&lt;br&gt;type&lt;br&gt;cost" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="11" vertex="1">
+                    <mxGeometry y="29" width="140" height="61" as="geometry"/>
                 </mxCell>
                 <mxCell id="17" value="SubsystemType" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1395" y="728.5" width="140" height="90" as="geometry"/>

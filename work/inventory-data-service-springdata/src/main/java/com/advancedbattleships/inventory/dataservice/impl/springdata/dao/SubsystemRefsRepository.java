@@ -10,4 +10,5 @@ public interface SubsystemRefsRepository extends PagingAndSortingRepository<Subs
 
 	List<SubsystemRefImpl> findAll();
 
+	SubsystemRefImpl findFirstByUniqueToken(String uniqueToken);
 }

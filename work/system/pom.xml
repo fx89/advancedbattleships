@@ -9,9 +9,9 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>security-data-service-springdata</artifactId>
-	<name>Implemenation of the AdvancedBattleships Security Data Service based on Spring Data</name>
-	<description>Facilitates access to security-related information stored in databases</description>
+	<artifactId>system</artifactId>
+	<name>AdvancedBattleships System</name>
+	<description>Provides access to system parameters and some generic functionality</description>
 
     <packaging>jar</packaging>
 
@@ -20,20 +20,15 @@
 	</properties>
 
     <dependencies>
-		<dependency>
-			<groupId>com.advancedbattleships</groupId>
-			<artifactId>security-data-service-spec</artifactId>
+    	<dependency>
+    		<groupId>com.advancedbattleships</groupId>
+	        <artifactId>system-data-service-spec</artifactId>
 			<version>${parent.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.advancedbattleships</groupId>
-			<artifactId>common-lang</artifactId>
-			<version>${parent.version}</version>
-		</dependency>
+    	</dependency>
 
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-jpa</artifactId>
+    	<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
 
 		<dependency>
