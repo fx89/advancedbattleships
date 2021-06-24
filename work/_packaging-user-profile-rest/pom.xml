@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.5.0</version>
+		<relativePath/>
+	</parent>
+
+	<groupId>com.advancedbattleships</groupId>
+	<artifactId>_packaging-user-profile-rest</artifactId>
+	<name>AdvancedBattleships Package - USER-PROFILE-REST</name>
+	<description>Test build of a web service packaging all components related to the user profile screen</description>
+	<version>1.0.0-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+	<properties>
+		<java.version>16</java.version>
+		<advancedbattleships.version>1.0.0-SNAPSHOT</advancedbattleships.version>
+	</properties>
+
+    <dependencies>
+		<!-- !!! IMPORTANT !!! -->
+		<!-- This project exists only so that the various Advanced Battleships modules may be run and debugged using an IDE -->
+		<!-- In a production build, all dependencies should exist separately, in their own respective JAR files, and added to the class path via the startup script of the service -->
+		<!-- This way, each service can be configured to run any given set of REST modules and the various data layer implementations can be swapped with new ones without having to re-package the application -->
+		<!-- Engineers tending to the production environment can also configure their own service instances without having to request special builds -->
+
+		<!-- Main module dependency -->
+		<dependency>
+			<groupId>com.advancedbattleships</groupId>
+			<artifactId>app-boilerplating</artifactId>
+			<version>${advancedbattleships.version}</version>
+		</dependency>
+
+		<!-- Included REST modules -->
+		<dependency>
+			<groupId>com.advancedbattleships</groupId>
+			<artifactId>security-rest</artifactId>
+			<version>${advancedbattleships.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.advancedbattleships</groupId>
+			<artifactId>inventory-rest</artifactId>
+			<version>${advancedbattleships.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.advancedbattleships</groupId>
+			<artifactId>content-rest</artifactId>
+			<version>${advancedbattleships.version}</version>
+		</dependency>
+
+		<!-- Data layer implementations (can be swapped for other implementations if necessary) -->
+		<dependency>
+			<groupId>com.advancedbattleships</groupId>
+			<artifactId>content-provisioning-service-filesystem</artifactId>
+			<version>${advancedbattleships.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.advancedbattleships</groupId>
+			<artifactId>content-data-service-springdata</artifactId>
+			<version>${advancedbattleships.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.advancedbattleships</groupId>
+			<artifactId>security-data-service-springdata</artifactId>
+			<version>${advancedbattleships.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.advancedbattleships</groupId>
+			<artifactId>inventory-data-service-springdata</artifactId>
+			<version>${advancedbattleships.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.advancedbattleships</groupId>
+			<artifactId>system-data-service-springdata</artifactId>
+			<version>${advancedbattleships.version}</version>
+		</dependency>
+
+    </dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+
+
+
+

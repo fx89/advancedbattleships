@@ -1,5 +1,7 @@
 package com.advancedbattleships.security.service;
 
+import static com.advancedbattleships.common.lang.Suppliers.nullSafeSupplier;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +23,7 @@ import com.advancedbattleships.security.dataservice.model.LoginSource;
 import com.advancedbattleships.security.dataservice.model.User;
 import com.advancedbattleships.security.dataservice.model.UserLoginSource;
 import com.advancedbattleships.security.exception.UnknownLoginProviderException;
+import com.advancedbattleships.security.service.utility.NicknameGenerator;
 import com.advancedbattleships.utilityservices.UniqueTokenProviderService;
 
 @Service
@@ -32,7 +36,19 @@ public class SecurityService {
 	
 	@Autowired
 	private SecurityDataService securityDataService;
-	
+
+	public User getCurrentUser() {
+		return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
+
+	public boolean isUserAuthenticated() {
+		return
+			nullSafeSupplier(
+				() -> ! SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")
+				,false
+			);
+	}
+
 	public Authentication resolveInternalAuthentication(Authentication externalAuthentication) {
 		
 		if (externalAuthentication.getPrincipal() instanceof OidcUser) {
@@ -98,7 +114,9 @@ public class SecurityService {
 		if (userLoginSource == null) {
 			userLoginSource = securityDataService.createUserLoginSource(
 					uniqueTokenProvider.provide(),
-					userName, pictureUrl, primaryEmail, loginSource, loginToken
+					userName, pictureUrl, primaryEmail, loginSource, loginToken,
+					NicknameGenerator.generateNickName(),
+					true
 			);
 		}
 

@@ -23,22 +23,31 @@
 	</properties>
 
 	<modules>
-		<module>user-profile-rest</module>
+		<module>app-boilerplating</module>
+
+		<module>security-rest</module>
 		<module>security</module>
 		<module>security-data-service-spec</module>
 		<module>security-data-service-springdata</module>
+
+		<module>inventory-rest</module>
 		<module>inventory</module>
 		<module>inventory-data-service-spec</module>
 		<module>inventory-data-service-springdata</module>
-		<module>utility-services</module>
+
 		<module>system</module>
 		<module>system-data-service-spec</module>
 		<module>system-data-service-springdata</module>
-		<module>common-lang</module>
-	</modules>
 
-	<dependencies>
-		
-	</dependencies>
+		<module>content-rest</module>
+		<module>content</module>
+		<module>content-provisioning-service-spec</module>
+		<module>content-provisioning-service-filesystem</module>
+		<module>content-data-service-spec</module>
+		<module>content-data-service-springdata</module>
+
+		<module>common-lang</module>
+		<module>utility-services</module>
+	</modules>
 
 </project>

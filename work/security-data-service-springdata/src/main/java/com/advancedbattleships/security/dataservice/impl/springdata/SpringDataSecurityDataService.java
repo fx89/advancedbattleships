@@ -39,9 +39,9 @@ public class SpringDataSecurityDataService implements SecurityDataService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(transactionManager = "absSecurityTransactionManager")
 	public UserLoginSource createUserLoginSource(String uniqueToken, String name, String pictureUrl, String primaryEmail,
-			LoginSource loginSource, String loginToken)
+			LoginSource loginSource, String loginToken, String nickName, Boolean isFirstLogin)
 	{
 		// Create the user
 		UserImpl user = new UserImpl();
@@ -49,6 +49,8 @@ public class SpringDataSecurityDataService implements SecurityDataService {
 		user.setPictureUrl(pictureUrl);
 		user.setPrimaryEmailAddress(primaryEmail);
 		user.setUniqueToken(uniqueToken);
+		user.setNickName(nickName);
+		user.setFirstLogin(isFirstLogin);
 
 		// Save the user into the database
 		user = usersRepository.save(user);
@@ -67,7 +69,7 @@ public class SpringDataSecurityDataService implements SecurityDataService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(transactionManager = "absSecurityTransactionManager")
 	public User mapUserToGroup(User user, Group group) {
 		userGroupsRepository.save(new UserGroup(null, ((UserImpl) user).getId(), ((GroupImpl) group).getId()));
 		return usersRepository.findById(((UserImpl) user).getId()).get();

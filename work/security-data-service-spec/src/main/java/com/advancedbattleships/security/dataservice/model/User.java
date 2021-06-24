@@ -21,6 +21,14 @@ public interface User extends Serializable {
 
 	void setPrimaryEmailAddress(String primaryEmailAddress);
 
+	String getNickName();
+
+	void setNickName(String nickName);
+
+	Boolean isFirstLogin();
+
+	void setFirstLogin(Boolean isFirstLogin);
+
 	Set<Group> getGroups();
 
 	void setGroups(Set<Group> groups);

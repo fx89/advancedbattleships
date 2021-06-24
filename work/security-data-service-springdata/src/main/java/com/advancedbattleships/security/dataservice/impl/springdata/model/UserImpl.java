@@ -44,6 +44,12 @@ public class UserImpl implements User {
 	@Column(name="PRIMARY_EMAIL_ADDRESS")
 	private String primaryEmailAddress;
 
+	@Column(name="NICK_NAME")
+	private String nickName;
+
+	@Column(name="IS_FIRST_LOGIN")
+	private Boolean isFirstLogin;
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 	  name = "USER_GROUP", 
@@ -93,6 +99,26 @@ public class UserImpl implements User {
 	}
 
 	@Override
+	public String getNickName() {
+		return nickName;
+	}
+
+	@Override
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	@Override
+	public Boolean isFirstLogin() {
+		return isFirstLogin;
+	}
+
+	@Override
+	public void setFirstLogin(Boolean isFirstLogin) {
+		this.isFirstLogin = isFirstLogin;
+	}
+
+	@Override
 	public Set<Group> getGroups() {
 		return multicastSet(groups);
 	}
@@ -115,6 +141,8 @@ public class UserImpl implements User {
 		this.pictureUrl = src.getPicutreUrl();
 		this.primaryEmailAddress = src.getPrimaryEmailAddress();
 		this.uniqueToken = src.getUniqueToken();
+		this.nickName = src.getNickName();
+		this.isFirstLogin = src.isFirstLogin();
 		this.setGroups(src.getGroups());
 
 		if (src instanceof UserImpl) {
