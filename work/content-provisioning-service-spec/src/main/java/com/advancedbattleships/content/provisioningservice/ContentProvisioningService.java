@@ -7,8 +7,8 @@ import com.advancedbattleships.content.provisioningservice.exception.AdvancedBat
 public interface ContentProvisioningService {
 	/**
 	 * Returns an InputStream to the referenced file found in the underlying data
-	 * structures. The reference is given using the following hierarchy: schemaToken
-	 * >> contentType >> fileName.
+	 * structures. The reference is given using the following hierarchy: contentType
+	 * >> schemaToken >> fileName.
 	 * 
 	 * @params
 	 * @param schemaToken has the role of differentiating between multiple visual
@@ -18,6 +18,6 @@ public interface ContentProvisioningService {
 	 * @param fileName    ultimately identifies the file to be served (i.e.
 	 *                    subsys_AC1~~~~~~~~~.png or ocean.mp4)
 	 */
-	InputStream getFile(String schemaToken, String contentType, String fileName)
+	InputStream getFile(String contentType, String schemaToken, String fileName)
 			throws AdvancedBattleshipsContentProvisioningServiceException;
 }

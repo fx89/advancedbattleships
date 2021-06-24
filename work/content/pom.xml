@@ -25,6 +25,11 @@
 			<artifactId>content-provisioning-service-spec</artifactId>
 			<version>${parent.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.advancedbattleships</groupId>
+			<artifactId>content-data-service-spec</artifactId>
+			<version>${parent.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -32,6 +37,10 @@
 			<optional>true</optional>
 		</dependency>
 
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>

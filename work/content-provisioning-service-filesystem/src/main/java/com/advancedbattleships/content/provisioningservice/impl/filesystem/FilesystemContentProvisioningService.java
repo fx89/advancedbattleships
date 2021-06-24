@@ -18,11 +18,11 @@ public class FilesystemContentProvisioningService implements ContentProvisioning
 	private FilesystemContentProvisioningConfig config;
 
 	@Override
-	public InputStream getFile(String schemaToken, String contentType, String fileName)
+	public InputStream getFile(String contentType, String schemaToken, String fileName)
 			throws AdvancedBattleshipsContentProvisioningServiceException
 	{
 		final String filePathName
-			= config.getStorageDir() + "/" + schemaToken + "/" + contentType + "/" + fileName;
+			= config.getStorageDir() + "/" + contentType + "/" + schemaToken + "/" + fileName;
 
 		File file = new File(filePathName);
 

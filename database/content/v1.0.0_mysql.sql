@@ -1,0 +1,53 @@
+-- USER AND DATABASE ----------------------------------------------------------------------------------
+CREATE USER IF NOT EXISTS 'abscontent'@'localhost' IDENTIFIED BY 'content';
+CREATE DATABASE IF NOT EXISTS abscontent;
+USE abscontent;
+
+
+
+
+-- TABLES ---------------------------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `USER_UI_CONFIG` (
+	`ID`                       BIGINT NOT NULL AUTO_INCREMENT,
+	`USER_UNIQUE_TOKEN`        CHAR(12) NOT NULL,
+	`CURRENT_WALLPAPER_NAME`   VARCHAR(200) NOT NULL,
+	`CURRENT_STYLESHEET_NAME`  VARCHAR(200) NOT NULL,
+	`CURRENT_ICON_THEME_NAME`  VARCHAR(200) NOT NULL,
+	`CURRENT_LOGO_NAME`        VARCHAR(200) NOT NULL,
+PRIMARY KEY(ID)
+);
+
+CREATE TABLE IF NOT EXISTS `USER_ACCESSIBLE_LOGO` (
+	`ID`                       BIGINT NOT NULL AUTO_INCREMENT,
+	`USER_UI_CONFIG_ID`        BIGINT NOT NULL,
+	`LOGO_NAME`                VARCHAR(200) NOT NULL,
+PRIMARY KEY(ID)
+);
+
+CREATE TABLE IF NOT EXISTS `USER_ACCESSIBLE_STYLESHEET` (
+	`ID`                       BIGINT NOT NULL AUTO_INCREMENT,
+	`USER_UI_CONFIG_ID`        BIGINT NOT NULL,
+	`STYLESHEET_NAME`          VARCHAR(200) NOT NULL,
+PRIMARY KEY(ID)
+);
+
+CREATE TABLE IF NOT EXISTS `USER_ACCESSIBLE_ICON_THEME` (
+	`ID`                       BIGINT NOT NULL AUTO_INCREMENT,
+	`USER_UI_CONFIG_ID`        BIGINT NOT NULL,
+	`ICON_THEME_NAME`          VARCHAR(200) NOT NULL,
+PRIMARY KEY(ID)
+);
+
+CREATE TABLE IF NOT EXISTS `USER_ACCESSIBLE_WALLPAPER` (
+	`ID`                       BIGINT NOT NULL AUTO_INCREMENT,
+	`USER_UI_CONFIG_ID`        BIGINT NOT NULL,
+	`WALLPAPER_NAME`          VARCHAR(200) NOT NULL,
+PRIMARY KEY(ID)
+);
+
+
+
+-- PRIVILEGES -----------------------------------------------------------------------------------------
+
+GRANT ALL PRIVILEGES ON abscontent.* TO 'abscontent'@'localhost';

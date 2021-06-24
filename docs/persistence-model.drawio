@@ -1,6 +1,6 @@
 <mxfile>
     <diagram id="Q96f5WNDCmfQpQFSebxe" name="Page-1">
-        <mxGraphModel dx="732" dy="440" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="861" dy="1618" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -230,10 +230,10 @@
                     <mxGeometry y="29" width="140" height="31" as="geometry"/>
                 </mxCell>
                 <mxCell id="91" value="UserLoginSource" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="945" y="60" width="140" height="80" as="geometry"/>
+                    <mxGeometry x="945" y="60" width="140" height="90" as="geometry"/>
                 </mxCell>
                 <mxCell id="92" value="User&lt;br&gt;sourceId&lt;br&gt;loginToken" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="91" vertex="1">
-                    <mxGeometry y="29" width="140" height="51" as="geometry"/>
+                    <mxGeometry y="29" width="140" height="61" as="geometry"/>
                 </mxCell>
                 <mxCell id="101" value="User" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="765" y="60" width="140" height="120" as="geometry"/>
@@ -263,6 +263,59 @@
                 </mxCell>
                 <mxCell id="113" value="SubsystemRef&lt;br&gt;&lt;span style=&quot;color: rgb(240 , 240 , 240) ; font-weight: 700 ; text-align: center&quot;&gt;GeneratedResourceType&lt;/span&gt;&lt;br&gt;RequiredAmount" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="112" vertex="1">
                     <mxGeometry y="29" width="300" height="51" as="geometry"/>
+                </mxCell>
+                <mxCell id="120" value="Content" style="shape=umlFrame;whiteSpace=wrap;html=1;width=120;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;swimlaneFillColor=#262626;" vertex="1" parent="1">
+                    <mxGeometry x="560" y="-350" width="420" height="330" as="geometry"/>
+                </mxCell>
+                <mxCell id="126" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="121" target="101">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="121" value="UserUiConfig" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="795" y="-160" width="150" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="122" value="USER_UNIQUE_TOKEN&lt;br&gt;currentWallpaperName&lt;br&gt;currentStylesheetName&lt;br&gt;currentIconThemeName&lt;br&gt;currentLogoName" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" vertex="1" parent="121">
+                    <mxGeometry y="29" width="150" height="91" as="geometry"/>
+                </mxCell>
+                <mxCell id="137" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="123" target="122">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="770" y="-210"/>
+                            <mxPoint x="770" y="-86"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="123" value="UserAccessibleStylesheet" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="-240" width="175" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="124" value="User&lt;br&gt;stylesheetName" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" vertex="1" parent="123">
+                    <mxGeometry y="29" width="175" height="31" as="geometry"/>
+                </mxCell>
+                <mxCell id="127" value="UserAccessibleWallpaper" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="-100" width="175" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="128" value="User&lt;br&gt;wallpaperName" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" vertex="1" parent="127">
+                    <mxGeometry y="29" width="175" height="31" as="geometry"/>
+                </mxCell>
+                <mxCell id="130" value="UserAccessibleIconTheme" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="-170" width="175" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="131" value="User&lt;br&gt;iconThemeName" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" vertex="1" parent="130">
+                    <mxGeometry y="29" width="175" height="31" as="geometry"/>
+                </mxCell>
+                <mxCell id="133" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="131" target="122">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="135" value="UserAccessibleLogo" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="-310" width="175" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="136" value="User&lt;br&gt;logoName" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" vertex="1" parent="135">
+                    <mxGeometry y="29" width="175" height="31" as="geometry"/>
+                </mxCell>
+                <mxCell id="139" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="128" target="122">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="140" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="136" target="122">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
