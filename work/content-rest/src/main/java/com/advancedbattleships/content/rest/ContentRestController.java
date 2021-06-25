@@ -31,7 +31,7 @@ public class ContentRestController {
 	public void userWallpaper(@RequestParam() String mimeType, HttpServletResponse response) throws IOException {
 		buildFileResponse(response,
 			(usrToken) -> content.getUserWallpaper(usrToken, mimeType),
-			"userWallpaper." + mimeType
+			"userWallpaper." + mimeType, "application/octet-stream"
 		);
 	}
 
@@ -39,7 +39,7 @@ public class ContentRestController {
 	public void userIcon(@RequestParam() String fileName, HttpServletResponse response) throws IOException {
 		buildFileResponse(response,
 			(usrToken) -> content.getUserIcon(usrToken, fileName),
-			fileName
+			fileName, "application/octet-stream"
 		);
 	}
 
@@ -47,7 +47,8 @@ public class ContentRestController {
 	public void userLogo(HttpServletResponse response) throws IOException {
 		buildFileResponse(response,
 			(usrToken) -> content.getUserLogo(usrToken),
-			"userLogo.png" // TODO: Make the extension a static variable or something, so it doesn't have to appear twice in two classes
+			"userLogo.png", // TODO: Make the extension a static variable or something, so it doesn't have to appear twice in two classes
+			"application/octet-stream"
 		);
 	}
 
@@ -55,14 +56,15 @@ public class ContentRestController {
 	public void userStylesheet(@RequestParam() String fileName, HttpServletResponse response) throws IOException {
 		buildFileResponse(response,
 			(usrToken) -> content.getUserStylesheet(usrToken, fileName),
-			fileName
+			fileName, "text/css"
 		);
 	}
 
 	private void buildFileResponse(
 			HttpServletResponse response,
 			Function<String,InputStream> inputStreamFunction,
-			String fileName
+			String fileName,
+			String mimeType
 	) throws IOException {
 		// Get the current user's unique token from the security service
 		String userUniqueToken = security.getCurrentUser().getUniqueToken();
@@ -72,7 +74,7 @@ public class ContentRestController {
 
 		// Set the content type and attachment header.
 		response.addHeader("Content-disposition", "attachment;filename=" + fileName);
-		response.setContentType("application/octet-stream");
+		response.setContentType(mimeType);
 
 		// Copy the stream to the response's output stream.
 		IOUtils.copy(myStream, response.getOutputStream());
