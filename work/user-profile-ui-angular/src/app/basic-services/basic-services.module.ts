@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdvBsUiDataService } from './data-service.service';
 import { LiteNgConfigurationModule } from '@desolatetimelines/lite-ng';
+import { AdvBsPageManagerService } from './page-manager.service';
 
 
 
@@ -12,7 +13,8 @@ import { LiteNgConfigurationModule } from '@desolatetimelines/lite-ng';
     LiteNgConfigurationModule
   ],
   providers: [
-    AdvBsUiDataService
+    AdvBsUiDataService,
+    AdvBsPageManagerService
   ]
 })
 export class AppBasicServicesModule { }

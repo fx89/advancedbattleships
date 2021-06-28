@@ -1,6 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { LiteNgLoadingModalService, LiteNgMsgboxService, LiteNgToastService } from '@desolatetimelines/lite-ng';
+import { LiteNgConfigurationService, LiteNgLoadingModalService, LiteNgMsgboxService, LiteNgToastService } from '@desolatetimelines/lite-ng';
 import { AdvBsUiDataService } from './basic-services/data-service.service';
+import { AdvBsPageManagerService } from './basic-services/page-manager.service';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,12 @@ export class AppComponent implements AfterViewInit {
     private loadingModal : LiteNgLoadingModalService,
     private msgBox : LiteNgMsgboxService,
     private toast : LiteNgToastService,
-    private dataService : AdvBsUiDataService
+    private dataService : AdvBsUiDataService,
+    private config : LiteNgConfigurationService,
+    public navigation : AdvBsPageManagerService
   ) {
+      this.navigation.setMainPage("main");
+
       this.dataService.securityRepository?.errorEventEmitter.subscribe((err:any) => {
           // TODO: any state-resetting operations which might be required upon error
       });
@@ -23,7 +28,7 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     //this.loadingModal.show();
-    this.msgBox.show("My title aaa", "My message aaa");
+    //this.msgBox.show("MY TITLE AAA", "My message aaa");
     //this.toast.showInfo("Err title", "Err desc");
 
     
@@ -31,5 +36,9 @@ export class AppComponent implements AfterViewInit {
     this.dataService.securityRepository?.getCustomOperationWithLoadingModal("getCurrentUser", undefined, (ret:any) => {
       console.log(ret);
     });
+  }
+
+  getBackendUrl() : string {
+    return this.config.getAttributeValue("backendUrl");
   }
 }

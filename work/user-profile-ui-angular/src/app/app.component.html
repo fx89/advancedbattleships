@@ -1,13 +1,18 @@
-
+<!-- Animated wallpaper chosen by the user -->
 <div class="fullscreen-bg">
-    <video loop muted autoplay poster="http://127.0.0.1:8080/content/userWallpaper?mimeType=png" class="fullscreen-bg__video">
-        <source src="http://127.0.0.1:8080/content/userWallpaper?mimeType=webm" type="video/webm">
-        <source src="http://127.0.0.1:8080/content/userWallpaper?mimeType=ogg" type="video/ogg">
-        <source src="http://127.0.0.1:8080/content/userWallpaper?mimeType=mp4" type="video/mp4">
+    <video loop muted autoplay [poster]="getBackendUrl() + '/content/userWallpaper?mimeType=png'" class="fullscreen-bg__video">
+        <source [src]="getBackendUrl() + '/content/userWallpaper?mimeType=webm'" type="video/webm">
+        <source [src]="getBackendUrl() + '/content/userWallpaper?mimeType=ogg'" type="video/ogg">
+        <source [src]="getBackendUrl() + '/content/userWallpaper?mimeType=mp4'" type="video/mp4">
     </video>
 </div>
 
+<!-- Application pages -->
+<div class="faded-in fullscreen-page" *ngIf="navigation.currentPage == 'main'"><app-main-menu-page></app-main-menu-page></div>
+<div class="faded-in fullscreen-page" *ngIf="navigation.currentPage == 'battleship-template-editor'"><app-battleship-template-editor></app-battleship-template-editor></div>
+<!-- TODO: add -->
 
+<!-- Common items -->
 <lite-ng-serviceable-msgbox></lite-ng-serviceable-msgbox>
 <lite-ng-loading-modal></lite-ng-loading-modal>
 <lite-ng-serviceable-toast></lite-ng-serviceable-toast>

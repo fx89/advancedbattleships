@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { LiteNgLoadingModalModule, LiteNgMessageBoxModule, LiteNgToastModule, LiteNgHttpDataModule, LiteNgConfigurationModule } from "@desolatetimelines/lite-ng";
+import { LiteNgLoadingModalModule, LiteNgMessageBoxModule, LiteNgToastModule, LiteNgHttpDataModule, LiteNgConfigurationModule, LiteNgIconModule, LiteNgTabsModule, LiteNgMenuModule } from "@desolatetimelines/lite-ng";
 import { AppBasicServicesModule } from './basic-services/basic-services.module';
+import { MainMenuPageComponent } from './pages/main-menu-page/main-menu-page.component';
+import { BattleshipTemplateEditorComponent } from './pages/battleship-template-editor/battleship-template-editor.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainMenuPageComponent,
+    BattleshipTemplateEditorComponent,
+    UserProfileComponent
   ],
   imports: [
   // Framework modules
@@ -18,6 +24,9 @@ import { AppBasicServicesModule } from './basic-services/basic-services.module';
      LiteNgToastModule,
      LiteNgHttpDataModule,
      LiteNgConfigurationModule,
+     LiteNgIconModule,
+     LiteNgTabsModule,
+     LiteNgMenuModule,
 
   // Application modules
      AppBasicServicesModule

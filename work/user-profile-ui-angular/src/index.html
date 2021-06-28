@@ -7,20 +7,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
+  <style>
+    .initial-loading-div {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: calc(100% - 10px);
+      height: calc(100% - 9px);
+      background-color: #000;
+      z-index: 99999;
+      font-family: "Lucida Console", Monaco, monospace !important;
+      padding-left: 10px;
+      padding-top: 9px;
+      animation-duration: 0.5s !important;
+    }
+
+    .initial-loading-text {
+      padding-top: 27px !important;
+    }
+
+    .initial-loading-bullet {
+      width: 5px;
+      background: #FFF;
+      padding-left: 5px;
+      animation: blink 0.5s linear infinite;
+    }
+
+    @keyframes blink {
+      0% { opacity: 0; }
+      50% { opacity: .5; }
+      100% { opacity: 1; }
+    }
+  </style>
+
   <!-- SKINS ============================================== -->
   <link rel="stylesheet" type="text/css" href="assets/skins/_common/style.css">
-  <link rel="stylesheet" type="text/css" href="assets/skins/light/style.css">
-  <link rel="stylesheet" type="text/css" href="assets/skins/dark/style.css">
-  <link rel="stylesheet" type="text/css" href="assets/skins/battleships/style.css">
+  <link rel="stylesheet" type="text/css" href="http://127.0.0.1:8080/content/userStylesheet?fileName=style.css">
   <!-- ==================================================== -->
 
   <configuration
       backendUrl = "http://127.0.0.1:8080"
       loginFormUrl = "http://127.0.0.1:8080/auth/login"
+      version = "1.0.0-SNAPSHOT"
   ></configuration>
 
 </head>
-<body class="battleships">
+<body class="battleships" onload="setTimeout( function() { document.getElementById('initial-loading-div').classList.add('faded-out'); }, 500)">
+  <!-- Initial loading DIV to cover the loading of the user styles -->
+  <div class="initial-loading-div " id="initial-loading-div">
+    <span class="initial-loading-bullet">.</span>
+    <span class="initial-loading-text">Loading resources ...</span>
+  </div>
+
+  <!-- The application -->
   <app-root></app-root>
 </body>
 </html>

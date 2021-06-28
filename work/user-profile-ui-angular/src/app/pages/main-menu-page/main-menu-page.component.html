@@ -1,0 +1,62 @@
+
+<!-- Game menu -->
+<lite-ng-tabs-vertical extraClass="navigation-tabs" [isSetOfDrawers]="true">
+    <span role="header">
+        <!-- GAME MENU: -->
+        &nbsp;
+        <lite-ng-tab-button><div class="tab-button-image tab-button-image-game"></div>GAME</lite-ng-tab-button>
+        <lite-ng-tab-button><div class="tab-button-image tab-button-image-inventory"></div>INVENTORY</lite-ng-tab-button>
+        <lite-ng-tab-button><div class="tab-button-image tab-button-image-ladder"></div>LADDER</lite-ng-tab-button>
+        <lite-ng-tab-button><div class="tab-button-image tab-button-image-help"></div>HELP</lite-ng-tab-button>
+    </span>
+    <span role="body">
+        <lite-ng-tab>
+            <lite-ng-icon text="PLAY AGAINST THE AI" [hoverable]="true"></lite-ng-icon>
+            <lite-ng-icon text="PLAY WITH A FRIEND" [hoverable]="true"></lite-ng-icon>
+            <lite-ng-icon text="PLAY MATCHED GAME" [hoverable]="true"></lite-ng-icon>
+        </lite-ng-tab>
+        <lite-ng-tab>
+            <lite-ng-icon text="EDIT BATTLESHIPS TEMPLATES" [hoverable]="true" (onClick)="navigation.navigateToPage('battleship-template-editor')"></lite-ng-icon>
+            <lite-ng-icon text="BROWS PUBLIC TEMPLATES" [hoverable]="true"></lite-ng-icon>
+        </lite-ng-tab>
+        <lite-ng-tab>
+            <lite-ng-icon text="PLAY LADDERS" [hoverable]="true"></lite-ng-icon>
+            <lite-ng-icon text="VIEW STANDINGS" [hoverable]="true"></lite-ng-icon>
+        </lite-ng-tab>
+        <lite-ng-tab>
+            <lite-ng-icon text="HELP" [hoverable]="true"></lite-ng-icon>
+            <lite-ng-icon text="SUPPORT" [hoverable]="true"></lite-ng-icon>
+            <lite-ng-icon text="GITHUB" [hoverable]="true" href="https://github.com/fx89/advancedbattleships"></lite-ng-icon>
+        </lite-ng-tab>
+    </span>
+</lite-ng-tabs-vertical>
+
+
+
+<!-- User profile -->
+<user-profile
+    [username]="userNickName"
+    [iconPathName]="getUserIconPathName()"
+    (click)="openUserOptions()"
+></user-profile>
+
+
+
+<!-- Version display -->
+<div class="version-display">
+    Advanced Battleships version {{ getVersion() }}
+</div>
+
+
+<!-- User menu -->
+<lite-ng-vertical-buttons-menu
+    title="User Menu"
+    [bttons]="userMenuItems"
+    [widthPX]="200"
+    [heightPX]="160"
+    [buttonWidthPX]="170"
+    [buttonHeightPX]="17"
+    [showEvent]="userMenuShowEvent"
+    [isModal]="true"
+    closeButtonText="Cancel"
+></lite-ng-vertical-buttons-menu>
