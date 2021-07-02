@@ -2,7 +2,6 @@
 <!-- Game menu -->
 <lite-ng-tabs-vertical extraClass="navigation-tabs" [isSetOfDrawers]="true">
     <span role="header">
-        <!-- GAME MENU: -->
         &nbsp;
         <lite-ng-tab-button><div class="tab-button-image tab-button-image-game"></div>GAME</lite-ng-tab-button>
         <lite-ng-tab-button><div class="tab-button-image tab-button-image-inventory"></div>INVENTORY</lite-ng-tab-button>
@@ -36,9 +35,31 @@
 <!-- User profile -->
 <user-profile
     [username]="userNickName"
-    [iconPathName]="getUserIconPathName()"
+    [iconPathName]="getCurrentLogoPathName()"
     (click)="openUserOptions()"
 ></user-profile>
+
+
+
+<!-- Messaging tabs -->
+<lite-ng-tabs-horizontal extraClass="messaging-tabs" [isSetOfDrawers]="false">
+    <span role="header">
+        <lite-ng-tab-button><div class="tab-button-image tab-button-image-game"></div></lite-ng-tab-button>
+        <lite-ng-tab-button><div class="tab-button-image tab-button-image-game"></div></lite-ng-tab-button>
+        <lite-ng-tab-button><div class="tab-button-image tab-button-image-inventory"></div></lite-ng-tab-button>
+    </span>
+    <span role="body">
+        <lite-ng-tab>
+            news
+        </lite-ng-tab>
+        <lite-ng-tab>
+            messages body
+        </lite-ng-tab>
+        <lite-ng-tab>
+            chat body
+        </lite-ng-tab>
+    </span>
+</lite-ng-tabs-horizontal>
 
 
 
@@ -46,6 +67,7 @@
 <div class="version-display">
     Advanced Battleships version {{ getVersion() }}
 </div>
+
 
 
 <!-- User menu -->
@@ -57,6 +79,125 @@
     [buttonWidthPX]="170"
     [buttonHeightPX]="17"
     [showEvent]="userMenuShowEvent"
+    [hideEvent]="userMenuHideEvent"
     [isModal]="true"
     closeButtonText="Cancel"
 ></lite-ng-vertical-buttons-menu>
+
+
+
+<!-- User preferences dialog -->
+<lite-ng-dialog
+    title="User Preferences"
+    [widthPX]="250"
+    [heightPX]="450"
+    [showEvent]="userPreferencesDialogShowEvent"
+    [isModal]="true"
+    [showOkButton]="false"
+    cancelButtonText="Close"
+    (cancelEvent)="onUserPreferencesDialogClosed()"
+>
+    <div class="card user-preferences-card" (click)="clickLogoCard()">
+        <img [src]="currentLogoSrc" class="card-user-icon">
+        Change user logo
+    </div>
+    <div class="card user-preferences-card" (click)="clickNicknameCard()">
+        {{ userNickName }}<br />
+        Change nickname
+    </div><br />
+    <div class="card user-preferences-card" (click)="clickIconThemeCard()">
+        <img [src]="currentStylesheetThumbSrc" class="card-user-stylesheet">
+        Change style
+    </div>
+    <div class="card user-preferences-card" (click)="clickWallpaperCard()">
+        <img [src]="currentWallpaperSrc" class="card-user-wallpaper">
+        Change wallpaper
+    </div>
+</lite-ng-dialog>
+
+<!-- Logo dialog -->
+<lite-ng-dialog
+    title="Available Logos"
+    [widthPX]="450"
+    [heightPX]="300"
+    [showEvent]="availableLogosDialogShowEvent"
+    [hideEvent]="availableLogosDialogHideEvent"
+    [isModal]="true"
+    [showOkButton]="false"
+    [showCancelButton]="true"
+>
+    <div class="user-preferences-options-container">
+        <img *ngFor="let availableLogo of availableLogos"
+            class="user-preferences-option user-logo-option"
+            (click)="setUserLogo(availableLogo)"
+            [src]="getLogoFilePathName(availableLogo)"
+        >
+    </div>
+</lite-ng-dialog>
+
+<!-- Nickname dialog -->
+<lite-ng-dialog
+    title="Change nickname"
+    [widthPX]="300"
+    [heightPX]="110"
+    [showEvent]="nicknameDialogShowEvent"
+    [hideEvent]="nicknameDialogHideEvent"
+    [isModal]="true"
+    [showOkButton]="false"
+    [showCancelButton]="false"
+>
+    <table><tr><td>
+        <lite-ng-text-field
+            [(value)]="tempUserNickName"
+            (valueChange)="onNickValueChanged()"
+            (keyUpEvent)="onNickValueChanged()"
+            placeholder="Enter nick name"
+            [widthPX]="200"
+        ></lite-ng-text-field>
+        <i *ngIf="nickStatus==0" class="msgOk"         > This nick name is OK </i>
+        <i *ngIf="nickStatus==1" class="msgNotVerified"> This nick name is not verified </i>
+        <i *ngIf="nickStatus==2" class="msgNotOk"      > This nick name is ALREADY TAKEN </i>
+    </td><td>
+        <lite-ng-pushbutton text="Verify" (onClick)="setUserNickname()"></lite-ng-pushbutton>
+    </td></tr></table>
+</lite-ng-dialog>
+
+<!-- Wallpaper dialog -->
+<lite-ng-dialog
+    title="Available Wallpapers"
+    [widthPX]="450"
+    [heightPX]="300"
+    [showEvent]="availableWallpapersDialogShowEvent"
+    [hideEvent]="availableWallpapersDialogHideEvent"
+    [isModal]="true"
+    [showOkButton]="false"
+    [showCancelButton]="true"
+>
+    <div class="user-preferences-options-container">
+        <img *ngFor="let availableWallpaper of availableWallpapers"
+            class="user-preferences-option user-wallpaper-option"
+            (click)="setUserWallpaper(availableWallpaper)"
+            [src]="getWallpaperFilePathName(availableWallpaper)"
+        >
+    </div>
+</lite-ng-dialog>
+
+<!-- Stylesheet dialog -->
+<lite-ng-dialog
+    title="Available Stylesheets"
+    [widthPX]="403"
+    [heightPX]="500"
+    [showEvent]="availableStylesheetsDialogShowEvent"
+    [hideEvent]="availableStylesheetsDialogHideEvent"
+    [isModal]="true"
+    [showOkButton]="false"
+    [showCancelButton]="true"
+>
+    <div class="user-preferences-options-container">
+        <img *ngFor="let availableStylesheet of availableStylesheets"
+            class="user-preferences-option user-stylesheet-option"
+            (click)="setUserStylesheet(availableStylesheet)"
+            [src]="getStylesheetThumbPathName(availableStylesheet)"
+        >
+    </div>
+</lite-ng-dialog>

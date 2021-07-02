@@ -5,5 +5,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import com.advancedbattleships.security.dataservice.impl.springdata.model.UserImpl;
 
 public interface UsersRepository extends PagingAndSortingRepository<UserImpl, Long> {
-	
+	public UserImpl findOneByUniqueToken(String uniqueToken);
 }

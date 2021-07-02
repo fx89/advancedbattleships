@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `USER` (
     `NAME`                    VARCHAR( 200) NOT NULL,
     `PICTURE_URL`             VARCHAR(4000),
     `PRIMARY_EMAIL_ADDRESS`   VARCHAR( 200) NOT NULL,
-    `NICK_NAME`               VARCHAR( 200) NOT NULL,
+    `NICK_NAME`               VARCHAR( 200) NOT NULL UNIQUE,
 	`IS_FIRST_LOGIN`          BIT           NOT NULL,
 PRIMARY KEY(ID)
 );

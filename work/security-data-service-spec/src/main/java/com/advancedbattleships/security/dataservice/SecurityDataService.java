@@ -26,4 +26,8 @@ public interface SecurityDataService {
 	User mapUserToGroup(User user, Group group);
 
 	Group findGroupByName(String groupName);
+
+	User saveUser(User user);
+
+	User findUserByUniqueToken(String uniqueToken);
 }

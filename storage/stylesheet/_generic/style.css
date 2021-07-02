@@ -29,7 +29,7 @@
 
     --navigation-tabs-background-color-top:    RGBA(  0,   0,   0, .2);
     --navigation-tabs-background-color-bottom: RGBA(180,   0,   0, .5);
-    --navigation-tabs-border-color:            RGBA(255,  10,   0, .4);
+    --navigation-tabs-border-color:            RGBA(  0,   0,   0, .2);
     --navigation-tabs-shadow-color:            RGB(   0,   0,   0);
     --navigation-tabs-text-color:              RGBA(255, 255, 255, .5);
 
@@ -59,6 +59,9 @@
     --user-profile-icon-background-color:                  RGBA(0, 0, 0, .1);
 
     --user-profile-bar-username-text-color: RGBA(255, 255, 255, .7);
+
+    --card-background-color-top:    RGBA(100, 100, 100, .5);
+    --card-background-color-bottom: RGBA(100, 100, 100, .2);
   }
 
 body.battleships {
@@ -524,13 +527,18 @@ body.battleships {
 
 .battleships .dialog-validation-messages {
     height: 25px;
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
-    border-bottom-color: #555;
-    margin-bottom: 5px;
+    border-bottom-style: none;
+    margin-bottom: 0px;
     color: #F55;
     font-size: 10px;
     width: calc(100% - 16px) !important;
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-right-style: solid;
+    border-right-width: 2px;
+    padding-right: 12px;
+    background-color: var(--dialog-bg-color);
+    border-color: var(--dialog-border-color);
 }
 
 .battleships .dialog-content.with-validation-messages {
@@ -1306,6 +1314,47 @@ body.battleships {
     background-image: url("http://127.0.0.1:8080/content/userStylesheet?fileName=honeycomb-alpha.png"), linear-gradient(var(--tab-container-inner-container-background-color-top), var(--tab-container-inner-container-background-color-bottom));
 }
 
+.battleships .messaging-tabs {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+.battleships .messaging-tabs .tabs-header {
+    
+}
+
+
+.battleships .messaging-tabs .tab-button {
+    margin-bottom: 3px !important;
+    margin-right: 5px !important;
+}
+
+.battleships .messaging-tabs .tab-button:hover {
+    
+}
+
+.battleships .messaging-tabs .tab-button-selected {
+
+}
+
+.battleships .messaging-tabs .tab-button-selected:hover {
+    
+}
+
+.battleships .messaging-tabs td {
+    padding: 0px !important;
+}
+
+.battleships .messaging-tabs .tab-container {
+    width: 400px !important;
+    height: 100px !important;
+}
+
+.battleships .messaging-tabs .tab-container-inner-container {
+
+}
+
 .user-profile-bar {
     background-image: url("http://127.0.0.1:8080/content/userStylesheet?fileName=honeycomb-alpha.png"), linear-gradient(var(--user-profile-icon-container-background-color-top), var(--user-profile-icon-container-background-color-bottom));
     border-style: solid;
@@ -1445,4 +1494,93 @@ body.battleships {
         height: 80px;
         border-radius: 10px;
     }
+}
+
+.battleships .card {
+    display: inline-block;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    margin: 7px;
+    border-color: var(--navigation-tabs-border-color);
+    cursor: pointer;
+    background-image: url("http://127.0.0.1:8080/content/userStylesheet?fileName=honeycomb-alpha.png"), linear-gradient(var(--card-background-color-top), var(--card-background-color-bottom));
+    background-size: 70px;
+    padding: 7px;
+}
+
+.battleships .user-preferences-card {
+    width: 160px;
+    height: 60px;
+    margin-left: 27px;
+}
+
+.battleships .card-user-icon {
+    width: 60px;
+    height: 60px;
+    vertical-align: top;
+}
+
+.battleships .card-user-wallpaper {
+    width: 60px;
+    height: 60px;
+    vertical-align: top;
+}
+
+.battleships .card-user-stylesheet {
+    width: 60px;
+    height: 60px;
+    vertical-align: top;
+}
+
+.battleships .user-logo-option {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.battleships .user-wallpaper-option {
+    width: 100px;
+    height: 100px;
+}
+
+.battleships .user-stylesheet-option {
+    width: 360px;
+    height: 190px;
+    cursor: pointer;
+    padding-left: 5px;
+    padding-bottom: 10px;
+}
+
+.battleships .user-preferences-option {
+    cursor: pointer;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: RGBA(0,0,0, 0);
+}
+
+.battleships .user-preferences-option:hover {
+    border-color: #F00;
+}
+
+.battleships .user-preferences-options-container {
+    width:100%;
+    height:100%;
+    overflow: scroll;
+    scrollbar-width: thin;
+    overflow-x: hidden;
+}
+
+.battleships .msgOk {
+    color: #0F0;
+}
+
+.battleships .msgNotVerified {
+    color: #00F;
+}
+
+.battleships .msgNotOk {
+    color: #F00;
 }

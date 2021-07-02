@@ -2,6 +2,7 @@ package com.advancedbattleships.content.rest;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Set;
 import java.util.function.Function;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.advancedbattleships.content.dataservice.model.UserUiConfig;
 import com.advancedbattleships.content.service.ContentService;
 import com.advancedbattleships.security.service.SecurityService;
 
@@ -35,6 +37,15 @@ public class ContentRestController {
 		);
 	}
 
+	@RequestMapping(value="wallpaperImage", method=RequestMethod.GET)
+	public void wallpaperImage(@RequestParam() String wallpaperName, HttpServletResponse response) throws IOException {
+		buildFileResponse(response,
+			(usrToken) -> content.getWallpaperImage(usrToken, wallpaperName),
+			wallpaperName + ".png", // TODO:  Make the extension a static variable or something, so it doesn't have to appear twice in two classes
+			"application/octet-stream"
+		);
+	}
+
 	@RequestMapping(value="userIcon", method=RequestMethod.GET)
 	public void userIcon(@RequestParam() String fileName, HttpServletResponse response) throws IOException {
 		buildFileResponse(response,
@@ -52,11 +63,28 @@ public class ContentRestController {
 		);
 	}
 
+	@RequestMapping(value="logo", method=RequestMethod.GET)
+	public void logo(@RequestParam() String logoName, HttpServletResponse response) throws IOException {
+		buildFileResponse(response,
+			(usrToken) -> content.getLogo(usrToken, logoName),
+			logoName + ".png", // TODO:  Make the extension a static variable or something, so it doesn't have to appear twice in two classes
+			"application/octet-stream"
+		);
+	}
+
 	@RequestMapping(value="userStylesheet", method=RequestMethod.GET)
 	public void userStylesheet(@RequestParam() String fileName, HttpServletResponse response) throws IOException {
 		buildFileResponse(response,
 			(usrToken) -> content.getUserStylesheet(usrToken, fileName),
 			fileName, "text/css"
+		);
+	}
+
+	@RequestMapping(value="stylesheetThumb", method=RequestMethod.GET)
+	public void stylesheetThumb(@RequestParam() String stylesheetName, HttpServletResponse response) throws IOException {
+		buildFileResponse(response,
+			(usrToken) -> content.getStylesheetThumb(usrToken, stylesheetName),
+			stylesheetName + "-thumb.png", "application/octet-stream" // TODO: file extension handling
 		);
 	}
 
@@ -81,5 +109,48 @@ public class ContentRestController {
 		response.flushBuffer();
 	}
 
-	// TODO: add methods for getting available assets and for setting the user configuration
+	@RequestMapping(value="getAvailableLogos", method=RequestMethod.GET)
+	public Set<String> getAvailableLogos() {
+		return content.getUserAvailableLogos(security.getCurrentUser().getUniqueToken());
+	}
+
+	@RequestMapping(value="getAvailableWallpapers", method=RequestMethod.GET)
+	public Set<String> getAvailableWallpapers() {
+		return content.getUserAvailableWallpapers(security.getCurrentUser().getUniqueToken());
+	}
+
+	@RequestMapping(value="getAvailableStylesheets", method=RequestMethod.GET)
+	public Set<String> getAvailableStylesheets() {
+		return content.getUserAvailableStylesheets(security.getCurrentUser().getUniqueToken());
+	}
+
+	@RequestMapping(value="getAvailableIconThemes", method=RequestMethod.GET)
+	public Set<String> getAvailableIconThemes() {
+		return content.getUserAvailableIconThemes(security.getCurrentUser().getUniqueToken());
+	}
+
+	@RequestMapping(value="updateUserLogo", method=RequestMethod.POST)
+	public void updateUserLogo(@RequestParam() String logoName) {
+		content.updateUserLogo(security.getCurrentUser().getUniqueToken(), logoName);
+	}
+
+	@RequestMapping(value="updateUserWallpaper", method=RequestMethod.POST)
+	public void updateUserWallpaper(@RequestParam() String wallpaperName) {
+		content.updateUserWallpaper(security.getCurrentUser().getUniqueToken(), wallpaperName);
+	}
+
+	@RequestMapping(value="updateUserStylesheet", method=RequestMethod.POST)
+	public void updateUserStylesheet(@RequestParam() String stylesheetName) {
+		content.updateUserStylesheet(security.getCurrentUser().getUniqueToken(), stylesheetName);
+	}
+
+	@RequestMapping(value="updateUserIconTheme", method=RequestMethod.POST)
+	public void updateUserIconTheme(@RequestParam() String iconThemeName) {
+		content.updateUserIconTheme(security.getCurrentUser().getUniqueToken(), iconThemeName);
+	}
+
+	@RequestMapping(value="getUserConfig", method=RequestMethod.GET)
+	public UserUiConfig getUserConfig() {
+		return content.getUserConfig(security.getCurrentUser().getUniqueToken());
+	}
 }

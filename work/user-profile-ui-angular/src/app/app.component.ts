@@ -30,12 +30,7 @@ export class AppComponent implements AfterViewInit {
     //this.loadingModal.show();
     //this.msgBox.show("MY TITLE AAA", "My message aaa");
     //this.toast.showInfo("Err title", "Err desc");
-
-    
-
-    this.dataService.securityRepository?.getCustomOperationWithLoadingModal("getCurrentUser", undefined, (ret:any) => {
-      console.log(ret);
-    });
+    (<any>document).getElementById('video-wallpaper').play();
   }
 
   getBackendUrl() : string {

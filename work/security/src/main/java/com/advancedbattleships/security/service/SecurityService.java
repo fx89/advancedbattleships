@@ -138,4 +138,12 @@ public class SecurityService {
 				"Unable to handle login provider [" + loginSource + "]"
 			);
 	}
+
+	public User setCurrentUserNickName(String nickName) {
+		User ret = securityDataService.findUserByUniqueToken(this.getCurrentUser().getUniqueToken());
+		ret.setNickName(nickName);
+		ret = securityDataService.saveUser(ret);
+		getCurrentUser().setNickName(nickName);
+		return ret;
+	}
 }

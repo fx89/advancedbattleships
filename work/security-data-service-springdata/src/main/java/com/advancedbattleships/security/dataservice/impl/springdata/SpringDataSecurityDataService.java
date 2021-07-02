@@ -80,4 +80,14 @@ public class SpringDataSecurityDataService implements SecurityDataService {
 		return groupsRepository.findFirstByName(groupName);
 	}
 
+	@Override
+	public User saveUser(User user) {
+		return usersRepository.save(new UserImpl(user));
+	}
+
+	@Override
+	public User findUserByUniqueToken(String uniqueToken) {
+		return usersRepository.findOneByUniqueToken(uniqueToken);
+	}
+
 }
