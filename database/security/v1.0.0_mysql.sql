@@ -4,7 +4,7 @@ USE abssecurity;
 
 CREATE TABLE IF NOT EXISTS `USER` (
     `ID`                      BIGINT        NOT NULL AUTO_INCREMENT,
-    `UNIQUE_TOKEN`            CHAR   (  12) UNIQUE,
+    `UNIQUE_TOKEN`            CHAR   (  12) BINARY UNIQUE NOT NULL,
     `NAME`                    VARCHAR( 200) NOT NULL,
     `PICTURE_URL`             VARCHAR(4000),
     `PRIMARY_EMAIL_ADDRESS`   VARCHAR( 200) NOT NULL,
