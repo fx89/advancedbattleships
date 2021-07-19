@@ -1,6 +1,7 @@
 package com.advancedbattleships.inventory.dataservice.impl.springdata.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
@@ -11,4 +12,6 @@ public interface SubsystemRefsRepository extends PagingAndSortingRepository<Subs
 	List<SubsystemRefImpl> findAll();
 
 	SubsystemRefImpl findFirstByUniqueToken(String uniqueToken);
+
+	Set<SubsystemRefImpl> findAllByTypeName(String typeName);
 }

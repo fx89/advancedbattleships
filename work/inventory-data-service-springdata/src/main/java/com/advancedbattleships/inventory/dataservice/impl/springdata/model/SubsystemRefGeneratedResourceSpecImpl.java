@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.advancedbattleships.inventory.dataservice.model.GeneratedResourceType;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemRefGeneratedResourceSpec;
 
@@ -30,10 +33,12 @@ public class SubsystemRefGeneratedResourceSpecImpl implements SubsystemRefGenera
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "SUBSYSTEM_REF_ID")
+	@Fetch(FetchMode.JOIN)
 	private SubsystemRefImpl subsystemRef;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "GENERATED_RESOURCE_TYPE_ID")
+	@Fetch(FetchMode.JOIN)
 	private GeneratedResourceTypeImpl resourceType;
 
 	@Column(name = "AMOUNT")

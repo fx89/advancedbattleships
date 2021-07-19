@@ -2,7 +2,7 @@ package com.advancedbattleships.inventory.dataservice.model;
 
 import java.io.Serializable;
 
-public interface SubbsystemRefStoredResourceRequirement extends Serializable {
+public interface SubsystemRefStoredResourceRequirement extends Serializable {
 
 	StoredResourceType getStoredResource();
 

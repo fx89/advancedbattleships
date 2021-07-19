@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="STORED_RESOURCE")
+@Table(name="STORED_RESOURCE_TYPE")
 @AllArgsConstructor
 @NoArgsConstructor
 public class StoredResourceTypeImpl implements StoredResourceType {

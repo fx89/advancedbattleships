@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdvBsUiDataService } from './data-service.service';
 import { LiteNgConfigurationModule } from '@desolatetimelines/lite-ng';
 import { AdvBsPageManagerService } from './page-manager.service';
+import { AdvBsPathsService } from './paths-service.service';
 
 
 
@@ -14,7 +15,8 @@ import { AdvBsPageManagerService } from './page-manager.service';
   ],
   providers: [
     AdvBsUiDataService,
-    AdvBsPageManagerService
+    AdvBsPageManagerService,
+    AdvBsPathsService
   ]
 })
 export class AppBasicServicesModule { }

@@ -1,7 +1,11 @@
 package com.advancedbattleships.inventory.service;
 
+import static com.advancedbattleships.common.lang.Suppliers.nullSafeSupplier;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,10 @@ import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplate;
 import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplateSubsystem;
 import com.advancedbattleships.inventory.dataservice.model.Point2I;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemRef;
+import com.advancedbattleships.inventory.dataservice.model.SubsystemRefGeneratedResourceRequirement;
+import com.advancedbattleships.inventory.dataservice.model.SubsystemRefGeneratedResourceSpec;
+import com.advancedbattleships.inventory.dataservice.model.SubsystemType;
+import com.advancedbattleships.inventory.exception.AdvancedBattleshipsInventorySecurityException;
 import com.advancedbattleships.inventory.exception.AdvancedBattleshipsInventoryValidationException;
 import com.advancedbattleships.system.SystemService;
 import com.advancedbattleships.utilityservices.UniqueTokenProviderService;
@@ -37,10 +45,17 @@ public class InventoryService {
 
 	public BattleshipTemplate createNewBattleshipTemplate(String userUniqueToken, String templateName, int width, int height) {
 		validateBattleshipHullSize(width, height);
+		validateTemplateame(templateName);
 		return dataService.createEmptyBattleshipTemplate(
 				uniqueTokenProvider.provide(),
 				userUniqueToken, templateName, width, height
 			);
+	}
+
+	public void deleteBattleshipTemplate(String userUniqueToken, String uniqueToken) {
+		BattleshipTemplate bsTemplate = dataService.getBattleshipTemplateByUniqueToken(uniqueToken);
+		validateBattleshipTemplateOwnership(bsTemplate, userUniqueToken);
+		dataService.deleteBattleshipTemplate(bsTemplate);
 	}
 
 	/**
@@ -71,7 +86,7 @@ public class InventoryService {
 			);
 		}
 
-		if (! subsystem.getBattleshipTemplate().getUniqueToken().equals(userUniqueToken)) {
+		if (! subsystem.getBattleshipTemplate().getUserUniqueToken().equals(userUniqueToken)) {
 			throw new AdvancedBattleshipsInventoryValidationException(
 				"Cannot fetch battleship template subsystem. Invalid tokens provided."
 			);
@@ -87,21 +102,43 @@ public class InventoryService {
 		int posX,
 		int posY
 	) {
+		// Get the battleship template while also making sure it belongs to the current user
 		BattleshipTemplate battleshipTemplate
 			= getUserBattleshipTemplate(userUniqueToken, battleshipTemplateUniqueToken);
 
+		// Get subsystems
 		List<BattleshipTemplateSubsystem> existingSubsystems
 			= getBattleshipTemplateSubsystems(userUniqueToken, battleshipTemplateUniqueToken);
 
+		// Validate subsystems placement
 		validateSubsystemPlacementOnHull(battleshipTemplate, posX, posY);
 		validateSubsystemPlacementInRelationToOtherSubsystems(posX, posY, existingSubsystems);
 
+		// Get subsystem reference for the subsystem to be added
 		SubsystemRef subsystemRef = getSubsystemRef(subsystemRefUniqueToken);
 
-		return dataService.addBattleshipTemplateSubsystem(
-				uniqueTokenProvider.provide(),
-				battleshipTemplate, subsystemRef, posX, posY
-		);
+		// The following operations must be executed within a data source-specific transaction.
+		// The result of the transaction is held in the newSubsystemWorkaround variable.
+		final List<BattleshipTemplateSubsystem> newSubsystemWorkaround = new ArrayList<>();
+		dataService.executeTransaction(() -> {
+			// Add the new subsystem
+			newSubsystemWorkaround.add(
+				dataService.addBattleshipTemplateSubsystem(
+					uniqueTokenProvider.provide(),
+					battleshipTemplate, subsystemRef, posX, posY
+				)
+			);
+
+			// Re-compute the cost
+			existingSubsystems.add(newSubsystemWorkaround.get(0));
+			computeBattleshipTemplateStats(battleshipTemplate, existingSubsystems);
+			
+			// Save the battleship template
+			dataService.saveBattleshipTemplate(battleshipTemplate);
+		});
+
+		// return the newly added subsystem data object
+		return newSubsystemWorkaround.get(0);
 	}
 
 	public BattleshipTemplateSubsystem updateBattleshipTemplateSubsystemPosition(
@@ -109,11 +146,22 @@ public class InventoryService {
 		String subsystemUniqueToken,
 		int posX, int posY
 	) {
+		// Get the subsystem
 		BattleshipTemplateSubsystem subsystem
 			= getBattleshipTemplateSubsystem(userUniqueToken, subsystemUniqueToken);
 
+		// Set the new subsystem position
 		subsystem.setPosition(new Point2I(posX, posY));
 
+		// Get all the subsystems
+		List<BattleshipTemplateSubsystem> allSubsystems
+			= dataService.getBattleshipTemplateSubsystems(subsystem.getBattleshipTemplate());
+
+		// Validate subsystems placement
+		validateSubsystemPlacementOnHull(subsystem.getBattleshipTemplate(), posX, posY);
+		validateSubsystemPlacementInRelationToOtherSubsystems(posX, posY, allSubsystems);
+
+		// Save the subsystem and return a reference
 		return dataService.updateBattleshipTemplateSubsystem(subsystem);
 	}
 
@@ -121,10 +169,26 @@ public class InventoryService {
 		String userUniqueToken,
 		String subsystemUniqueToken
 	) {
+		// Get the subsystem
 		BattleshipTemplateSubsystem subsystem
 			= getBattleshipTemplateSubsystem(userUniqueToken, subsystemUniqueToken);
 
-		dataService.deleteBattleshipTemplateSubsystem(subsystem);
+		// The following operations need to be executed within a transaction
+		dataService.executeTransaction(() -> {
+			// Delete the subsystem
+			dataService.deleteBattleshipTemplateSubsystem(subsystem);
+
+			// Get all subsystems
+			List<BattleshipTemplateSubsystem> allSubsystems
+				= dataService.getBattleshipTemplateSubsystems(subsystem.getBattleshipTemplate());
+
+			// Re-compute the cost
+			computeBattleshipTemplateStats(subsystem.getBattleshipTemplate(), allSubsystems);
+
+			// Save the battleship template
+			dataService.saveBattleshipTemplate(subsystem.getBattleshipTemplate());
+		});
+		
 	}
 
 	public List<SubsystemRef> getSubsystemRefs() {
@@ -140,9 +204,7 @@ public class InventoryService {
 		List<BattleshipTemplateSubsystem> subsystems
 			= dataService.getBattleshipTemplateSubsystems(battleshipTemplate);
 
-		subsystems.forEach(subsystem -> {
-			validateSubsystem(battleshipTemplate, subsystem, subsystems);
-		});
+		validateSubsystems(battleshipTemplate, subsystems);
 	}
 
 	private void validateBattleshipTemplateNotNull(BattleshipTemplate battleshipTemplate) {
@@ -151,6 +213,15 @@ public class InventoryService {
 				"Null reference provided for validation of battleship template"
 			);
 		}
+	}
+
+	private void validateSubsystems(
+		BattleshipTemplate battleshipTemplate,
+		List<BattleshipTemplateSubsystem> subsystems
+	) {
+		subsystems.forEach(subsystem -> {
+			validateSubsystem(battleshipTemplate, subsystem, subsystems);
+		});
 	}
 
 	private void validateSubsystem(
@@ -210,24 +281,45 @@ public class InventoryService {
 
 		for (BattleshipTemplateSubsystem subsystem : allSubsystems) {
 			Point2I subPos = subsystem.getPosition();
-			if (subPos.x != posX || subPos.y != posY) {
-				if (Math.abs(subPos.x - posX) < minDistanceFromSubsystem
-				 || Math.abs(subPos.y - posY) < minDistanceFromSubsystem) {
-					throw new AdvancedBattleshipsInventoryValidationException(
-						"Subsystem must be placed no closer than [" + minDistanceFromSubsystem + "] cells to any other subsystem"
-					);
-				}
+			if (
+			    (subPos.x == posX && subPos.y == posY)
+			 || Math.sqrt(Math.pow(subPos.x - posX, 2) + Math.pow(subPos.y - posY, 2)) < minDistanceFromSubsystem
+			) {
+				throw new AdvancedBattleshipsInventoryValidationException(
+					"Subsystem must be placed no closer than [" + minDistanceFromSubsystem + "] cells to any other subsystem"
+				);
 			}
 		}
 	}
 
 	private void validateBattleshipHullSize(int width, int height) {
 		int maxCells = system.getDataService().getIntParameter("BATTLESHIP.MAX_SIZE");
+		int minLength = system.getDataService().getIntParameter("BATTLESHIP.MIN_LENGTH_SIZE");
+
+		if (width < minLength || height < minLength) {
+			throw new AdvancedBattleshipsInventoryValidationException(
+					"The minimum length on any axis is [" + minLength + "] cells."
+				);
+		}
 
 		if (width * height > maxCells) {
 			throw new AdvancedBattleshipsInventoryValidationException(
 				"Maximum hull size exceeded. Cannot have more than [" + maxCells + "] cells."
 			);
+		}
+	}
+
+	private void validateTemplateame(String templateName) {
+		if (templateName == null || templateName.length() < 5) {
+			throw new AdvancedBattleshipsInventoryValidationException(
+				"The template name must be at least 5 characters long"
+			);
+		}
+	}
+
+	private void validateBattleshipTemplateOwnership(BattleshipTemplate bsTemplate, String userUniqueToken) {
+		if (false == nullSafeSupplier(() -> bsTemplate.getUserUniqueToken().equals(userUniqueToken) , false) ) {
+			throw new AdvancedBattleshipsInventorySecurityException("Cannot find the referenced battleship template");
 		}
 	}
 
@@ -260,5 +352,127 @@ public class InventoryService {
 		}
 
 		return ret;
+	}
+
+	public void setBattleshipTemplateHullCellValue(String userUniqueToken, String battleshipTemplateUniqueToken, Integer x, Integer y, Boolean value) {
+		// Find the battleship template (throw exception if not matched with the current user)
+		BattleshipTemplate bsTemplate = getUserBattleshipTemplate(userUniqueToken, battleshipTemplateUniqueToken);
+
+		// Set the cell value
+		bsTemplate.getHull()[y][x] = value;
+
+		// Get subsystems
+		List<BattleshipTemplateSubsystem> subsystems
+			= dataService.getBattleshipTemplateSubsystems(bsTemplate);
+
+		// Check if the subsystems placement is still valid (if not, an exception will be thrown)
+		validateSubsystems(bsTemplate, subsystems);
+
+		// Compute the cost
+		computeBattleshipTemplateStats(bsTemplate, subsystems);
+
+		// If all went well, save the battleship template and its new hull value
+		dataService.saveBattleshipTemplate(bsTemplate);
+	}
+
+	public void setBattleshipTemplateHull(String userUniqueToken, String battleshipTemplateUniqueToken, boolean[][] hull) {
+		// Find the battleship template (throw exception if not matched with the current user)
+		BattleshipTemplate bsTemplate = getUserBattleshipTemplate(userUniqueToken, battleshipTemplateUniqueToken);
+
+		// Validate the hull size, to make sure all the values are there
+		if (   nullSafeSupplier(() -> hull.length, -1) != bsTemplate.getHullSize().y
+			|| nullSafeSupplier(() -> hull[0].length, -1) != bsTemplate.getHullSize().x
+		) {
+			throw new AdvancedBattleshipsInventoryValidationException(
+					"The provided hull matrix is not consistent with the hull dimensions registered for this battleshpip template"
+				);
+		}
+
+		// Set the hull
+		bsTemplate.setHull(hull);
+
+		// Get subsystems
+		List<BattleshipTemplateSubsystem> subsystems
+			= dataService.getBattleshipTemplateSubsystems(bsTemplate);
+
+		// Check if the subsystems placement is still valid (if not, an exception will be thrown)
+		validateSubsystems(bsTemplate, subsystems);
+
+		// Re-compute the cost
+		computeBattleshipTemplateStats(bsTemplate, subsystems);
+
+		// If all went well, save the battleship template and its new hull value
+		dataService.saveBattleshipTemplate(bsTemplate);
+	}
+
+	public Iterable<SubsystemType> getSubsystemTypes() {
+		return dataService.getSubsystemTypes();
+	}
+
+	public Set<SubsystemRef> getSubsystemsByTypeName(String subsystemTypeName) {
+		return dataService.getSubsystemsByTypeName(subsystemTypeName);
+	}
+
+	private void computeBattleshipTemplateStats(
+		BattleshipTemplate bsTemplate,
+		Iterable<BattleshipTemplateSubsystem> subsystems
+	) {
+		// Initialize the statistics
+		double cost = 0;
+		double energy = 0;
+		double firepower = 0;
+
+		// Collect statistics from all subsystems
+		for (BattleshipTemplateSubsystem subsystem : subsystems) {
+			// The cost is collected from all subsystems
+			cost += subsystem.getSubsystemRef().getCost();
+
+			SubsystemRef subsystemRef = subsystem.getSubsystemRef();
+
+			// The energy is collected only from power systems and is computed
+			// as the total power generated by all power systems
+			if (subsystemRef.getType().getName().equals("power system")) {
+				Set<SubsystemRefGeneratedResourceSpec> generatedResources
+					= subsystemRef.getGeneratedResources();
+
+				if (generatedResources != null) {
+					energy +=
+						generatedResources.stream()
+							.filter(gr -> gr.getResourceType().getName().equals("POWER"))
+							.map(gr -> gr.getAmount())
+							.reduce(0d, Double::sum);
+				}
+			}
+
+			// The fire power is collected only from weapons systems and is computed
+			// as the total energy consumed by all weapons systems
+			if (subsystemRef.getType().getName().equals("weapons system")) {
+				Set<SubsystemRefGeneratedResourceRequirement> requiredGeneratedResources
+					= subsystemRef.getGeneratedResourceRequirements();
+
+				if (requiredGeneratedResources != null) {
+					firepower +=
+						requiredGeneratedResources.stream()
+							.filter(rr -> rr.getResourceType().getName().equals("POWER"))
+							.map(rr -> rr.getRequiredAmount())
+							.reduce(0d, Double::sum);
+				}
+			}
+		}
+
+		// Compute the cost of the hull
+		Double hullCellCost = system.getDataService().getDoubleParameter("BATTLESHIP.HULL_CELL_COST");
+		for(boolean[] lines : bsTemplate.getHull()) {
+			for (boolean cell : lines) {
+				if (cell) {
+					cost += hullCellCost;
+				}
+			}
+		}
+
+		// Apply the statistics to the battleship template
+		bsTemplate.setCost(cost);
+		bsTemplate.setEnergy(energy);
+		bsTemplate.setFirepower(firepower);
 	}
 }

@@ -1,1 +1,177 @@
-<p (click)="navigation.navigateToPage('main')">battleship-template-editor works!</p>
+<!-- List of battleship templates -->
+<div class="tab-container user-battleship-template-list">
+    <table style="width:100%; height:100%;"><tr><td class="list-title-cell">
+        <div class="tab-container-inner-container">
+            Your battleship templates
+        </div>
+    </td></tr><tr><td style="height:100%">
+        <div class="tab-container-inner-container cards-list">
+            <div *ngFor="let bsTemplate of userBattleshipTemplates"
+                 class="list-card list-card-bs-template-list"
+                 [class.selected]="bsTemplate==selectedBattleshipTemplate"
+                 (click)="selectedBattleshipTemplate=bsTemplate"
+            >
+                <table cellspacing="0" cellpadding="0"><tr>
+                    <td>
+                        <bs-template-hull-panel
+                            [hull]="bsTemplate.hull"
+                            [hullWidth]="bsTemplate.hullSize.x"
+                            [hullHeight]="bsTemplate.hullSize.y"
+                        ></bs-template-hull-panel>
+                    </td>
+                    <td>
+                        <span class="list-card-content-title">{{ bsTemplate.name }}</span><br />
+                        <span class="list-card-content-description">
+                            Size: {{ bsTemplate.hullSize.x }} x {{ bsTemplate.hullSize.y }} cells, {{ 0 }} used <br />
+                            Energy: {{ bsTemplate.energy }} total energy, {{ bsTemplate.firepower }} firepower <br />
+                            Cost: {{ bsTemplate.cost }}
+                        </span>
+                    </td>
+                </tr></table>
+            </div>
+        </div>
+    </td></tr><tr>
+        <td class="list-footer-cell">
+            <table style="width:100%"><tr>
+                <td>
+                    <lite-ng-pushbutton [widthPX]="100" text="Back to Main" (onClick)="backToMain()"></lite-ng-pushbutton>
+                </td>
+                <td style="text-align:right;">
+                    <lite-ng-pushbutton additionalClass="list-footer-button" text="New"    (onClick)="onNewBattleshipTemplateButtonClick()"></lite-ng-pushbutton>
+                    <lite-ng-pushbutton additionalClass="list-footer-button" text="Edit"   (onClick)="onEditBattleshipTemplateButtonClick()"></lite-ng-pushbutton>
+                    <lite-ng-pushbutton additionalClass="list-footer-button" text="Delete" (onClick)="onDeleteBattleshipTemplateButtonClick()"></lite-ng-pushbutton>
+                </td>
+            </tr></table>
+        </td>
+    </tr></table>    
+</div>
+
+
+
+
+
+<!-- New battleship template dialog -->
+<lite-ng-dialog
+    title="New battleship template properties"
+    [widthPX]="250"
+    [heightPX]="170"
+    [showEvent]="newBattleshipTemplateDialogShowEvent"
+    [hideEvent]="newBattleshipTemplateDialogHideEvent"
+    [isModal]="true"
+    [showOkButton]="true"
+    okButtonText="Create"
+    (okEvent)="onNewBattleshipTemplateDialogCreateButtonClick()"
+    (cancelEvent)="onNewBattleshipTemplateDialogCancelButtonClick()"
+    [hideAllowedFunction]="hideNotAllowedFunction"
+>
+    <table>
+        <tr><td>Name</td><td>
+            <lite-ng-text-field
+                [(value)]="battleshipTemplateName"
+                placeholder="battleship template name"
+                [widthPX]="200"
+            ></lite-ng-text-field>
+        </td></tr>
+        <tr><td>Size</td><td>
+            <table cellspacing="0" cellpadding="0"><tr>
+                <td>
+                    <lite-ng-text-field
+                        [(value)]="battleshipTemplateWidth"
+                        placeholder="width"
+                        [widthPX]="70"
+                        [characterAllowedFunction]="nbrOnlyFunction"
+                    ></lite-ng-text-field>
+                </td>
+                <td>
+                    <lite-ng-text-field
+                        [(value)]="battleshipTemplateHeight"
+                        placeholder="height"
+                        [widthPX]="70"
+                        [characterAllowedFunction]="nbrOnlyFunction"
+                    ></lite-ng-text-field>
+                </td>
+            </tr></table>
+        </td></tr>
+    </table>
+    <i class="msgNotOk">{{validationError}}</i>
+</lite-ng-dialog>
+
+
+
+
+
+<!-- Battleship template editor -->
+<lite-ng-dialog
+    id="bs-template-editor-dialog"
+    *ngIf="selectedBattleshipTemplate"
+    [title]="selectedBattleshipTemplate.name"
+    [widthPX]="550"
+    [heightPX]="320"
+    [showEvent]="editBattleshipTemplateDialogShowEvent"
+    [hideEvent]="editBattleshipTemplateDialogHideEvent"
+    [isModal]="true"
+    [showOkButton]="false"
+    cancelButtonText="Exit"
+    (cancelEvent)="onEditBattleshipTemplateDialogExitButtonClick()"
+    [hideAllowedFunction]="hideNotAllowedFunction"
+    [customButtons]="battleshipTemplateEditorCustomButtons"
+>
+    <table *ngIf="selectedBattleshipTemplate && selectedBattleshipTemplateSubsystems"
+            style="width:100%; height:100%; padding-top:10px;"
+    ><tr>
+        <td class="battleship-template-editor-subsystems-column" style="vertical-align:top; width:150px;">
+            Subsystems
+            <lite-ng-accordion *ngIf="subsystemRefTypes">
+                <lite-ng-accordion-section
+                    *ngFor="let subsystemRefType of subsystemRefTypes"
+                    [title]="subsystemRefType.name"
+                >
+                    <div *ngFor="let subsystemRef of subsystemRefType.subsystems"
+                         class="subsystem-ref-card"
+                         [class.selected]="selectionType == SELECTION_TYPE_SUBSYSTEM && selectedSubsystemRef.uniqueToken == subsystemRef.uniqueToken"
+                         (click)="onSubsystemRefCardClicked(subsystemRef)"
+                    >
+                        <table><tr>
+                            <td>
+                                <img [src]="getIconUrl(subsystemRef.uniqueToken)">
+                            </td>
+                            <td>
+                                {{ subsystemRef.name }} <br />
+                                Cost: {{ subsystemRef.cost }}
+                            </td>
+                        </tr></table>
+                    </div>
+                </lite-ng-accordion-section>
+            </lite-ng-accordion>
+        </td>
+        <td class="battleship-template-editor-hull-panel-column" style="text-align:center; vertical-align:middle; width:210px; padding-left:10px;">
+            <bs-template-hull-panel
+                [hull]="selectedBattleshipTemplate.hull"
+                [hullWidth]="selectedBattleshipTemplate.hullSize.x"
+                [hullHeight]="selectedBattleshipTemplate.hullSize.y"
+                [subsystems]="selectedBattleshipTemplateSubsystems"
+                (hullChangeEvent)="onHullChange($event)"
+                [recomputeEvent]="hullPanelRecomputeEvent"
+            ></bs-template-hull-panel>
+        </td>
+        <td class="battleship-template-editor-hull-brushes-column" style="vertical-align:top; padding-left:10px;">
+            Hull construction tools
+            <div class="battleship-template-hull-construction-tools-container">
+                <div class="battleship-template-hull-construction-tools-button battleship-tempalte-hull-construction-tools-pencil-buttion"
+                    (click)="onHullConstructionToolsPencilButtonClick()"
+                    [class.selected]="selectionType == SELECTION_TYPE_TOOL && selectedTool == TOOL_PENCIL"
+                >
+                    <div class="battleship-template-hull-construction-tools-icon"></div>
+                    Pencil tool
+                </div>
+                <div class="battleship-template-hull-construction-tools-button battleship-tempalte-hull-construction-tools-fill-buttion"
+                    (click)="onHullConstructionToolsFillButtonClick()"
+                    [class.selected]="selectionType == SELECTION_TYPE_TOOL && selectedTool == TOOL_FILL"
+                >
+                    <div class="battleship-template-hull-construction-tools-icon"></div>
+                    Fill tool
+                </div>
+            </div>
+        </td>
+    </tr></table>
+</lite-ng-dialog>

@@ -6,13 +6,18 @@ import { AppBasicServicesModule } from './basic-services/basic-services.module';
 import { MainMenuPageComponent } from './pages/main-menu-page/main-menu-page.component';
 import { BattleshipTemplateEditorComponent } from './pages/battleship-template-editor/battleship-template-editor.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AppUtilitiesModule } from './utilities/utilities.module';
+import { LiteNgListModule } from '@desolatetimelines/lite-ng';
+import { BsTemplateHullPanelComponent } from './components/bs-template-hull-panel/bs-template-hull-panel.component';
+import { LiteNgAccordionModule } from '@desolatetimelines/lite-ng';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainMenuPageComponent,
     BattleshipTemplateEditorComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    BsTemplateHullPanelComponent
   ],
   imports: [
   // Framework modules
@@ -30,9 +35,12 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
      LiteNgMenuModule,
      LiteNgTextFieldModule,
      LiteNgPushbuttonModule,
+     LiteNgListModule,
+     LiteNgAccordionModule,
 
   // Application modules
-     AppBasicServicesModule
+     AppBasicServicesModule,
+     AppUtilitiesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

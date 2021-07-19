@@ -1,16 +1,21 @@
 package com.advancedbattleships.inventory.dataservice.impl.springdata;
 
+import static com.advancedbattleships.common.lang.Multicast.multicastSet;
 import static com.advancedbattleships.common.lang.Multicast.multicastList;
+import static com.advancedbattleships.common.lang.Multicast.multicastIterable;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.advancedbattleships.inventory.dataservice.InventoryDataService;
 import com.advancedbattleships.inventory.dataservice.impl.springdata.dao.BattleshipTemplateSubsystemsRepository;
 import com.advancedbattleships.inventory.dataservice.impl.springdata.dao.BattleshipTemplatesRepository;
 import com.advancedbattleships.inventory.dataservice.impl.springdata.dao.SubsystemRefsRepository;
+import com.advancedbattleships.inventory.dataservice.impl.springdata.dao.SubsystemTypesRepository;
 import com.advancedbattleships.inventory.dataservice.impl.springdata.exception.AdvancedBattleshipsSpringDataInventoryDataServiceException;
 import com.advancedbattleships.inventory.dataservice.impl.springdata.model.BattleshipTemplateImpl;
 import com.advancedbattleships.inventory.dataservice.impl.springdata.model.BattleshipTemplateSubsystemImpl;
@@ -18,6 +23,7 @@ import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplate;
 import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplateSubsystem;
 import com.advancedbattleships.inventory.dataservice.model.Point2I;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemRef;
+import com.advancedbattleships.inventory.dataservice.model.SubsystemType;
 
 @Service
 public class SpringDataInventoryDataService implements InventoryDataService {
@@ -30,6 +36,9 @@ public class SpringDataInventoryDataService implements InventoryDataService {
 
 	@Autowired
 	private SubsystemRefsRepository subsystemRefsRepository;
+
+	@Autowired
+	private SubsystemTypesRepository subsystemTypesRepository;
 
 	@Override
 	public BattleshipTemplate createEmptyBattleshipTemplate(
@@ -134,5 +143,32 @@ public class SpringDataInventoryDataService implements InventoryDataService {
 	@Override
 	public SubsystemRef getSubsystemRefByUniqueToken(String uniqueToken) {
 		return subsystemRefsRepository.findFirstByUniqueToken(uniqueToken);
+	}
+
+	@Override
+	public void saveBattleshipTemplate(BattleshipTemplate battleshipTemplate) {
+		battleshipTemplatesRepository.save(new BattleshipTemplateImpl(battleshipTemplate));
+	}
+
+	@Override
+	public Iterable<SubsystemType> getSubsystemTypes() {
+		return multicastIterable(subsystemTypesRepository.findAll());
+	}
+
+	@Override
+	public Set<SubsystemRef> getSubsystemsByTypeName(String subsystemTypeName) {
+		return multicastSet(subsystemRefsRepository.findAllByTypeName(subsystemTypeName));
+	}
+
+	@Override
+	public void deleteBattleshipTemplateSubsystems(String battleshipTemplateUniqueToken) {
+		battleshipTemplateSubsystemsRepository
+			.deleteByBattleshipTemplateUniqueToken(battleshipTemplateUniqueToken);
+	}
+
+	@Override
+	@Transactional(transactionManager = "absInventoryTransactionManager")
+	public void executeTransaction(Runnable transaction) {
+		transaction.run();
 	}
 }

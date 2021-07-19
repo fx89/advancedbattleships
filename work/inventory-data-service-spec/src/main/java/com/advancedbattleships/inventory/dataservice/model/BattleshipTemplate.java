@@ -37,4 +37,16 @@ public interface BattleshipTemplate extends Serializable {
 	boolean[][] getHull();
 
 	void setHull(boolean[][] hull);
+
+	Double getCost();
+
+	void setCost(Double cost);
+
+	Double getEnergy();
+
+	void setEnergy(Double energy);
+
+	Double getFirepower();
+
+	void setFirepower(Double firepower);
 }

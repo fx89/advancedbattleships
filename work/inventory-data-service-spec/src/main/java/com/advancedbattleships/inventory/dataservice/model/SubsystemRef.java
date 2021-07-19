@@ -21,17 +21,17 @@ public interface SubsystemRef extends Serializable {
 
 	void setCost(double cost);
 
-	Set<SubbsystemRefStoredResourceRequirement> getStoredResourceRequirements();
+	Set<SubsystemRefStoredResourceRequirement> getStoredResourceRequirements();
 
-	void setStoredResourceRequirements(Set<SubbsystemRefStoredResourceRequirement> storedResourceRequirements);
+	void setStoredResourceRequirements(Set<SubsystemRefStoredResourceRequirement> storedResourceRequirements);
 
 	Set<SubsystemRefStorage> getStorage();
 
 	void setStorage(Set<SubsystemRefStorage> storage);
 
-	Set<SubbsystemRefGeneratedResourceRequirement> getGeneratedResourceRequirements();
+	Set<SubsystemRefGeneratedResourceRequirement> getGeneratedResourceRequirements();
 
-	void setGeneratedResourceRequirements(Set<SubbsystemRefGeneratedResourceRequirement> generatedResourceRequirements);
+	void setGeneratedResourceRequirements(Set<SubsystemRefGeneratedResourceRequirement> generatedResourceRequirements);
 
 	Set<SubsystemRefGeneratedResourceSpec> getGeneratedResources();
 

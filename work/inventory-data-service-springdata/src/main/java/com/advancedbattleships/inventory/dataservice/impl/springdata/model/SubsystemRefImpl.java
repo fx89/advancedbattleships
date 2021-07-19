@@ -15,8 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.advancedbattleships.inventory.dataservice.model.SubbsystemRefGeneratedResourceRequirement;
-import com.advancedbattleships.inventory.dataservice.model.SubbsystemRefStoredResourceRequirement;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.advancedbattleships.inventory.dataservice.model.SubsystemRefGeneratedResourceRequirement;
+import com.advancedbattleships.inventory.dataservice.model.SubsystemRefStoredResourceRequirement;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemRef;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemRefGeneratedResourceSpec;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemRefStorage;
@@ -45,21 +48,26 @@ public class SubsystemRefImpl implements SubsystemRef {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "TYPE_ID")
+	@Fetch(FetchMode.JOIN)
 	private SubsystemTypeImpl type;
 
 	@Column(name = "COST")
 	private double cost;
 
 	@OneToMany(mappedBy="subsystemRef")
-	private Set<SubbsystemRefStoredResourceRequirementImpl> storedResourceRequirements;
+	@Fetch(FetchMode.JOIN)
+	private Set<SubsystemRefStoredResourceRequirementImpl> storedResourceRequirements;
 
 	@OneToMany(mappedBy="subsystemRef")
+	@Fetch(FetchMode.JOIN)
 	private Set<SubsystemRefStorageImpl> storage;
 
 	@OneToMany(mappedBy="subsystemRef")
-	private Set<SubbsystemRefGeneratedResourceRequirementImpl> generatedResourceRequirmenets;
+	@Fetch(FetchMode.JOIN)
+	private Set<SubsystemRefGeneratedResourceRequirementImpl> generatedResourceRequirmenets;
 
 	@OneToMany(mappedBy="subsystemRef")
+	@Fetch(FetchMode.JOIN)
 	private Set<SubsystemRefGeneratedResourceSpecImpl> generatedResources;
 
 	@Override
@@ -103,14 +111,14 @@ public class SubsystemRefImpl implements SubsystemRef {
 	}
 
 	@Override
-	public Set<SubbsystemRefStoredResourceRequirement> getStoredResourceRequirements() {
+	public Set<SubsystemRefStoredResourceRequirement> getStoredResourceRequirements() {
 		return multicastSet(storedResourceRequirements);
 	}
 
 	@Override
-	public void setStoredResourceRequirements(Set<SubbsystemRefStoredResourceRequirement> storedResourceRequirements) {
+	public void setStoredResourceRequirements(Set<SubsystemRefStoredResourceRequirement> storedResourceRequirements) {
 		this.storedResourceRequirements
-			= multicastSet(storedResourceRequirements, (src) -> new SubbsystemRefStoredResourceRequirementImpl(src));
+			= multicastSet(storedResourceRequirements, (src) -> new SubsystemRefStoredResourceRequirementImpl(src));
 	}
 
 	@Override
@@ -124,15 +132,15 @@ public class SubsystemRefImpl implements SubsystemRef {
 	}
 
 	@Override
-	public Set<SubbsystemRefGeneratedResourceRequirement> getGeneratedResourceRequirements() {
+	public Set<SubsystemRefGeneratedResourceRequirement> getGeneratedResourceRequirements() {
 		return multicastSet(generatedResourceRequirmenets);
 	}
 
 	@Override
 	public void setGeneratedResourceRequirements(
-			Set<SubbsystemRefGeneratedResourceRequirement> generatedResourceRequirements) {
+			Set<SubsystemRefGeneratedResourceRequirement> generatedResourceRequirements) {
 		this.generatedResourceRequirmenets
-			= multicastSet(generatedResourceRequirmenets, (src) -> new SubbsystemRefGeneratedResourceRequirementImpl(src));
+			= multicastSet(generatedResourceRequirmenets, (src) -> new SubsystemRefGeneratedResourceRequirementImpl(src));
 	}
 
 	@Override
@@ -154,6 +162,7 @@ public class SubsystemRefImpl implements SubsystemRef {
 		this.setStorage(src.getStorage());
 		this.setStoredResourceRequirements(src.getStoredResourceRequirements());
 		this.setType(src.getType());
+		this.setUniqueToken(src.getUniqueToken());
 
 		if (src instanceof SubsystemRefImpl) {
 			this.id = ((SubsystemRefImpl) src).id;

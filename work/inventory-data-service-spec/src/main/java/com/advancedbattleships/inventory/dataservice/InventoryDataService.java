@@ -1,10 +1,12 @@
 package com.advancedbattleships.inventory.dataservice;
 
 import java.util.List;
+import java.util.Set;
 
 import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplate;
 import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplateSubsystem;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemRef;
+import com.advancedbattleships.inventory.dataservice.model.SubsystemType;
 
 public interface InventoryDataService {
 
@@ -23,6 +25,11 @@ public interface InventoryDataService {
 	 * Removes the referenced battleship template and all of its subsystems.
 	 */
 	void deleteBattleshipTemplate(BattleshipTemplate battleshipTemplate);
+
+	/**
+	 * Persists the referenced battleship template into the data source
+	 */
+	void saveBattleshipTemplate(BattleshipTemplate battleshipTemplate);
 
 	/**
 	 * Returns a list of the battleship templates in the user's inventory
@@ -74,4 +81,25 @@ public interface InventoryDataService {
 	 * Returns a the subsystem reference identified by the given unique token.
 	 */
 	SubsystemRef getSubsystemRefByUniqueToken(String uniqueToken);
+
+	/**
+	 * Returns a list of all subsystem types
+	 */
+	Iterable<SubsystemType> getSubsystemTypes();
+
+	/**
+	 * Returns a set of subsystem references of the named subsystem type
+	 */
+	Set<SubsystemRef> getSubsystemsByTypeName(String subsystemTypeName);
+
+	/**
+	 * Removes all subsystems related to the battleship template having the
+	 * given unique token
+	 */
+	void deleteBattleshipTemplateSubsystems(String battleshipTemplateUniqueToken);
+
+	/**
+	 * Wraps the given runnable in a transaction
+	 */
+	void executeTransaction(Runnable transaction);
 }

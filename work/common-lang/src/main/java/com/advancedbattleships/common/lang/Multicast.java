@@ -62,7 +62,7 @@ public class Multicast {
 	}
 
 	/**
-	 * Creates a new collection in which every element of the source list is cast to the
+	 * Creates a new collection in which every element of the source collection is cast to the
 	 * target data type using the provided casting function.<br />
 	 * <br />
 	 * This is enables casting the entire source collection in a single line of code.<br />
@@ -74,14 +74,56 @@ public class Multicast {
 	 * returns a new collection of the proper type and of the same size. If the provided
 	 * initialization function reference is null, a NullPointerException will occur.
 	 */
-	public static <S, T> Collection<T> multicastCollection(Collection<S> srcCollection, Function<Integer, Collection<T>> createFunc, Function<S, T> transform) {
-		if (srcCollection == null) {
+	public static <S, T> Collection<T> multicastCollection(Collection<S> srcCollection, Function<Integer, Iterable<T>> createFunc, Function<S, T> transform) {
+		return (Collection<T>) multicastIterable(
+					srcCollection,
+					(coll) -> ((Collection<S>)coll).size(),
+					createFunc,
+					transform
+				);
+	}
+
+	/**
+	 * Returns a new iterable containing all the elements of the provided srcIterable
+	 * cast as the new data type. This allows casting iterables in a single line of code.
+	 */
+	@SuppressWarnings("unchecked")
+	public static<S, T> Iterable<T> multicastIterable(Iterable<S> srcIterable) {
+		return multicastIterable(
+					srcIterable,
+					(src) -> 1000,
+					(size) -> new ArrayList<>(),
+					(s) -> (T)s
+				);
+	}
+
+	/**
+	 * Creates a new iterable in which every element of the source iterable is cast to the
+	 * target data type using the provided casting function.<br />
+	 * <br />
+	 * This is enables casting the entire source iterable in a single line of code.<br />
+	 * <br />
+	 * If the provided casting function reference is null, a NullPointerException will
+	 * occur.<br />
+	 * <br />
+	 * The provided initialization function takes in the size calculated by the provided
+	 * getSizeFunc() and returns a new iterable of the proper type and of the same size.
+	 * If the provided initialization function reference is null, a NullPointerException
+	 * will occur.
+	 */
+	public static <S, T> Iterable<T> multicastIterable(
+		Iterable<S> srcIterable,
+		Function<Iterable<S>, Integer> getSizeFunc,
+		Function<Integer, Iterable<T>> createFunc,
+		Function<S, T> transform
+	) {
+		if (srcIterable == null) {
 			return null;
 		}
 
-		Collection<T> ret = createFunc.apply(srcCollection.size());		
+		Collection<T> ret = (Collection<T>) createFunc.apply(getSizeFunc.apply(srcIterable));
 
-		srcCollection.forEach(s -> {
+		srcIterable.forEach(s -> {
 			ret.add(transform.apply(s));
 		});
 		

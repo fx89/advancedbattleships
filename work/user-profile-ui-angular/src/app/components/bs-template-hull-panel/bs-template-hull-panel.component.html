@@ -1,0 +1,29 @@
+<div
+    [id]="getContainerId()"
+    [class]="getClassName()"
+>
+    <table [id]="getTableId()"
+           [style.width.%]="widthPct"
+           [style.height.%]="heightPct"
+           [style.margin-top.%]="marginTopPct"
+           [style.margin-left.%]="marginLeftPct"
+           cellspacing="0" cellpadding="0"
+           class="bs-template-hull-panel-table"
+    >
+        <tr *ngFor="let n of counter(hullHeight) ; let y = index">
+            <td *ngFor="let m of counter(hullWidth) ; let x = index"
+                [class.hull-panel-full-cell]="hull[y][x]"
+                [class.hull-panel-empty-cell]="!(hull[y][x])"
+                (click)="onCellClicked(x, y)"
+                [style.width.%]="cellSizePct"
+                [style.height.%]="cellSizePct"
+            >
+                <div *ngIf="subsystemsMatrix && subsystemsMatrix[y] && subsystemsMatrix[y][x]"
+                     [style.background-image]="'url(' + getIconUrl(subsystemsMatrix[y][x].subsystemRef.uniqueToken) + ')'"
+                     class="hull-panel-subsystem-img"
+                     style="background-size: 100% auto; width:100%; height:100%; display: block"
+                ></div>
+            </td>
+        </tr>
+    </table>
+</div>

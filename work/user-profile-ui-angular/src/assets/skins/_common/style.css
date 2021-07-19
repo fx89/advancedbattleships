@@ -484,3 +484,30 @@ body {
         padding-left: 100px;
     }
 }
+
+.battleships .accordion-section-header-div {
+    width:100%;
+    z-index: 9000;
+}
+
+@keyframes accordion-section-opening {
+    from {
+        max-height: 0px;
+        opacity: 0%;
+    }
+    to {
+        max-height: 1000px;
+        opacity: 100%;
+    }
+}
+
+@keyframes accordion-section-closing {
+    from {
+        max-height: 1000px;
+        opacity: 100%;
+    }
+    to {
+        max-height: 0px;
+        opacity: 0%;
+    }
+}

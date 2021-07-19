@@ -19,6 +19,9 @@ CREATE TABLE IF NOT EXISTS `BATTLESHIP_TEMPLATE` (
 	`HULL_WIDTH`               INT NOT NULL,
 	`HULL_HEIGHT`              INT NOT NULL,
 	`HULL_ARRAY`               VARCHAR(4000),
+	`COST`                     DOUBLE,
+	`ENERGY`                   DOUBLE,
+	`FIREPOWER`                DOUBLE
 PRIMARY KEY(ID)
 );
 

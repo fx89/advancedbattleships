@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplate;
 import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplateSubsystem;
 import com.advancedbattleships.inventory.dataservice.model.Point2I;
@@ -35,10 +38,12 @@ public class BattleshipTemplateSubsystemImpl implements BattleshipTemplateSubsys
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "BATTLESHIP_TEMPLATE_ID")
+	@Fetch(FetchMode.JOIN)
 	BattleshipTemplateImpl battleshipTemplate;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "SUBSYSTEM_REF_ID")
+	@Fetch(FetchMode.JOIN)
 	SubsystemRefImpl subsystemRef;
 
 	@Column(name = "POS_X")

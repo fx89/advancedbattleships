@@ -11,4 +11,6 @@ public interface BattleshipTemplateSubsystemsRepository extends PagingAndSorting
 	List<BattleshipTemplateSubsystemImpl> findAllByBattleshipTemplateId(Long battleshipTemplateId);
 
 	BattleshipTemplateSubsystemImpl findFirstByUniqueToken(String uniqueToken);
+
+	void deleteByBattleshipTemplateUniqueToken(String battleshipTemplateUniqueToken);
 }

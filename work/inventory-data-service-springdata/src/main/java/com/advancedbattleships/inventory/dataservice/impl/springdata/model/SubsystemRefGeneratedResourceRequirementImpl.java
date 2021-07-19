@@ -10,8 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.advancedbattleships.inventory.dataservice.model.GeneratedResourceType;
-import com.advancedbattleships.inventory.dataservice.model.SubbsystemRefGeneratedResourceRequirement;
+import com.advancedbattleships.inventory.dataservice.model.SubsystemRefGeneratedResourceRequirement;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -21,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Table(name="SUBSYSTEM_REF_GENERATED_RESOURCE_REQ")
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubbsystemRefGeneratedResourceRequirementImpl implements SubbsystemRefGeneratedResourceRequirement {
+public class SubsystemRefGeneratedResourceRequirementImpl implements SubsystemRefGeneratedResourceRequirement {
 
 	@Id
 	@Column(name="ID")
@@ -30,10 +33,12 @@ public class SubbsystemRefGeneratedResourceRequirementImpl implements Subbsystem
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "SUBSYSTEM_REF_ID")
+	@Fetch(FetchMode.JOIN)
 	private SubsystemRefImpl subsystemRef;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "GENERATED_RESOURCE_TYPE_ID")
+	@Fetch(FetchMode.JOIN)
 	private GeneratedResourceTypeImpl generatedResourceType;
 
 	@Column(name = "REQUIRED_AMT")
@@ -59,13 +64,13 @@ public class SubbsystemRefGeneratedResourceRequirementImpl implements Subbsystem
 		this.requiredAmount = requiredAmount;
 	}
 
-	public SubbsystemRefGeneratedResourceRequirementImpl( SubbsystemRefGeneratedResourceRequirement src) {
+	public SubsystemRefGeneratedResourceRequirementImpl( SubsystemRefGeneratedResourceRequirement src) {
 		this.setRequiredAmount(src.getRequiredAmount());
 		this.setResourceType(src.getResourceType());
 
-		if (src instanceof SubbsystemRefGeneratedResourceRequirementImpl) {
-			this.id = ((SubbsystemRefGeneratedResourceRequirementImpl) src).id;
-			this.subsystemRef = ((SubbsystemRefGeneratedResourceRequirementImpl) src).subsystemRef;
+		if (src instanceof SubsystemRefGeneratedResourceRequirementImpl) {
+			this.id = ((SubsystemRefGeneratedResourceRequirementImpl) src).id;
+			this.subsystemRef = ((SubsystemRefGeneratedResourceRequirementImpl) src).subsystemRef;
 		}
 	}
 }

@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.advancedbattleships.inventory.dataservice.model.StoredResourceType;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemRefStorage;
 
@@ -30,10 +33,12 @@ public class SubsystemRefStorageImpl implements SubsystemRefStorage {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "SUBSYSTEM_REF_ID")
+	@Fetch(FetchMode.JOIN)
 	private SubsystemRefImpl subsystemRef;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "STORED_RESOURCE_TYPE_ID")
+	@Fetch(FetchMode.JOIN)
 	private StoredResourceTypeImpl storedResourceType;
 
 	@Column(name = "INITIAL_AMT")

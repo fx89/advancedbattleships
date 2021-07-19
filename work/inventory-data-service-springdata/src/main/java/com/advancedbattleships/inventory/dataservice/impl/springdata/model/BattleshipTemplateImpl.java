@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplate;
 import com.advancedbattleships.inventory.dataservice.model.Point2I;
@@ -56,6 +57,15 @@ public class BattleshipTemplateImpl implements BattleshipTemplate {
 
 	@Column(name="HULL_ARRAY")
 	private String hashedHullArray;
+
+	@Column(name="COST")
+	private Double cost;
+
+	@Column(name="ENERGY")
+	private Double energy;
+
+	@Column(name="FIREPOWER")
+	private Double firepower;
 
 	@Override
 	public String getUniqueToken() {
@@ -136,6 +146,7 @@ public class BattleshipTemplateImpl implements BattleshipTemplate {
 		this.hullHeight = height;
 	}
 
+	@Transient
 	private boolean[][] hullArray = null;
 
 	public void initEmptyHullArray() {
@@ -163,6 +174,7 @@ public class BattleshipTemplateImpl implements BattleshipTemplate {
 			for (int h = 0 ; h < hullHeight ; h++) {
 				for (int w = 0 ; w < hullWidth ; w++) {
 					hullArray[h][w] = bools[i];
+					i++;
 				}
 			}
 		}
@@ -193,19 +205,52 @@ public class BattleshipTemplateImpl implements BattleshipTemplate {
 		hullArray = null;
 	}
 
+	@Override
+	public Double getCost() {
+		return cost;
+	}
+
+	@Override
+	public void setCost(Double cost) {
+		this.cost = cost;
+	}
+
+	@Override
+	public Double getEnergy() {
+		return energy;
+	}
+
+	@Override
+	public void setEnergy(Double energy) {
+		this.energy = energy;
+	}
+
+	@Override
+	public Double getFirepower() {
+		return firepower;
+	}
+
+	@Override
+	public void setFirepower(Double firepower) {
+		this.firepower = firepower;
+	}
+
 	public Long getId() {
 		return id;
 	}
 
 	public BattleshipTemplateImpl(BattleshipTemplate src) {
-		this.setHull(src.getHull());
 		this.setHullSize(src.getHullSize());
+		this.setHull(src.getHull());
 		this.setName(src.getName());
 		this.setOfficialTemplate(src.isOfficialTemplate());
 		this.setPublic(src.isPublic());
 		this.setUniqueToken(src.getUniqueToken());
 		this.setUserUniqueToken(src.getUserUniqueToken());
 		this.setVisibleInLists(src.isVisibleInLists());
+		this.setCost(src.getCost());
+		this.setEnergy(src.getEnergy());
+		this.setFirepower(src.getFirepower());
 
 		if (src instanceof BattleshipTemplateImpl) {
 			this.id = ((BattleshipTemplateImpl) src).id;
