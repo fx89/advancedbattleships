@@ -49,6 +49,7 @@ export class BattleshipTemplateEditorComponent implements OnInit {
   redoState : any;
 
   hullPanelRecomputeEvent : EventEmitter<any> = new EventEmitter<any>();
+  battleshipTempalteEditorValidationMessageEvent : EventEmitter<string> = new EventEmitter<string>();
 
   battleshipTemplateEditorCustomButtons : DialogButtonSpec[] = [
     new DialogButtonSpec("Undo", () => {
@@ -120,13 +121,17 @@ export class BattleshipTemplateEditorComponent implements OnInit {
     dataService.battleshipTemplatesRepository?.errorEventEmitter.subscribe((err:any) => {
       if (this.isValidationError(err)) {
         this.validationError = err.message;
+        this.battleshipTempalteEditorValidationMessageEvent.emit(this.validationError);
+        this.selectedBattleshipTemplate.hull = this.undoData.pop().hull;
       }
     });
 
     dataService.subsystemsRepository.errorEventEmitter.subscribe(err => {
       if (err.error == "AdvancedBattleshipsInventoryValidationException" && this.lastUndoState) {
         this.undoData.push(this.lastUndoState);
-        this.selectedBattleshipTemplateSubsystems = this.redoState.subsystems
+        this.selectedBattleshipTemplateSubsystems = this.redoState.subsystems;
+        this.validationError = err.message;
+        this.battleshipTempalteEditorValidationMessageEvent.emit(this.validationError);
       }
     });
 
@@ -313,7 +318,10 @@ export class BattleshipTemplateEditorComponent implements OnInit {
     this.dataService.battleshipTemplatesRepository?.saveCustomOperationWithLoadingModal(
       "setBattleshipTemplateHull",
       this.selectedBattleshipTemplate.hull,
-      new Map([["battleshipTemplateUniqueToken", this.selectedBattleshipTemplate.uniqueToken]])
+      new Map([["battleshipTemplateUniqueToken", this.selectedBattleshipTemplate.uniqueToken]]),
+      (ret) => {
+        this.updateSelectedBattleshipTemplateStatistics(ret);
+      }
     );
   }
 
@@ -323,6 +331,7 @@ export class BattleshipTemplateEditorComponent implements OnInit {
       placeAtX, placeAtY,
       (ret) => {
         this.selectedBattleshipTemplateSubsystems.push(ret);
+        this.updateSelectedBattleshipTemplateStatistics(ret);
         this.hullPanelRecomputeEvent.emit();
       }
     );
@@ -350,8 +359,19 @@ export class BattleshipTemplateEditorComponent implements OnInit {
     this.dataService.subsystemsRepository.deleteCustomOperationWithLoadingModal(
       "deleteBattleshipTemplateSubsystem",
       undefined,
-      new Map([["subsystemUniqueToken", subsystemUniqueToken]])
+      new Map([["subsystemUniqueToken", subsystemUniqueToken]]),
+      (ret) => {
+        this.updateSelectedBattleshipTemplateStatistics(ret);
+      }
     );
+  }
+
+  private updateSelectedBattleshipTemplateStatistics(src) {
+    const actualSrc : any = src.battleshipTemplate ? src.battleshipTemplate : src;
+
+    this.selectedBattleshipTemplate.cost      = actualSrc.cost;
+    this.selectedBattleshipTemplate.energy    = actualSrc.energy;
+    this.selectedBattleshipTemplate.firepower = actualSrc.firepower;
   }
 
   onHullConstructionToolsPencilButtonClick() {

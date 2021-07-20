@@ -112,7 +112,7 @@ public class InventoryService {
 
 		// Validate subsystems placement
 		validateSubsystemPlacementOnHull(battleshipTemplate, posX, posY);
-		validateSubsystemPlacementInRelationToOtherSubsystems(posX, posY, existingSubsystems);
+		validateSubsystemPlacementInRelationToOtherSubsystems(null, posX, posY, existingSubsystems);
 
 		// Get subsystem reference for the subsystem to be added
 		SubsystemRef subsystemRef = getSubsystemRef(subsystemRefUniqueToken);
@@ -137,8 +137,14 @@ public class InventoryService {
 			dataService.saveBattleshipTemplate(battleshipTemplate);
 		});
 
+		// Set the battleship template with the re-computed statistics
+		// to the newly added subsystem, so that the calling service
+		// gets accurate data.
+		BattleshipTemplateSubsystem ret = newSubsystemWorkaround.get(0);
+		ret.setBattleshipTemplate(battleshipTemplate);
+
 		// return the newly added subsystem data object
-		return newSubsystemWorkaround.get(0);
+		return ret;
 	}
 
 	public BattleshipTemplateSubsystem updateBattleshipTemplateSubsystemPosition(
@@ -159,13 +165,13 @@ public class InventoryService {
 
 		// Validate subsystems placement
 		validateSubsystemPlacementOnHull(subsystem.getBattleshipTemplate(), posX, posY);
-		validateSubsystemPlacementInRelationToOtherSubsystems(posX, posY, allSubsystems);
+		validateSubsystemPlacementInRelationToOtherSubsystems(subsystemUniqueToken, posX, posY, allSubsystems);
 
 		// Save the subsystem and return a reference
 		return dataService.updateBattleshipTemplateSubsystem(subsystem);
 	}
 
-	public void deleteBattleshipTemplateSubsystem(
+	public BattleshipTemplate deleteBattleshipTemplateSubsystem(
 		String userUniqueToken,
 		String subsystemUniqueToken
 	) {
@@ -188,7 +194,9 @@ public class InventoryService {
 			// Save the battleship template
 			dataService.saveBattleshipTemplate(subsystem.getBattleshipTemplate());
 		});
-		
+
+		// Return the battleship template with the updated statistics
+		return subsystem.getBattleshipTemplate();
 	}
 
 	public List<SubsystemRef> getSubsystemRefs() {
@@ -231,7 +239,7 @@ public class InventoryService {
 	) {
 		Point2I pos = subsystem.getPosition();
 		validateSubsystemPlacementOnHull(battleshipTemplate, pos.x, pos.y);
-		validateSubsystemPlacementInRelationToOtherSubsystems(pos.x, pos.y, allSubsystems);
+		validateSubsystemPlacementInRelationToOtherSubsystems(subsystem.getUniqueToken(), pos.x, pos.y, allSubsystems);
 	}
 
 	private void validateSubsystemPlacementOnHull(BattleshipTemplate battleshipTemplate, int posX, int posY)  {
@@ -275,19 +283,21 @@ public class InventoryService {
 		}
 	}
 
-	private void validateSubsystemPlacementInRelationToOtherSubsystems(int posX, int posY, List<BattleshipTemplateSubsystem> allSubsystems) {
+	private void validateSubsystemPlacementInRelationToOtherSubsystems(String battleshipTemplateUniqueToken, int posX, int posY, List<BattleshipTemplateSubsystem> allSubsystems) {
 		int minDistanceFromSubsystem
 			= system.getDataService().getIntParameter("SUBSYSTEM.DISTANCE_FROM_OTHERS");
 
 		for (BattleshipTemplateSubsystem subsystem : allSubsystems) {
-			Point2I subPos = subsystem.getPosition();
-			if (
-			    (subPos.x == posX && subPos.y == posY)
-			 || Math.sqrt(Math.pow(subPos.x - posX, 2) + Math.pow(subPos.y - posY, 2)) < minDistanceFromSubsystem
-			) {
-				throw new AdvancedBattleshipsInventoryValidationException(
-					"Subsystem must be placed no closer than [" + minDistanceFromSubsystem + "] cells to any other subsystem"
-				);
+			if (battleshipTemplateUniqueToken == null || !(battleshipTemplateUniqueToken.equals(subsystem.getUniqueToken()))) {
+				Point2I subPos = subsystem.getPosition();
+				if (
+				    (subPos.x == posX && subPos.y == posY)
+				 || Math.sqrt(Math.pow(subPos.x - posX, 2) + Math.pow(subPos.y - posY, 2)) < minDistanceFromSubsystem
+				) {
+					throw new AdvancedBattleshipsInventoryValidationException(
+						"Subsystem must be placed no closer than [" + minDistanceFromSubsystem + "] cells to any other subsystem"
+					);
+				}
 			}
 		}
 	}
@@ -354,7 +364,7 @@ public class InventoryService {
 		return ret;
 	}
 
-	public void setBattleshipTemplateHullCellValue(String userUniqueToken, String battleshipTemplateUniqueToken, Integer x, Integer y, Boolean value) {
+	public BattleshipTemplate setBattleshipTemplateHullCellValue(String userUniqueToken, String battleshipTemplateUniqueToken, Integer x, Integer y, Boolean value) {
 		// Find the battleship template (throw exception if not matched with the current user)
 		BattleshipTemplate bsTemplate = getUserBattleshipTemplate(userUniqueToken, battleshipTemplateUniqueToken);
 
@@ -368,14 +378,17 @@ public class InventoryService {
 		// Check if the subsystems placement is still valid (if not, an exception will be thrown)
 		validateSubsystems(bsTemplate, subsystems);
 
-		// Compute the cost
+		// Compute the statistics
 		computeBattleshipTemplateStats(bsTemplate, subsystems);
 
 		// If all went well, save the battleship template and its new hull value
 		dataService.saveBattleshipTemplate(bsTemplate);
+
+		// Return the battleship template;
+		return bsTemplate;
 	}
 
-	public void setBattleshipTemplateHull(String userUniqueToken, String battleshipTemplateUniqueToken, boolean[][] hull) {
+	public BattleshipTemplate setBattleshipTemplateHull(String userUniqueToken, String battleshipTemplateUniqueToken, boolean[][] hull) {
 		// Find the battleship template (throw exception if not matched with the current user)
 		BattleshipTemplate bsTemplate = getUserBattleshipTemplate(userUniqueToken, battleshipTemplateUniqueToken);
 
@@ -403,6 +416,9 @@ public class InventoryService {
 
 		// If all went well, save the battleship template and its new hull value
 		dataService.saveBattleshipTemplate(bsTemplate);
+
+		// Return the battleship template
+		return bsTemplate;
 	}
 
 	public Iterable<SubsystemType> getSubsystemTypes() {
@@ -424,10 +440,11 @@ public class InventoryService {
 
 		// Collect statistics from all subsystems
 		for (BattleshipTemplateSubsystem subsystem : subsystems) {
-			// The cost is collected from all subsystems
-			cost += subsystem.getSubsystemRef().getCost();
-
+			// Get the subsystemRef for shorter lines of code
 			SubsystemRef subsystemRef = subsystem.getSubsystemRef();
+			
+			// The cost is collected from all subsystems
+			cost += subsystemRef.getCost();
 
 			// The energy is collected only from power systems and is computed
 			// as the total power generated by all power systems

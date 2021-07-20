@@ -29,7 +29,7 @@ public interface InventoryDataService {
 	/**
 	 * Persists the referenced battleship template into the data source
 	 */
-	void saveBattleshipTemplate(BattleshipTemplate battleshipTemplate);
+	 void saveBattleshipTemplate(BattleshipTemplate battleshipTemplate);
 
 	/**
 	 * Returns a list of the battleship templates in the user's inventory

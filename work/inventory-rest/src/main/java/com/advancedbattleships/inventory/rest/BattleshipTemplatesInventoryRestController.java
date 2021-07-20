@@ -37,13 +37,13 @@ public class BattleshipTemplatesInventoryRestController {
 	}
 
 	@PostMapping("setBattleshipTemplateHullCellValue")
-	public void setBattleshipTemplateHullCellValue(
+	public BattleshipTemplate setBattleshipTemplateHullCellValue(
 			@RequestParam() String battleshipTemplateUniqueToken,
 			@RequestParam() Integer x,
 			@RequestParam() Integer y,
 			@RequestParam() Boolean value
 	) {
-		inventory.setBattleshipTemplateHullCellValue(
+		return inventory.setBattleshipTemplateHullCellValue(
 						security.getCurrentUser().getUniqueToken(),
 						battleshipTemplateUniqueToken,
 						x, y, value
@@ -51,11 +51,11 @@ public class BattleshipTemplatesInventoryRestController {
 	}
 
 	@PostMapping("setBattleshipTemplateHull")
-	public void setBattleshipTemplateHull(
+	public BattleshipTemplate setBattleshipTemplateHull(
 			@RequestParam() String battleshipTemplateUniqueToken,
 			@RequestBody() boolean[][] hull
 	) {
-		inventory.setBattleshipTemplateHull(
+		return inventory.setBattleshipTemplateHull(
 						security.getCurrentUser().getUniqueToken(),
 						battleshipTemplateUniqueToken,
 						hull

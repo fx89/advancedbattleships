@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplate;
 import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplateSubsystem;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemRef;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemType;
@@ -68,10 +69,10 @@ public class BattleshipTemplateSubsystemsInventoryRestController {
 	}
 
 	@DeleteMapping("deleteBattleshipTemplateSubsystem")
-	public void deleteBattleshipTemplateSubsystem(@RequestParam() String subsystemUniqueToken) {
-		inventory.deleteBattleshipTemplateSubsystem(
-			security.getCurrentUser().getUniqueToken(),
-			subsystemUniqueToken
-		);
+	public BattleshipTemplate deleteBattleshipTemplateSubsystem(@RequestParam() String subsystemUniqueToken) {
+		return inventory.deleteBattleshipTemplateSubsystem(
+				security.getCurrentUser().getUniqueToken(),
+				subsystemUniqueToken
+			);
 	}
 }

@@ -115,6 +115,8 @@
     (cancelEvent)="onEditBattleshipTemplateDialogExitButtonClick()"
     [hideAllowedFunction]="hideNotAllowedFunction"
     [customButtons]="battleshipTemplateEditorCustomButtons"
+    [externalValidationMessageEvent]="battleshipTempalteEditorValidationMessageEvent"
+    [validationMessageLifeSecs]="10"
 >
     <table *ngIf="selectedBattleshipTemplate && selectedBattleshipTemplateSubsystems"
             style="width:100%; height:100%; padding-top:10px;"
