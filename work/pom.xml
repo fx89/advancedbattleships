@@ -35,6 +35,7 @@
 		<module>inventory-data-service-spec</module>
 		<module>inventory-data-service-springdata</module>
 
+		<module>system-rest</module>
 		<module>system</module>
 		<module>system-data-service-spec</module>
 		<module>system-data-service-springdata</module>
