@@ -10,6 +10,7 @@ export class AdvBsUiDataService {
   public contentRepository : LiteNgLoadingModalWrappedHttpRepository | undefined;
   public battleshipTemplatesRepository : LiteNgLoadingModalWrappedHttpRepository | undefined;
   public subsystemsRepository : LiteNgLoadingModalWrappedHttpRepository | undefined;
+  public systemParametersRepository : LiteNgLoadingModalWrappedHttpRepository | undefined;
 
   private backendUrl : string = "";
   private loginFormUrl : string = "";
@@ -25,6 +26,7 @@ export class AdvBsUiDataService {
       this.contentRepository              = this.createRepository("content"                               , "LOADING"       , "please wait while the request is being processed");
       this.battleshipTemplatesRepository  = this.createRepository("inventory/battlesipTemplates"          , "LOADING"       , "please wait while the request is being processed");
       this.subsystemsRepository           = this.createRepository("inventory/battlesipTemplateSubsystems" , "LOADING"       , "please wait while the request is being processed");
+      this.systemParametersRepository     = this.createRepository("system/parameters"                     , "LOADING"       , "please wait while the request is being processed");
   }
 
   private createRepository(baseUrl : string, loadingTitle : string, loadingMessage : string) {
