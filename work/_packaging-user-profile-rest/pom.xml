@@ -40,6 +40,11 @@
 		<!-- Included REST modules -->
 		<dependency>
 			<groupId>com.advancedbattleships</groupId>
+			<artifactId>system-rest</artifactId>
+			<version>${advancedbattleships.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.advancedbattleships</groupId>
 			<artifactId>security-rest</artifactId>
 			<version>${advancedbattleships.version}</version>
 		</dependency>
