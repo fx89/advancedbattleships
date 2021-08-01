@@ -373,7 +373,7 @@
                     <mxGeometry y="29" width="170" height="131" as="geometry"/>
                 </mxCell>
                 <mxCell id="157" value="PersistentMessageType" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="1240" y="-1020" width="200" height="120" as="geometry"/>
+                    <mxGeometry x="1240" y="-1060" width="200" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="158" value="name&lt;br&gt;&amp;nbsp; &amp;nbsp;- friend request&lt;br&gt;&amp;nbsp; &amp;nbsp;- party request&lt;br&gt;&amp;nbsp; &amp;nbsp;- game invitation&lt;br&gt;&amp;nbsp; &amp;nbsp;- system message&lt;br&gt;&amp;nbsp; &amp;nbsp;- news" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="157" vertex="1">
                     <mxGeometry y="29" width="200" height="91" as="geometry"/>
@@ -403,7 +403,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="166" value="Users may choose which channel to mute. There will be one and only channel for each of these categories: friend requests, party requests, game invitations and system messages. However, there will be multiple news channels" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="1460" y="-1050" width="230" height="100" as="geometry"/>
+                    <mxGeometry x="1460" y="-1060" width="230" height="110" as="geometry"/>
                 </mxCell>
                 <mxCell id="170" value="ChatChannel" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1472.5" y="-810" width="215" height="80" as="geometry"/>
@@ -422,10 +422,10 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="172" value="ChatChannelBans" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
+                <mxCell id="172" value="ChatChannelBan" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1472.5" y="-710" width="215" height="90" as="geometry"/>
                 </mxCell>
-                <mxCell id="173" value="chatChannel&lt;br&gt;USER_UNIQUE_TOKEN&lt;br&gt;isPermanent&lt;br&gt;timeTillBanIsLiftedMins" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="172" vertex="1">
+                <mxCell id="173" value="chatChannel&lt;br&gt;USER_UNIQUE_TOKEN&lt;br&gt;isPermanent&lt;br&gt;timeTillLiftedMins" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="172" vertex="1">
                     <mxGeometry y="29" width="215" height="61" as="geometry"/>
                 </mxCell>
                 <mxCell id="178" value="The PARTY_UNIQUE_TOKEN in the chat channel will never be NULL. Each user is added to the preset GENERAL_PARTY channel. Private party channels will be private channels.&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
