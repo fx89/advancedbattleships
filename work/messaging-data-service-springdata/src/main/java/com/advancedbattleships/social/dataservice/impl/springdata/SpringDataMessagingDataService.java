@@ -10,17 +10,20 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.advancedbattleships.messaging.dataservice.MessagingDataService;
 import com.advancedbattleships.messaging.dataservice.model.PersistentMessage;
 import com.advancedbattleships.messaging.dataservice.model.PersistentMessageChannel;
 import com.advancedbattleships.messaging.dataservice.model.PersistentMessageType;
 import com.advancedbattleships.social.dataservice.impl.springdata.dao.PersistentMessageChannelsRepository;
+import com.advancedbattleships.social.dataservice.impl.springdata.dao.PersistentMessageTypesRepository;
 import com.advancedbattleships.social.dataservice.impl.springdata.dao.PersistentMessagesRepository;
 import com.advancedbattleships.social.dataservice.impl.springdata.model.PersistentMessageChannelImpl;
 import com.advancedbattleships.social.dataservice.impl.springdata.model.PersistentMessageImpl;
 import com.advancedbattleships.social.dataservice.impl.springdata.model.PersistentMessageTypeImpl;
 
+@Service
 public class SpringDataMessagingDataService implements MessagingDataService {
 
 	@Autowired

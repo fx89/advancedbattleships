@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.advancedbattleships.social.dataservice.SocialDataService;
 import com.advancedbattleships.social.dataservice.impl.springdata.dao.PartiesRepository;
@@ -21,6 +22,7 @@ import com.advancedbattleships.social.dataservice.model.Party;
 import com.advancedbattleships.social.dataservice.model.UserFriend;
 import com.advancedbattleships.social.dataservice.model.UserParty;
 
+@Service
 public class SpringDataSocialDataService implements SocialDataService {
 
 	@Autowired
