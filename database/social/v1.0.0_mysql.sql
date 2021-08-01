@@ -24,6 +24,7 @@ PRIMARY KEY(ID)
 );
 
 INSERT INTO `PARTY`(`PARTY_UNIQUE_TOKEN`, `NAME`) VALUES('WQ``````````', 'Public Party');
+INSERT INTO `PARTY`(`PARTY_UNIQUE_TOKEN`, `NAME`) VALUES('WR``````````', 'Ops Party');
 COMMIT;
 
 GRANT ALL PRIVILEGES ON `abssocial`.* TO 'abssocial'@'localhost';
