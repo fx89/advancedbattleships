@@ -39,6 +39,10 @@
 		<module>social-data-service-spec</module>
 		<module>social-data-service-springdata</module>
 
+		<module>messaging</module>
+		<module>messaging-data-service-spec</module>
+		<module>messaging-data-service-springdata</module>
+
 		<module>system-rest</module>
 		<module>system</module>
 		<module>system-data-service-spec</module>
