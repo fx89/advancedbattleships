@@ -4,7 +4,7 @@ import java.util.Set;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.advancedbattleships.social.dataservice.impl.springdatamodel.PartyImpl;
+import com.advancedbattleships.social.dataservice.impl.springdata.model.PartyImpl;
 
 public interface PartiesRepository extends PagingAndSortingRepository<PartyImpl, Long> {
 
