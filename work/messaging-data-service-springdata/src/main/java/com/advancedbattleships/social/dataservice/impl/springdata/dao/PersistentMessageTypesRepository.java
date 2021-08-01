@@ -1,4 +1,4 @@
-package com.advancedbattleships.social.dataservice.impl.springdata;
+package com.advancedbattleships.social.dataservice.impl.springdata.dao;
 
 import java.util.Set;
 
