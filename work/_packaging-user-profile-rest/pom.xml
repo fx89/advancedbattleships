@@ -85,6 +85,11 @@
 			<artifactId>system-data-service-springdata</artifactId>
 			<version>${advancedbattleships.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.advancedbattleships</groupId>
+			<artifactId>social-data-service-springdata</artifactId>
+			<version>${advancedbattleships.version}</version>
+		</dependency>
 
     </dependencies>
 
