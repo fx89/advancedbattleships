@@ -25,10 +25,10 @@ public interface SocialDataService {
 	public Set<Party> getUserParties(String userUniqueToken);
 
 	/**
-	 * Returns a set of unique tokens belonging to the friends of the user whose
-	 * unique token is given as parameter
+	 * Returns a set of unique friends of the user whose unique token is given as
+	 * parameter
 	 */
-	public Set<String> getUserFriendsUniqueTokens(String userUniqueToken);
+	public Set<UserFriend> getUserFriends(String userUniqueToken);
 
 	/**
 	 * Returns a new empty instance of the data type used by the data layer

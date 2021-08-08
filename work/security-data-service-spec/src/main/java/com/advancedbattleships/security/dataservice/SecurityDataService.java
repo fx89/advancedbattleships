@@ -1,5 +1,7 @@
 package com.advancedbattleships.security.dataservice;
 
+import java.util.Set;
+
 import com.advancedbattleships.security.dataservice.model.Group;
 import com.advancedbattleships.security.dataservice.model.LoginSource;
 import com.advancedbattleships.security.dataservice.model.User;
@@ -30,4 +32,8 @@ public interface SecurityDataService {
 	User saveUser(User user);
 
 	User findUserByUniqueToken(String uniqueToken);
+
+	Set<User> findUsersByUniqueToken(Set<String> uniqueTokens);
+
+	void setOnlineFlagForUsers(Set<String> userUniqueTokens, Boolean loggedIn);
 }

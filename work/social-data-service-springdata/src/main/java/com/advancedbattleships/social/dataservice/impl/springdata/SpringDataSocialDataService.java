@@ -56,11 +56,8 @@ public class SpringDataSocialDataService implements SocialDataService {
 	}
 
 	@Override
-	public Set<String> getUserFriendsUniqueTokens(String userUniqueToken) {
-		return userFriendsRepository.findAllByUserUniqueToken(userUniqueToken)
-			.stream()
-				.map(UserFriendImpl::getFriendUserUniqueToken)
-				.collect(toSet());
+	public Set<UserFriend> getUserFriends(String userUniqueToken) {
+		return multicastSet(userFriendsRepository.findAllByUserUniqueToken(userUniqueToken));
 	}
 
 	@Override

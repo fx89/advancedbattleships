@@ -72,6 +72,15 @@ public class ContentRestController {
 		);
 	}
 
+	@RequestMapping(value="viewLogo", method=RequestMethod.GET)
+	public void viewLogo(@RequestParam() String logoName, HttpServletResponse response) throws IOException {
+		buildFileResponse(response,
+			(usrToken) -> content.viewLogo(logoName),
+			logoName + ".png", // TODO:  Make the extension a static variable or something, so it doesn't have to appear twice in two classes
+			"application/octet-stream"
+		);
+	}
+
 	@RequestMapping(value="userStylesheet", method=RequestMethod.GET)
 	public void userStylesheet(@RequestParam() String fileName, HttpServletResponse response) throws IOException {
 		buildFileResponse(response,

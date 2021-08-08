@@ -9,9 +9,9 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>security</artifactId>
-	<name>AdvancedBattleships Security</name>
-	<description>Handles security queries</description>
+	<artifactId>social-rest</artifactId>
+	<name>AdvancedBattleships Social REST</name>
+	<description>REST controllers having to do with accessing a user's friends and parties</description>
 
     <packaging>jar</packaging>
 
@@ -22,34 +22,13 @@
     <dependencies>
     	<dependency>
 			<groupId>com.advancedbattleships</groupId>
-			<artifactId>system</artifactId>
+			<artifactId>social</artifactId>
 			<version>${parent.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.advancedbattleships</groupId>
-			<artifactId>security-data-service-spec</artifactId>
-			<version>${parent.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.advancedbattleships</groupId>
-			<artifactId>utility-services</artifactId>
-			<version>${parent.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>

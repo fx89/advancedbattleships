@@ -4,6 +4,7 @@
     <span role="header">
         &nbsp;
         <lite-ng-tab-button><div class="tab-button-image tab-button-image-game"></div>GAME</lite-ng-tab-button>
+        <lite-ng-tab-button><div class="tab-button-image tab-button-image-social"></div>SOCIAL</lite-ng-tab-button>
         <lite-ng-tab-button><div class="tab-button-image tab-button-image-inventory"></div>INVENTORY</lite-ng-tab-button>
         <lite-ng-tab-button><div class="tab-button-image tab-button-image-ladder"></div>LADDER</lite-ng-tab-button>
         <lite-ng-tab-button><div class="tab-button-image tab-button-image-help"></div>HELP</lite-ng-tab-button>
@@ -13,6 +14,11 @@
             <lite-ng-icon text="PLAY AGAINST THE AI" [hoverable]="true"></lite-ng-icon>
             <lite-ng-icon text="PLAY WITH A FRIEND" [hoverable]="true"></lite-ng-icon>
             <lite-ng-icon text="PLAY MATCHED GAME" [hoverable]="true"></lite-ng-icon>
+        </lite-ng-tab>
+        <lite-ng-tab>
+            <lite-ng-icon text="FIND A FRIEND" [hoverable]="true" (onClick)="navigation.navigateToPage('social'); navigation.putPageParam('action', 'find-a-frield');"></lite-ng-icon>
+            <lite-ng-icon text="JOIN A PARTY" [hoverable]="true" (onClick)="navigation.navigateToPage('social'); navigation.putPageParam('action', 'join-a-party');"></lite-ng-icon>
+            <lite-ng-icon text="START A CHAT" [hoverable]="true" (onClick)="navigation.navigateToPage('social'); navigation.putPageParam('action', 'start-a-chat');"></lite-ng-icon>
         </lite-ng-tab>
         <lite-ng-tab>
             <lite-ng-icon text="EDIT BATTLESHIPS TEMPLATES" [hoverable]="true" (onClick)="navigation.navigateToPage('battleship-template-editor')"></lite-ng-icon>
@@ -42,7 +48,7 @@
 
 
 <!-- Messaging tabs -->
-<lite-ng-tabs-horizontal extraClass="messaging-tabs" [isSetOfDrawers]="false">
+<lite-ng-tabs-horizontal extraClass="messaging-tabs" [isSetOfDrawers]="false" [activeTabIndex]="0">
     <span role="header">
         <lite-ng-tab-button><div class="tab-button-image tab-button-image-game"></div></lite-ng-tab-button>
         <lite-ng-tab-button><div class="tab-button-image tab-button-image-game"></div></lite-ng-tab-button>

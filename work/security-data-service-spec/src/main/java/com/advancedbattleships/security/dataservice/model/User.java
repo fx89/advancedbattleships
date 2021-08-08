@@ -32,4 +32,8 @@ public interface User extends Serializable {
 	Set<Group> getGroups();
 
 	void setGroups(Set<Group> groups);
+
+	Boolean isOnline();
+
+	void setOnline(Boolean online);
 }

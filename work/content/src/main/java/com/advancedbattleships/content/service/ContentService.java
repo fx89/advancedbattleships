@@ -47,6 +47,10 @@ public class ContentService {
 
 	public InputStream getLogo(String userUniqueToken, String logoName) {
 		verifyAvailableLogo(userUniqueToken, logoName);
+		return viewLogo(logoName);
+	}
+
+	public InputStream viewLogo(String logoName) {
 		return provisioningService.getFile("logo", "_all", logoName + ".png");
 	}
 
@@ -172,6 +176,10 @@ public class ContentService {
 		userUiConfig.setCurrentWallpaperName(currentWallpaperName);
 
 		saveUserUiConfig(userUiConfig);
+	}
+
+	public Set<UserUiConfig> getUsersConfig(Set<String> userUniqueTokens) {
+		return dataService.findAllUsersByUniqueToken(userUniqueTokens);
 	}
 
 	private void verifyAvailableLogo(String userUniqueToken, String logoName) {

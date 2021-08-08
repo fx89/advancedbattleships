@@ -10,6 +10,7 @@ import { AppUtilitiesModule } from './utilities/utilities.module';
 import { LiteNgListModule } from '@desolatetimelines/lite-ng';
 import { BsTemplateHullPanelComponent } from './components/bs-template-hull-panel/bs-template-hull-panel.component';
 import { LiteNgAccordionModule } from '@desolatetimelines/lite-ng';
+import { SocialPageComponent } from './pages/social-page/social-page.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LiteNgAccordionModule } from '@desolatetimelines/lite-ng';
     MainMenuPageComponent,
     BattleshipTemplateEditorComponent,
     UserProfileComponent,
-    BsTemplateHullPanelComponent
+    BsTemplateHullPanelComponent,
+    SocialPageComponent
   ],
   imports: [
   // Framework modules

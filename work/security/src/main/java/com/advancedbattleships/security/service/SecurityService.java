@@ -5,8 +5,11 @@ import static com.advancedbattleships.common.lang.Suppliers.nullSafeSupplier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,6 +27,9 @@ import com.advancedbattleships.security.dataservice.model.User;
 import com.advancedbattleships.security.dataservice.model.UserLoginSource;
 import com.advancedbattleships.security.exception.UnknownLoginProviderException;
 import com.advancedbattleships.security.service.utility.NicknameGenerator;
+import com.advancedbattleships.security.service.utility.UserPingTracker;
+import com.advancedbattleships.system.SystemService;
+import com.advancedbattleships.utilityservices.TaskManagerService;
 import com.advancedbattleships.utilityservices.UniqueTokenProviderService;
 
 @Service
@@ -37,6 +43,32 @@ public class SecurityService {
 	@Autowired
 	private SecurityDataService securityDataService;
 
+	@Autowired
+	private SystemService system;
+
+	@Autowired
+	TaskManagerService taskManager;
+
+	private UserPingTracker userPingTracker = new UserPingTracker();
+
+	@PostConstruct
+	public void init() {
+
+		userPingTracker.withMaxInactivitySecs(
+				system.getDataService().getIntParameter("SECURITY.SESSION_CHECK_SECS")
+			);
+
+		userPingTracker.withExpectedUserCount(
+				system.getDataService().getIntParameter("SECURITY.EXPECTED_ONLINE_USER_COUNT")
+			);
+
+		taskManager.startRecurrentTask(
+				"sessionCheck",
+				system.getDataService().getIntParameter("SECURITY.SESSION_CHECK_SECS"),
+				() -> sessionCheck()
+			);
+	}
+
 	public User getCurrentUser() {
 		return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
@@ -49,6 +81,52 @@ public class SecurityService {
 			);
 	}
 
+	/**
+	 * Registers a ping from the current user, to keep the session alive
+	 */
+	public void keepAlive() {
+		if (isUserAuthenticated()) {
+			System.out.println("ping"); // TODO: remove
+			userPingTracker.pingUser(getCurrentUser().getUniqueToken());
+		}
+	}
+
+	/**
+	 * Sets the "logged in" flag to false for all users who are not active
+	 */
+	public void sessionCheck() {
+		System.out.println("sessionCheck"); // TODO: remove
+
+		Set<String> inactiveUserTokens = userPingTracker.computeInactiveUserTokens();
+
+		if (!inactiveUserTokens.isEmpty()) {
+			securityDataService.setOnlineFlagForUsers(
+					inactiveUserTokens,
+					false
+				);
+
+			userPingTracker.clearInactiveUserTokens(inactiveUserTokens);
+		}
+
+		// TODO: Eventually run a full cleanup once every hour,
+		// to set the online flag to false for any user that's not in the online users list
+
+		// TODO: Try to figure out a way to do this even if there will be many instances of the
+		// user service (maybe move the functionality into a micro-service and make sure it has only one instance)
+	}
+
+	/**
+	 * Called after the user was logged in
+	 */
+	public void postLoginOperations() {
+		User currentUser = getCurrentUser();
+		currentUser.setOnline(true);
+		securityDataService.saveUser(currentUser);
+	}
+
+	/**
+	 * Called from the AuthSuccessHandler to put the user details into the security context
+	 */
 	public Authentication resolveInternalAuthentication(Authentication externalAuthentication) {
 		
 		if (externalAuthentication.getPrincipal() instanceof OidcUser) {
@@ -145,5 +223,9 @@ public class SecurityService {
 		ret = securityDataService.saveUser(ret);
 		getCurrentUser().setNickName(nickName);
 		return ret;
+	}
+
+	public Set<User> getUsers(Set<String> userUniqueTokens) {
+		return securityDataService.findUsersByUniqueToken(userUniqueTokens);
 	}
 }

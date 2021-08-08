@@ -1,12 +1,13 @@
 package com.advancedbattleships.content.dataservice.impl.springdata;
 
+import static com.advancedbattleships.common.lang.Multicast.multicastSet;
+
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.advancedbattleships.common.lang.Multicast;
 import com.advancedbattleships.content.dataservice.ContentDataService;
 import com.advancedbattleships.content.dataservice.impl.springdata.dao.UserAccessibleIconThemesRepository;
 import com.advancedbattleships.content.dataservice.impl.springdata.dao.UserAccessibleLogosRepository;
@@ -67,7 +68,7 @@ public class SpringDataContentDataService implements ContentDataService {
 
 	@Override
 	public Set<UserAccessibleIconTheme> findAllUserAccessibleIconThemes(String userUniqueToken) {
-		return Multicast.multicastSet(userAccessibleIconThemesRepository.findAllByUserUserUniqueToken(userUniqueToken));
+		return multicastSet(userAccessibleIconThemesRepository.findAllByUserUserUniqueToken(userUniqueToken));
 	}
 
 	@Override
@@ -80,7 +81,7 @@ public class SpringDataContentDataService implements ContentDataService {
 
 	@Override
 	public Set<UserAccessibleLogo> findAllUserAccessibleLogos(String userUniqueToken) {
-		return Multicast.multicastSet(userAccessibleLogosRepository.findAllByUserUserUniqueToken(userUniqueToken));
+		return multicastSet(userAccessibleLogosRepository.findAllByUserUserUniqueToken(userUniqueToken));
 	}
 
 	@Override
@@ -93,8 +94,7 @@ public class SpringDataContentDataService implements ContentDataService {
 
 	@Override
 	public Set<UserAccessibleStylesheet> findAllUserAccessibleStylesheets(String userUniqueToken) {
-		return Multicast
-				.multicastSet(userAccessibleStylesheetsRepository.findAllByUserUserUniqueToken(userUniqueToken));
+		return multicastSet(userAccessibleStylesheetsRepository.findAllByUserUserUniqueToken(userUniqueToken));
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public class SpringDataContentDataService implements ContentDataService {
 
 	@Override
 	public Set<UserAccessibleWallpaper> findAllUserAccessibleWallpapaers(String userUniqueToken) {
-		return Multicast.multicastSet(userAccessibleWallpapersRepository.findAllByUserUserUniqueToken(userUniqueToken));
+		return multicastSet(userAccessibleWallpapersRepository.findAllByUserUserUniqueToken(userUniqueToken));
 	}
 
 	@Override
@@ -124,4 +124,8 @@ public class SpringDataContentDataService implements ContentDataService {
 		transaction.run();
 	}
 
+	@Override
+	public Set<UserUiConfig> findAllUsersByUniqueToken(Set<String> userUniqueTokens) {
+		return multicastSet(usersRepository.findAllByUserUniqueTokenIn(userUniqueTokens));
+	}
 }

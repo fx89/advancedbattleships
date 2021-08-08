@@ -31,6 +31,9 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 		Authentication internalAuthentication = securityService.resolveInternalAuthentication(authentication);
 		SecurityContextHolder.getContext().setAuthentication(internalAuthentication);
 
+		// Execute post-authentication operations
+		securityService.postLoginOperations();
+
 		// Redirect to the end-point which will decide where to redirect based on the client type (web, android, etc)
 		response.sendRedirect(authConfig.getAuthSuccessRedirectUrl());
 	}

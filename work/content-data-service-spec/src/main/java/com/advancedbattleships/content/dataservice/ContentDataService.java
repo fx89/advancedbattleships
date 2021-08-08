@@ -12,6 +12,8 @@ public interface ContentDataService {
 
 	UserUiConfig findUserByUniqueToken(String userUniqueToken);
 
+	Set<UserUiConfig> findAllUsersByUniqueToken(Set<String> userUniqueTokens);
+
 	UserUiConfig saveUserUiConfig(UserUiConfig userConfig);
 
 	UserUiConfig createNewUser(String userUniqueToken, String currentWallpaperName, String currentStylesheetName, String currentIconThemeName, String currentLogoName);

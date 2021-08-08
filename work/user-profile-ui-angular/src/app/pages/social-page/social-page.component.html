@@ -1,0 +1,35 @@
+<lite-ng-tabs-horizontal extraClass="social-tabs"
+    [isSetOfDrawers]="false"
+    [(activeTabIndex)]="activeTabIndex"
+>
+    <span role="header">
+        <lite-ng-tab-button>Friends</lite-ng-tab-button>
+        <lite-ng-tab-button>Parties</lite-ng-tab-button>
+    </span>
+    <span role="body">
+        <lite-ng-tab>
+            <table style="width:100%; height:100%;"><tr>
+                <td class="firends-list-container">
+                    
+                    <lite-ng-list
+                        noDataMessage="No friends :("
+                        [(selectedItem)]="selectedFriend"
+                        [iconFunction]="friendIconFunction"
+                        [titleFunction]="friendTitleFunction"
+                        [descriptionFunction]="friendDscriptionFunction"
+                        (onSelectionChanged)="friendSelectionChanged($event)"
+                    ></lite-ng-list>
+                </td>
+                <td class="friend-chat-container">
+                    chat here
+                </td>
+            </tr></table>
+        </lite-ng-tab>
+        <lite-ng-tab>
+            parties
+        </lite-ng-tab>
+    </span>
+    <span role="footer">
+        <lite-ng-pushbutton [widthPX]="100" text="Back to Main" (onClick)="navigation.navigateToMain()"></lite-ng-pushbutton>
+    </span>
+</lite-ng-tabs-horizontal>

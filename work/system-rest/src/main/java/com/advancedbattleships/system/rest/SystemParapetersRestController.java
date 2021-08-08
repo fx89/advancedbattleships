@@ -15,7 +15,12 @@ public class SystemParapetersRestController {
 	private SystemService system;
 
 	@GetMapping("getBattleshipHullCellCost")
-	public Double getSubsystemTypes() {
+	public Double getBattleshipHullCellCost() {
 		return system.getDataService().getDoubleParameter("BATTLESHIP.HULL_CELL_COST");
+	}
+
+	@GetMapping("getSessionPingSecs")
+	public Integer getSessionPingSecs() {
+		return system.getDataService().getIntParameter("SECURITY.SESSION_PING_SECS");
 	}
 }

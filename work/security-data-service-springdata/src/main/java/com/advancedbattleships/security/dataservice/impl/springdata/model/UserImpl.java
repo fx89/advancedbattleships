@@ -50,6 +50,9 @@ public class UserImpl implements User {
 	@Column(name="IS_FIRST_LOGIN")
 	private Boolean isFirstLogin;
 
+	@Column(name="IS_ONLINE")
+	private Boolean isOnline;
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 	  name = "USER_GROUP", 
@@ -128,6 +131,16 @@ public class UserImpl implements User {
 		this.groups = multicastSet(groups, g -> new GroupImpl(g));
 	}
 
+	@Override
+	public Boolean isOnline() {
+		return isOnline;
+	}
+
+	@Override
+	public void setOnline(Boolean online) {
+		this.isOnline = online;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -143,6 +156,7 @@ public class UserImpl implements User {
 		this.uniqueToken = src.getUniqueToken();
 		this.nickName = src.getNickName();
 		this.isFirstLogin = src.isFirstLogin();
+		this.isOnline = src.isOnline();
 		this.setGroups(src.getGroups());
 
 		if (src instanceof UserImpl) {

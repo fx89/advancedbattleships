@@ -30,6 +30,9 @@ public class UserFriendImpl implements UserFriend {
 	@Column(name = "FRIEND_USER_UNIQUE_TOKEN")
 	private String friendUserUniqueToken;
 
+	@Column(name = "ACCEPTED")
+	private Boolean accepted;
+
 	@Override
 	public String getUserUniqueToken() {
 		return userUniqueToken;
@@ -50,9 +53,20 @@ public class UserFriendImpl implements UserFriend {
 		this.friendUserUniqueToken = friendUserUniqueToken;
 	}
 
+	@Override
+	public Boolean getAccepted() {
+		return accepted;
+	}
+
+	@Override
+	public void setAccepted(Boolean accepted) {
+		this.accepted = accepted;
+	}
+
 	public UserFriendImpl(UserFriend source) {
 		this.setFriendUserUniqueToken(source.getFriendUserUniqueToken());
 		this.setUserUniqueToken(source.getFriendUserUniqueToken());
+		this.setAccepted(source.getAccepted());
 
 		if (source instanceof UserFriendImpl) {
 			this.id = ((UserFriendImpl) source).id;

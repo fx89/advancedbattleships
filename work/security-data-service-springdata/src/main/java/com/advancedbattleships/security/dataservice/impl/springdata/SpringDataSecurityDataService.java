@@ -1,5 +1,9 @@
 package com.advancedbattleships.security.dataservice.impl.springdata;
 
+import static com.advancedbattleships.common.lang.Multicast.multicastSet;
+
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -90,4 +94,14 @@ public class SpringDataSecurityDataService implements SecurityDataService {
 		return usersRepository.findOneByUniqueToken(uniqueToken);
 	}
 
+	@Override
+	public Set<User> findUsersByUniqueToken(Set<String> uniqueTokens) {
+		return multicastSet(usersRepository.findAllByUniqueTokenIn(uniqueTokens));
+	}
+
+	@Override
+	@Transactional("absSecurityTransactionManager")
+	public void setOnlineFlagForUsers(Set<String> userUniqueTokens, Boolean loggedIn) {
+		usersRepository.setOnlineFlagWhereUserUniqueTokenIn(userUniqueTokens, loggedIn);
+	}
 }

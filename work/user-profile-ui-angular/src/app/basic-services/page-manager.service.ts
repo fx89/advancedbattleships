@@ -7,6 +7,7 @@ export class AdvBsPageManagerService {
   private pagesHistory : string[] = [];
 
   public currentPage : string = <any>undefined;
+  public currentPageParameters : string[] = [];
   private mainPage : string = <any>undefined;
 
   constructor() { }
@@ -19,6 +20,11 @@ export class AdvBsPageManagerService {
   public navigateToPage(pageName : string) {
     this.pagesHistory.push(pageName);
     this.currentPage = pageName;
+    this.currentPageParameters = [];
+  }
+
+  public putPageParam(name : string, value : string) {
+    this.currentPageParameters[name] = value;
   }
 
   public navigateBack() {
@@ -29,5 +35,9 @@ export class AdvBsPageManagerService {
 
   public navigateToMain() {
     this.navigateToPage(this.mainPage);
+  }
+
+  public getPageParam(name : string) : string {
+    return this.currentPageParameters[name];
   }
 }

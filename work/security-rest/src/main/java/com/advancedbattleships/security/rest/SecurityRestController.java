@@ -28,4 +28,9 @@ public class SecurityRestController {
 	public User setCurrentUserNickName(@RequestParam() String userNickName) {
 		return security.setCurrentUserNickName(userNickName);
 	}
+
+	@GetMapping("ping")
+	public void ping() {
+		security.keepAlive();
+	}
 }

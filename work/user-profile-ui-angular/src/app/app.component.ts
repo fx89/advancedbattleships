@@ -24,6 +24,22 @@ export class AppComponent implements AfterViewInit {
       this.dataService.securityRepository?.errorEventEmitter.subscribe((err:any) => {
           // TODO: any state-resetting operations which might be required upon error
       });
+
+      this.keepAlivePing();
+  }
+
+  private keepAlivePing() : void {
+    this.dataService.systemParametersRepository.getCustomOperationWithLoadingModal(
+      "getSessionPingSecs",
+      undefined,
+      ret => {
+        const pingMs : number = ret * 1000;
+        setInterval(
+          () => this.dataService.securityRepository.getCustomOperation("ping"),
+          pingMs
+        )
+      }
+    );
   }
 
   ngAfterViewInit() {

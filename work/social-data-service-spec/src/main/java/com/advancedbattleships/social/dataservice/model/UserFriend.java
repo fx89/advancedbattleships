@@ -10,4 +10,8 @@ public interface UserFriend extends Serializable {
 	String getFriendUserUniqueToken();
 
 	void setFriendUserUniqueToken(String friendUserUniqueToken);
+
+	Boolean getAccepted();
+
+	void setAccepted(Boolean accepted);
 }
