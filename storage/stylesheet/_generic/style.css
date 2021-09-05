@@ -1123,7 +1123,7 @@ body.battleships {
 
     .battleships .tab-container {
         width: 380px !important;
-        height: 281px !important;
+        height: 173px !important;
         padding: 7px;
         padding-bottom: 11px;
         border-radius: 14px;
@@ -1186,7 +1186,7 @@ body.battleships {
 
     .battleships .tab-container {
         width: 300px !important;
-        height: 234px !important;
+        height: 138px !important;
         padding: 6px;
         padding-bottom: 8px;
         border-radius: 12px;
@@ -1249,7 +1249,7 @@ body.battleships {
 
     .battleships .tab-container {
         width: 250px !important;
-        height: 195px !important;
+        height: 115px !important;
         padding: 5px;
         padding-bottom: 7px;
         border-radius: 10px;
@@ -1267,7 +1267,7 @@ body.battleships {
 }
 
 .battleships .tabs-body-vertical {
-
+    vertical-align: top;
 }
 
 .battleships .tab-button {
@@ -1301,6 +1301,10 @@ body.battleships {
 
 .battleships .tab-button-image-game {
     background-image: url("http://127.0.0.1:8080/content/userStylesheet?fileName=joystick.png");
+}
+
+.battleships .tab-button-image-social {
+    background-image: url("http://127.0.0.1:8080/content/userStylesheet?fileName=social.png");
 }
 
 .battleships .tab-button-image-inventory {
@@ -1830,4 +1834,156 @@ body.battleships {
 
 .battleships .hull-panel-subsystem-img {
     
+}
+
+.battleships .social-tabs {
+    position: absolute;
+    width: 600px !important;
+    height: 400px !important;
+    left: calc(50vw - 300px);
+    top: calc(50vh - 200px);
+}
+
+.battleships .social-tabs .tabs-body {
+    padding: 0px;
+    padding-top: 5px;
+}
+
+.battleships .social-tabs .tab-button {
+    width: 150px;
+    margin-bottom: 0px !important;
+    margin-right: 5px;
+}
+
+.battleships .social-tabs .tab-container {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.battleships .social-tabs .tabs-body,
+.battleships .social-tabs .horizontal-tabs-container-table {
+    height: 100%;
+}
+
+.battleships .social-tabs .tabs-footer-horizontal {
+    padding-top: 15px;
+    text-align: right;
+    padding-left: 495px;
+}
+
+.battleships .social-tabs .firends-list-container {
+    width: 200px;
+    height: 100%;
+    padding-bottom: 10px;
+}
+
+.battleships .social-tabs .firends-list-container .list-container {
+    height: 230px !important;
+}
+
+.battleships .social-tabs .friend-chat-container {
+    height: 100%;
+    padding-bottom: 10px;
+}
+
+.battleships .social-tabs .friends-list-container .spacer {
+    height: 5px;
+}
+
+.battleships .friends-list-button {
+    width: 200px !important;
+}
+
+.user-popup-notifications-container {
+    position: fixed;
+    bottom: 30px;
+}
+
+.user-popup-notification {
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 10px;
+    width: 400px;
+    height: 30px;
+    background-color: RGBA(0, 0, 0, .5);
+    margin-bottom: 5px;
+    margin-left: 5px;
+
+    animation-name: fade-in-push-up;
+    animation-timing-function: ease-in;
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+}
+
+.user-popup-notification.hidden {
+    animation-name: fade-out-push-down;
+    animation-timing-function: ease-in;
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+    animation-duration: 0.3s;
+}
+
+@keyframes fade-in-push-up {
+    0% {
+        opacity: 0;
+        visibility: visible;
+        margin-top: 10px;
+    }
+
+    15% {
+        margin-top: 17px;
+    }
+
+    100% {
+        opacity: 1;
+        margin-top: 0px;
+    }
+}
+
+@keyframes fade-out-push-down {
+    0% {
+        opacity: 1;
+        margin-top: 0px;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        margin-top: -33px;
+    }
+}
+
+.user-popup-notification-icon-cell {
+    width: 20px;
+}
+
+.user-popup-notification-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.user-popup-notification-close-cell {
+    width: 15px;
+}
+
+.user-popup-notification-close-icon {
+    cursor: pointer;
+    width: 17px;
+    height: 14px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+    padding-bottom: 8px;
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
+.user-popup-notification-close-icon:hover {
+    background-color: RGBA(255, 255, 255, .4);
+}
+
+.user-popup-notification-text-cell {
+    cursor: pointer;
 }

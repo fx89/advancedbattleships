@@ -1,4 +1,4 @@
-package com.advancedbattleships.social.dataservice.impl.springdata.model;
+package com.advancedbattleships.messaging.dataservice.impl.springdata.model;
 
 import java.util.Date;
 
@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedEntityGraphs;
+import javax.persistence.NamedSubgraph;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -18,6 +22,7 @@ import org.hibernate.annotations.FetchMode;
 import com.advancedbattleships.messaging.dataservice.model.PersistentMessage;
 import com.advancedbattleships.messaging.dataservice.model.PersistentMessageChannel;
 import com.advancedbattleships.messaging.dataservice.model.PersistentMessageSourceType;
+import com.advancedbattleships.messaging.dataservice.model.PersistentMessageType;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -27,6 +32,24 @@ import lombok.NoArgsConstructor;
 @Table(name = "PERSISTENT_MESSAGE")
 @AllArgsConstructor
 @NoArgsConstructor
+@NamedEntityGraphs(value = {
+	@NamedEntityGraph(
+		name = "PersistentMessageImpl.AllEager",
+		attributeNodes = {
+			@NamedAttributeNode(value = "channel", subgraph = "PersistentMessageImpl.AllEager.channel"),
+			@NamedAttributeNode(value = "sourceType"),
+			@NamedAttributeNode(value = "messageType"),
+		},
+		subgraphs = {
+	        @NamedSubgraph(
+	    		name = "PersistentMessageImpl.AllEager.channel", 
+	    		attributeNodes = {
+    				@NamedAttributeNode(value = "messageType")
+	    		}
+			)
+		}
+	)
+})
 public class PersistentMessageImpl implements PersistentMessage {
 
 	@Id
@@ -50,6 +73,11 @@ public class PersistentMessageImpl implements PersistentMessage {
 	@Fetch(FetchMode.JOIN)
 	private PersistentMessageSourceTypeImpl sourceType;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "MESSAGE_TYPE_ID")
+	@Fetch(FetchMode.JOIN)
+	private PersistentMessageTypeImpl messageType;
+
 	@Column(name = "MESSAGE_TIME")
 	private Date messageTime;
 
@@ -64,6 +92,9 @@ public class PersistentMessageImpl implements PersistentMessage {
 
 	@Column(name = "IS_READ")
 	private Boolean isRead;
+
+	@Column(name = "IS_USER_NOTIFIED")
+	private Boolean isUserNotified;
 
 	@Override
 	public PersistentMessageChannel getChannel() {
@@ -155,6 +186,26 @@ public class PersistentMessageImpl implements PersistentMessage {
 		this.isRead = isRead;
 	}
 
+	@Override
+	public PersistentMessageType getMessageType() {
+		return messageType;
+	}
+
+	@Override
+	public void setMessageType(PersistentMessageType messageType) {
+		this.messageType = new PersistentMessageTypeImpl(messageType);
+	}
+
+	@Override
+	public Boolean isUserNotified() {
+		return isUserNotified;
+	}
+
+	@Override
+	public void setUserNotified(Boolean isUserNotified) {
+		this.isUserNotified = isUserNotified;
+	}
+
 	public PersistentMessageImpl(PersistentMessage source) {
 		this.setBody(source.getBody());
 		this.setChannel(source.getChannel());
@@ -165,6 +216,8 @@ public class PersistentMessageImpl implements PersistentMessage {
 		this.setSourceUniqueToken(source.getSourceUniqueToken());
 		this.setTitle(source.getTitle());
 		this.setUserUniqueToken(source.getUserUniqueToken());
+		this.setMessageType(source.getMessageType());
+		this.setUserNotified(source.isUserNotified());
 
 		if (source instanceof PersistentMessageImpl) {
 			this.id = ((PersistentMessageImpl) source).id;

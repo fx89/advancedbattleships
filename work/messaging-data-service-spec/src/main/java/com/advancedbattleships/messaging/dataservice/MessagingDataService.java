@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.advancedbattleships.messaging.dataservice.model.PersistentMessage;
 import com.advancedbattleships.messaging.dataservice.model.PersistentMessageChannel;
+import com.advancedbattleships.messaging.dataservice.model.PersistentMessageSourceType;
 import com.advancedbattleships.messaging.dataservice.model.PersistentMessageType;
 
 public interface MessagingDataService {
@@ -17,6 +18,9 @@ public interface MessagingDataService {
 
 	List<PersistentMessage> findPersistentMessagesByUserUniqueTokenAndReadAndChannel(String userUniqueToken,
 			Boolean read, PersistentMessageChannel channel);
+
+	List<PersistentMessage> findPersistentMessagesByUserUniqueTokenAndIsUserNotified(
+			String userUniqueToken, Boolean isUserNotified);
 
 	PersistentMessage newPersistentMessage();
 
@@ -43,4 +47,6 @@ public interface MessagingDataService {
 	PersistentMessageType savePersistentMessageType(PersistentMessageType persistentMessageType);
 
 	void savePersistentMessageTypes(Collection<PersistentMessageType> persistentMessageTypes);
+
+	Set<PersistentMessageSourceType> findAllPersistentMessageSourceTypes();
 }

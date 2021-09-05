@@ -55,6 +55,7 @@ public class SpringDataSecurityDataService implements SecurityDataService {
 		user.setUniqueToken(uniqueToken);
 		user.setNickName(nickName);
 		user.setFirstLogin(isFirstLogin);
+		user.setOnline(true);
 
 		// Save the user into the database
 		user = usersRepository.save(user);
@@ -92,6 +93,11 @@ public class SpringDataSecurityDataService implements SecurityDataService {
 	@Override
 	public User findUserByUniqueToken(String uniqueToken) {
 		return usersRepository.findOneByUniqueToken(uniqueToken);
+	}
+
+	@Override
+	public User findUserByNickName(String nickName) {
+		return usersRepository.findOneByNickName(nickName);
 	}
 
 	@Override

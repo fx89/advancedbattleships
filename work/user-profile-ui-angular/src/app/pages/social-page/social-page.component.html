@@ -5,12 +5,13 @@
     <span role="header">
         <lite-ng-tab-button>Friends</lite-ng-tab-button>
         <lite-ng-tab-button>Parties</lite-ng-tab-button>
+        <lite-ng-tab-button>Messages</lite-ng-tab-button>
     </span>
     <span role="body">
         <lite-ng-tab>
             <table style="width:100%; height:100%;"><tr>
                 <td class="firends-list-container">
-                    
+                    <!-- The list -->
                     <lite-ng-list
                         noDataMessage="No friends :("
                         [(selectedItem)]="selectedFriend"
@@ -19,6 +20,12 @@
                         [descriptionFunction]="friendDscriptionFunction"
                         (onSelectionChanged)="friendSelectionChanged($event)"
                     ></lite-ng-list>
+
+                    <!-- The controls -->
+                    <div class="spacer"></div>
+                    <lite-ng-pushbutton additionalClass="friends-list-button" text="Find a friend" (onClick)="onFindFriendButtonClick()"></lite-ng-pushbutton>
+                    <div class="spacer"></div>
+                    <lite-ng-pushbutton additionalClass="friends-list-button" text="Remove selected"></lite-ng-pushbutton>
                 </td>
                 <td class="friend-chat-container">
                     chat here
@@ -28,8 +35,28 @@
         <lite-ng-tab>
             parties
         </lite-ng-tab>
+        <lite-ng-tab>
+            messages
+        </lite-ng-tab>
     </span>
     <span role="footer">
         <lite-ng-pushbutton [widthPX]="100" text="Back to Main" (onClick)="navigation.navigateToMain()"></lite-ng-pushbutton>
     </span>
 </lite-ng-tabs-horizontal>
+
+
+
+<!-- Friend search dialog -->
+<lite-ng-dialog
+    title="Search for friend"
+    [heightPX]="150"
+    okButtonText="Search"
+    [showEvent]="friendSearchDialigShowEvent"
+    [hideEvent]="friendSearchDialigHideEvent"
+    [externalValidationMessageEvent]="friendSearchDialogExternalValidationMessageEvent"
+    [showOkButton]="false"
+    [customButtons]="searchFriendDialogCustomButtons"
+>
+    Enter the nick name and press "Search"
+    <lite-ng-text-field [(value)]="soughtFriendNickName" [widthPCT]="100"></lite-ng-text-field>
+</lite-ng-dialog>

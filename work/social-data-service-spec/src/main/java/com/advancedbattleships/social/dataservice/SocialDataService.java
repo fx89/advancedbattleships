@@ -31,6 +31,11 @@ public interface SocialDataService {
 	public Set<UserFriend> getUserFriends(String userUniqueToken);
 
 	/**
+	 * Returns a user friend, if exists, or null if it doesn't
+	 */
+	public UserFriend findUserFriendByUserUniqueTokenAndFriendUniqueToken(String userUniqueToken, String friendUniqueToken);
+
+	/**
 	 * Returns a new empty instance of the data type used by the data layer
 	 */
 	public UserFriend newUserFriend();
@@ -38,7 +43,7 @@ public interface SocialDataService {
 	/**
 	 * Saves one instance and returns the saved result
 	 */
-	public UserFriend saveUserFirend(UserFriend userFirend);
+	public UserFriend saveUserFriend(UserFriend userFirend);
 
 	/**
 	 * Saves multiple instances
@@ -74,4 +79,9 @@ public interface SocialDataService {
 	 * Saves multiple instances
 	 */
 	public void saveParties(Collection<Party> parties);
+
+	/**
+	 * Run the given code in a transaction
+	 */
+	public void executeTransaction(Runnable code);
 }

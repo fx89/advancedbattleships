@@ -10,4 +10,5 @@ public interface UserFriendsRepository extends PagingAndSortingRepository<UserFr
 
 	Set<UserFriendImpl> findAllByUserUniqueToken(String userUniqueToken);
 
+	UserFriendImpl findOneByUserUniqueTokenAndFriendUserUniqueToken(String userUniqueToken, String friendUserUniqueToken);
 }

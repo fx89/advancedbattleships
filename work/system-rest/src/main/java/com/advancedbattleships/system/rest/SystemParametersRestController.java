@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.advancedbattleships.system.SystemService;
+import com.advancedbattleships.system.model.MessagingProperties;
 
 @RestController
 @RequestMapping("/system/parameters")
-public class SystemParapetersRestController {
+public class SystemParametersRestController {
 
 	@Autowired
 	private SystemService system;
@@ -22,5 +23,10 @@ public class SystemParapetersRestController {
 	@GetMapping("getSessionPingSecs")
 	public Integer getSessionPingSecs() {
 		return system.getDataService().getIntParameter("SECURITY.SESSION_PING_SECS");
+	}
+
+	@GetMapping("getMessagingProperties")
+	public MessagingProperties getMessagingProperties() {
+		return system.getMessagingProperties();
 	}
 }

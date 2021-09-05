@@ -1,0 +1,25 @@
+<div class="user-popup-notifications-container">
+
+    <div
+        *ngFor="let notification of notifications"
+        class="user-popup-notification"
+    >
+        <table style="width:100%"><tr>
+            <td class="user-popup-notification-icon-cell">
+                <img class="user-popup-notification-icon" src="{{ getNotificationIcon(notification) }}">
+            </td>
+            <td class="user-popup-notification-text-cell" (click)="activateNotification(notification)">
+                {{ notification.title }}
+            </td>
+            <td class="user-popup-notification-close-cell">
+                <div
+                    class="user-popup-notification-close-icon"
+                    (click)="popNotification(notification)"
+                    onmouseup="event.target.parentNode.parentNode.parentNode.parentNode.classList.add('hidden')"
+                >x</div>
+            </td>
+        </tr></table>
+    </div>
+
+
+</div>

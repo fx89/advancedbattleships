@@ -228,4 +228,8 @@ public class SecurityService {
 	public Set<User> getUsers(Set<String> userUniqueTokens) {
 		return securityDataService.findUsersByUniqueToken(userUniqueTokens);
 	}
+
+	public User findUserByNickName(String nickName) {
+		return securityDataService.findUserByNickName(nickName);
+	}
 }

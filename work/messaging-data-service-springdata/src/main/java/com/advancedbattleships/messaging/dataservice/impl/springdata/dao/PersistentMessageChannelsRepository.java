@@ -1,10 +1,10 @@
-package com.advancedbattleships.social.dataservice.impl.springdata.dao;
+package com.advancedbattleships.messaging.dataservice.impl.springdata.dao;
 
 import java.util.Set;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.advancedbattleships.social.dataservice.impl.springdata.model.PersistentMessageChannelImpl;
+import com.advancedbattleships.messaging.dataservice.impl.springdata.model.PersistentMessageChannelImpl;
 
 public interface PersistentMessageChannelsRepository extends PagingAndSortingRepository<PersistentMessageChannelImpl, Long> {
 

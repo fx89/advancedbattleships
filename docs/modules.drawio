@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="OJGOcAma7YuwsuVDb4Vq" name="Page-1">
-        <mxGraphModel dx="1971" dy="1729" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1774" dy="1618" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -8,13 +8,13 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="89" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-430" y="-185" width="2670" height="290" as="geometry"/>
+                    <mxGeometry x="-430" y="-185" width="2960" height="290" as="geometry"/>
                 </mxCell>
                 <mxCell id="57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.998;entryY=0.53;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="54" target="2" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="54" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-430" y="590" width="2670" height="200" as="geometry"/>
+                    <mxGeometry x="-430" y="590" width="2960" height="200" as="geometry"/>
                 </mxCell>
                 <mxCell id="52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="50" target="12" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -24,7 +24,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="50" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-430" y="140" width="2670" height="290" as="geometry"/>
+                    <mxGeometry x="-430" y="140" width="2960" height="290" as="geometry"/>
                 </mxCell>
                 <mxCell id="2" value="COMMON-LANG" style="shape=umlFrame;whiteSpace=wrap;html=1;width=120;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
                     <mxGeometry x="-390" y="820" width="360" height="180" as="geometry"/>
@@ -99,13 +99,13 @@
                     <mxGeometry x="80" y="293" width="205" height="54" as="geometry"/>
                 </mxCell>
                 <mxCell id="45" value="LongTokenizer" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-377.5" y="864" width="127.5" height="54" as="geometry"/>
+                    <mxGeometry x="-377.5" y="864" width="137.5" height="54" as="geometry"/>
                 </mxCell>
                 <mxCell id="46" value="Multicast" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-235" y="864" width="135" height="54" as="geometry"/>
+                    <mxGeometry x="-220" y="864" width="135" height="54" as="geometry"/>
                 </mxCell>
                 <mxCell id="48" value="Transcoder" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-377.5" y="930" width="135" height="54" as="geometry"/>
+                    <mxGeometry x="-377.5" y="930" width="137.5" height="54" as="geometry"/>
                 </mxCell>
                 <mxCell id="51" value="SERVICE LAYER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="-420" y="150" width="120" height="20" as="geometry"/>
@@ -199,7 +199,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="94" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-430" y="-610" width="2670" height="370" as="geometry"/>
+                    <mxGeometry x="-430" y="-610" width="2960" height="370" as="geometry"/>
                 </mxCell>
                 <mxCell id="95" value="UI SERVICE LAYER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="-415" y="-570" width="120" height="20" as="geometry"/>
@@ -208,7 +208,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="97" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-430" y="-1050" width="2670" height="370" as="geometry"/>
+                    <mxGeometry x="-430" y="-1050" width="2960" height="370" as="geometry"/>
                 </mxCell>
                 <mxCell id="98" value="UI COMPONENTS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="-415" y="-1030" width="120" height="20" as="geometry"/>
@@ -243,43 +243,64 @@
                 <mxCell id="111" value="SocialDataService" style="fontStyle=1;" parent="1" vertex="1">
                     <mxGeometry x="1520" y="510" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="116" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="112" target="108">
+                <mxCell id="116" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="112" target="108" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1620" y="480" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="112" value="CONTENT-DATA-SERVICE-SPRINGDATA" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
+                <mxCell id="112" value="SOCAIL-DATA-SERVICE-SPRINGDATA" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
                     <mxGeometry x="1480" y="640" width="290" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="113" value="SpringDataSocialDataService" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1517.5" y="690" width="205" height="54" as="geometry"/>
                 </mxCell>
-                <mxCell id="115" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="114" target="108">
+                <mxCell id="115" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="114" target="108" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="114" value="SOCIAL" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" vertex="1" parent="1">
+                <mxCell id="114" value="SOCIAL" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
                     <mxGeometry x="1480" y="197" width="290" height="193" as="geometry"/>
                 </mxCell>
-                <mxCell id="123" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="117" target="118">
+                <mxCell id="123" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="117" target="118" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="117" value="MESSAGING" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" vertex="1" parent="1">
+                <mxCell id="117" value="MESSAGING" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
                     <mxGeometry x="1810" y="197" width="290" height="193" as="geometry"/>
                 </mxCell>
-                <mxCell id="118" value="MESSAGING-DATA-SERVICE-SPEC" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" vertex="1" parent="1">
+                <mxCell id="118" value="MESSAGING-DATA-SERVICE-SPEC" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
                     <mxGeometry x="1810" y="460" width="290" height="100" as="geometry"/>
                 </mxCell>
-                <mxCell id="124" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="119" target="118">
+                <mxCell id="124" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="119" target="118" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="119" value="CONTENT-DATA-SERVICE-SPRINGDATA" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" vertex="1" parent="1">
+                <mxCell id="119" value="MESSAGING-DATA-SERVICE-SPRINGDATA" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
                     <mxGeometry x="1810" y="640" width="290" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="120" value="SpringDataMessaginglDataService" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+                <mxCell id="120" value="SpringDataMessaginglDataService" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1830" y="690" width="205" height="54" as="geometry"/>
                 </mxCell>
-                <mxCell id="122" value="MessagingDataService" style="fontStyle=1;" vertex="1" parent="1">
+                <mxCell id="122" value="MessagingDataService" style="fontStyle=1;" parent="1" vertex="1">
                     <mxGeometry x="1830" y="510" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="128" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="125" target="126" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="125" value="CHAT" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
+                    <mxGeometry x="2150" y="197" width="290" height="193" as="geometry"/>
+                </mxCell>
+                <mxCell id="126" value="CHAT-DATA-SERVICE-SPEC" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
+                    <mxGeometry x="2150" y="460" width="290" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="129" value="ChatDataService" style="fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="2170" y="510" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="132" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="130" target="126" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="130" value="CHAT-DATA-SERVICE-SPRINGDATA" style="shape=umlFrame;whiteSpace=wrap;html=1;width=260;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
+                    <mxGeometry x="2150" y="640" width="290" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="131" value="SpringDataChatDataService" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="2170" y="690" width="205" height="54" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

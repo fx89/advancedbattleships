@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.advancedbattleships.social.dataservice.SocialDataService;
 import com.advancedbattleships.social.dataservice.impl.springdata.dao.PartiesRepository;
@@ -67,7 +68,7 @@ public class SpringDataSocialDataService implements SocialDataService {
 
 
 	@Override
-	public UserFriend saveUserFirend(UserFriend userFriend) {
+	public UserFriend saveUserFriend(UserFriend userFriend) {
 		return userFriendsRepository.save(new UserFriendImpl(userFriend));
 	}
 
@@ -124,4 +125,14 @@ public class SpringDataSocialDataService implements SocialDataService {
 		);
 	}
 
+	@Override
+	public UserFriend findUserFriendByUserUniqueTokenAndFriendUniqueToken(String userUniqueToken, String friendUniqueToken) {
+		return userFriendsRepository.findOneByUserUniqueTokenAndFriendUserUniqueToken(userUniqueToken, friendUniqueToken);
+	}
+
+	@Override
+	@Transactional("absSocialTransactionManager")
+	public void executeTransaction(Runnable code) {
+		code.run();
+	}
 }

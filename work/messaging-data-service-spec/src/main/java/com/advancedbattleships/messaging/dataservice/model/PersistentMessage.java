@@ -39,4 +39,12 @@ public interface PersistentMessage extends Serializable {
 	Boolean isRead();
 
 	void setRead(Boolean isRead);
+
+	PersistentMessageType getMessageType();
+
+	void setMessageType(PersistentMessageType messageType);
+
+	Boolean isUserNotified();
+
+	void setUserNotified(Boolean isUserNotified);
 }

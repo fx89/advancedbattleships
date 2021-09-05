@@ -12,6 +12,8 @@ import com.advancedbattleships.security.dataservice.impl.springdata.model.UserIm
 public interface UsersRepository extends PagingAndSortingRepository<UserImpl, Long> {
 	UserImpl findOneByUniqueToken(String uniqueToken);
 
+	UserImpl findOneByNickName(String nickName);
+
 	Set<UserImpl> findAllByUniqueTokenIn(Set<String> uniqueTokens);
 
 	@Modifying

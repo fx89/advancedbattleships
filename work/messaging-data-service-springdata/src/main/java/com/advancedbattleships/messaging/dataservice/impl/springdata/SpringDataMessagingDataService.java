@@ -1,4 +1,4 @@
-package com.advancedbattleships.social.dataservice.impl.springdata;
+package com.advancedbattleships.messaging.dataservice.impl.springdata;
 
 import static com.advancedbattleships.common.lang.Multicast.multicastCollection;
 import static com.advancedbattleships.common.lang.Multicast.multicastList;
@@ -13,15 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.advancedbattleships.messaging.dataservice.MessagingDataService;
+import com.advancedbattleships.messaging.dataservice.impl.springdata.dao.PersistentMessageChannelsRepository;
+import com.advancedbattleships.messaging.dataservice.impl.springdata.dao.PersistentMessageSourceTypesRepository;
+import com.advancedbattleships.messaging.dataservice.impl.springdata.dao.PersistentMessageTypesRepository;
+import com.advancedbattleships.messaging.dataservice.impl.springdata.dao.PersistentMessagesRepository;
+import com.advancedbattleships.messaging.dataservice.impl.springdata.model.PersistentMessageChannelImpl;
+import com.advancedbattleships.messaging.dataservice.impl.springdata.model.PersistentMessageImpl;
+import com.advancedbattleships.messaging.dataservice.impl.springdata.model.PersistentMessageTypeImpl;
 import com.advancedbattleships.messaging.dataservice.model.PersistentMessage;
 import com.advancedbattleships.messaging.dataservice.model.PersistentMessageChannel;
+import com.advancedbattleships.messaging.dataservice.model.PersistentMessageSourceType;
 import com.advancedbattleships.messaging.dataservice.model.PersistentMessageType;
-import com.advancedbattleships.social.dataservice.impl.springdata.dao.PersistentMessageChannelsRepository;
-import com.advancedbattleships.social.dataservice.impl.springdata.dao.PersistentMessageTypesRepository;
-import com.advancedbattleships.social.dataservice.impl.springdata.dao.PersistentMessagesRepository;
-import com.advancedbattleships.social.dataservice.impl.springdata.model.PersistentMessageChannelImpl;
-import com.advancedbattleships.social.dataservice.impl.springdata.model.PersistentMessageImpl;
-import com.advancedbattleships.social.dataservice.impl.springdata.model.PersistentMessageTypeImpl;
 
 @Service
 public class SpringDataMessagingDataService implements MessagingDataService {
@@ -34,6 +36,9 @@ public class SpringDataMessagingDataService implements MessagingDataService {
 
 	@Autowired
 	PersistentMessageTypesRepository persistentMessageTypesRepository;
+
+	@Autowired
+	PersistentMessageSourceTypesRepository persistentMessageSourceTypesRepository;
 
 	@Override
 	public List<PersistentMessage> findPersistentMessagesByUserUniqueTokenAndRead(String userUniqueToken, Boolean read) {
@@ -153,4 +158,19 @@ public class SpringDataMessagingDataService implements MessagingDataService {
 		);
 	}
 
+	@Override
+	public Set<PersistentMessageSourceType> findAllPersistentMessageSourceTypes() {
+		return multicastSet(persistentMessageSourceTypesRepository.findAll());
+	}
+
+	@Override
+	public List<PersistentMessage> findPersistentMessagesByUserUniqueTokenAndIsUserNotified(
+		String userUniqueToken, Boolean isUserNotified
+	) {
+		return
+			multicastList(
+				persistentMessagesRepository
+					.findAllByUserUniqueTokenAndIsUserNotified(userUniqueToken, isUserNotified)
+			);
+	}
 }

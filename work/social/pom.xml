@@ -30,6 +30,11 @@
 			<artifactId>content</artifactId>
 			<version>${parent.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.advancedbattleships</groupId>
+			<artifactId>messaging</artifactId>
+			<version>${parent.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.advancedbattleships</groupId>

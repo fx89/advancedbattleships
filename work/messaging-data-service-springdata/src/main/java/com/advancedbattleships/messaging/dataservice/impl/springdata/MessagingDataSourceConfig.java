@@ -1,4 +1,4 @@
-package com.advancedbattleships.social.dataservice.impl.springdata;
+package com.advancedbattleships.messaging.dataservice.impl.springdata;
 
 import java.util.HashMap;
 

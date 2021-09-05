@@ -33,6 +33,8 @@ public interface SecurityDataService {
 
 	User findUserByUniqueToken(String uniqueToken);
 
+	User findUserByNickName(String nickName);
+
 	Set<User> findUsersByUniqueToken(Set<String> uniqueTokens);
 
 	void setOnlineFlagForUsers(Set<String> userUniqueTokens, Boolean loggedIn);

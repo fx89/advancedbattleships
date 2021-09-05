@@ -13,4 +13,8 @@ export class AdvBsPathsService {
   public getIconUrl(iconName:string) : string {
     return this.config.getAttributeValue("backendUrl") + "/content/userIcon?fileName=" + encodeURIComponent(iconName) + ".png";
   }
+
+  public getStylesheetResourceUrl(iconName:string) : string {
+    return this.config.getAttributeValue("backendUrl") + "/content/userStylesheet?fileName=" + encodeURIComponent(iconName) + ".png";
+  }
 }

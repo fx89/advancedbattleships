@@ -1,4 +1,4 @@
-package com.advancedbattleships.social.dataservice.impl.springdata.model;
+package com.advancedbattleships.messaging.dataservice.impl.springdata.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

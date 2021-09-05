@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.0</version>
+		<version>2.5.4</version>
 		<relativePath/>
 	</parent>
 
@@ -40,6 +40,7 @@
 		<module>social-data-service-spec</module>
 		<module>social-data-service-springdata</module>
 
+		<module>messaging-rest</module>
 		<module>messaging</module>
 		<module>messaging-data-service-spec</module>
 		<module>messaging-data-service-springdata</module>
