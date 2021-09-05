@@ -209,7 +209,7 @@ public class SocialService {
 			UserFriend friendRequest = findUserFriendRequestOrCrash(fromUserUniqueToken, toUserUniqueToken);
 			dataService.deleteUserFriend(friendRequest);
 
-			// Notify the requeeter that the reqwuest has been rejected
+			// Notify the requester that the request has been rejected
 			messaging.sendFriendRequest(
 				toUserUniqueToken,
 				fromUserUniqueToken,
