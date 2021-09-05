@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.advancedbattleships.social.dataservice.model.FriendStatus;
 import com.advancedbattleships.social.dataservice.model.Party;
 import com.advancedbattleships.social.dataservice.model.UserParty;
 
@@ -39,6 +40,11 @@ public class UserPartyImpl implements UserParty {
 	@Fetch(FetchMode.JOIN)
 	private PartyImpl party;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "STATUS_ID")
+	@Fetch(FetchMode.JOIN)
+	private FriendStatusImpl status;
+
 	@Override
 	public String getUserUniqueToken() {
 		return userUniqueToken;
@@ -57,6 +63,16 @@ public class UserPartyImpl implements UserParty {
 	@Override
 	public void setParty(Party party) {
 		this.party = new PartyImpl(party);
+	}
+
+	@Override
+	public FriendStatus getStatus() {
+		return status;
+	}
+
+	@Override
+	public void setStatus(FriendStatus status) {
+		this.status = new FriendStatusImpl(status);
 	}
 
 	public UserPartyImpl(UserParty source) {

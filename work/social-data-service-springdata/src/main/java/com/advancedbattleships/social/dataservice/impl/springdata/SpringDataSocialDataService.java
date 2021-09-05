@@ -1,11 +1,13 @@
 package com.advancedbattleships.social.dataservice.impl.springdata;
 
 import static com.advancedbattleships.common.lang.Multicast.multicastCollection;
+import static com.advancedbattleships.common.lang.Multicast.multicastIterable;
 import static com.advancedbattleships.common.lang.Multicast.multicastSet;
 import static java.util.stream.Collectors.toSet;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +15,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.advancedbattleships.social.dataservice.SocialDataService;
+import com.advancedbattleships.social.dataservice.impl.springdata.dao.FriendStatusesRepository;
 import com.advancedbattleships.social.dataservice.impl.springdata.dao.PartiesRepository;
 import com.advancedbattleships.social.dataservice.impl.springdata.dao.UserFriendsRepository;
 import com.advancedbattleships.social.dataservice.impl.springdata.dao.UserPartiesRepository;
 import com.advancedbattleships.social.dataservice.impl.springdata.model.PartyImpl;
 import com.advancedbattleships.social.dataservice.impl.springdata.model.UserFriendImpl;
 import com.advancedbattleships.social.dataservice.impl.springdata.model.UserPartyImpl;
+import com.advancedbattleships.social.dataservice.model.FriendStatus;
 import com.advancedbattleships.social.dataservice.model.Party;
 import com.advancedbattleships.social.dataservice.model.UserFriend;
 import com.advancedbattleships.social.dataservice.model.UserParty;
@@ -34,6 +38,9 @@ public class SpringDataSocialDataService implements SocialDataService {
 
 	@Autowired
 	private UserFriendsRepository userFriendsRepository;
+
+	@Autowired
+	private FriendStatusesRepository friendStatusesRepository;
 
 	@Override
 	public Set<Party> findPartiesByNameLike(String nameLike) {
@@ -62,6 +69,16 @@ public class SpringDataSocialDataService implements SocialDataService {
 	}
 
 	@Override
+	public Set<UserFriend> getUserFriends(String userUniqueToken, String statusName) {
+		return multicastSet(userFriendsRepository.findAllByUserUniqueTokenAndStatusName(userUniqueToken, statusName));
+	}
+
+	@Override
+	public Set<UserFriend> getUserFriends(String userUniqueToken, List<String> statusNames) {
+		return multicastSet(userFriendsRepository.findAllByUserUniqueTokenAndStatusNameIn(userUniqueToken, statusNames));
+	}
+
+	@Override
 	public UserFriend newUserFriend() {
 		return new UserFriendImpl();
 	}
@@ -81,6 +98,17 @@ public class SpringDataSocialDataService implements SocialDataService {
 				userFriend -> new UserFriendImpl(userFriend)
 			)
 		);
+	}
+
+	@Override
+	public void deleteUserFriend(UserFriend userFriend) {
+		if (userFriend instanceof UserFriendImpl) {
+			userFriendsRepository.deleteById(((UserFriendImpl)userFriend).getId());
+		} else {
+			throw new IllegalArgumentException(
+				"the referenced UserFriend implementation cannot be handled by this service"
+			);
+		}
 	}
 
 	@Override
@@ -128,6 +156,11 @@ public class SpringDataSocialDataService implements SocialDataService {
 	@Override
 	public UserFriend findUserFriendByUserUniqueTokenAndFriendUniqueToken(String userUniqueToken, String friendUniqueToken) {
 		return userFriendsRepository.findOneByUserUniqueTokenAndFriendUserUniqueToken(userUniqueToken, friendUniqueToken);
+	}
+
+	@Override
+	public Iterable<FriendStatus> findAllFriendStatuses() {
+		return multicastIterable(friendStatusesRepository.findAll());
 	}
 
 	@Override

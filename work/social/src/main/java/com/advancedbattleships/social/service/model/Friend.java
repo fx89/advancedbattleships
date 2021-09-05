@@ -11,7 +11,7 @@ public class Friend {
 
 	private String friendUserUniqueToken;
 
-	private Boolean accepted;
+	private String status;
 
 	private Boolean isOnline;
 

@@ -10,4 +10,8 @@ public interface UserParty extends Serializable {
 	Party getParty();
 
 	void setParty(Party party);
+
+	FriendStatus getStatus();
+
+	void setStatus(FriendStatus status);
 }

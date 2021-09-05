@@ -133,6 +133,32 @@ public class MessagingService {
 		return getUnreadPersistentMessagesForUserOnChannel(userUniqueToken, chFriendRequests);
 	}
 
+	public void sendUserMessage(
+		String fromUserUniqueToken,
+		String toUserUniqueToken,
+		String title,
+		String body,
+		PersistentMessageType messageType,
+		PersistentMessageChannel channel,
+		Boolean important
+	) {
+		PersistentMessage msg = messagingDataService.newPersistentMessage();
+
+		msg.setMessageType(messageType);
+		msg.setChannel(channel);
+		msg.setSourceType(srcTypeUser);
+		msg.setSourceUniqueToken(fromUserUniqueToken);
+		msg.setUserUniqueToken(toUserUniqueToken);
+		msg.setTitle(title);
+		msg.setBody(body);
+		msg.setImportant(important);
+		msg.setRead(false);
+		msg.setMessageTime(new Date());
+		msg.setUserNotified(false);
+
+		msg = messagingDataService.savePersistentMessage(msg);
+	}
+
 	/**
 	 * Create a new friend request from one user to another
 	 */
@@ -142,21 +168,15 @@ public class MessagingService {
 		String title,
 		String body
 	) {
-		PersistentMessage msg = messagingDataService.newPersistentMessage();
-
-		msg.setMessageType(msgTypeFriendRequest);
-		msg.setChannel(chFriendRequests);
-		msg.setSourceType(srcTypeUser);
-		msg.setSourceUniqueToken(fromUserUniqueToken);
-		msg.setUserUniqueToken(toUserUniqueToken);
-		msg.setTitle(title);
-		msg.setBody(body);
-		msg.setImportant(false);
-		msg.setRead(false);
-		msg.setMessageTime(new Date());
-		msg.setUserNotified(false);
-
-		msg = messagingDataService.savePersistentMessage(msg);
+		sendUserMessage(
+			fromUserUniqueToken,
+			toUserUniqueToken,
+			title,
+			body,
+			msgTypeFriendRequest,
+			chFriendRequests,
+			false
+		);
 	}
 
 	/**

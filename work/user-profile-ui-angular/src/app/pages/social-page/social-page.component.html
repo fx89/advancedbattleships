@@ -1,6 +1,7 @@
 <lite-ng-tabs-horizontal extraClass="social-tabs"
     [isSetOfDrawers]="false"
     [(activeTabIndex)]="activeTabIndex"
+    (activeTabIndexChange)="onActiveTabIndexChanged(activeTabIndex)"
 >
     <span role="header">
         <lite-ng-tab-button>Friends</lite-ng-tab-button>
@@ -27,8 +28,31 @@
                     <div class="spacer"></div>
                     <lite-ng-pushbutton additionalClass="friends-list-button" text="Remove selected"></lite-ng-pushbutton>
                 </td>
-                <td class="friend-chat-container">
-                    chat here
+                <td class="friend-chat-container-td" style="vertical-align:top;">
+                    <div class="friend-chat-container">
+                        <div style="width:100%">
+                            <div *ngFor="let request of unattendedFriendRequests"
+                                 class="user-friend-request"
+                            >
+                                <table style="width:100%"><tr>
+                                    <td class="user-friend-request-icon-td">
+                                        <img src="{{ getFriendIconSrc(request) }}" class="user-friend-request-icon">
+                                    </td>
+                                    <td>
+                                        <span class="user-friend-request-title">Friend request: {{ request.nickName }}</span><br />
+                                        <span class="user-friend-request-body">{{ request.nickName }} has sent you a friend request</span>
+                                    </td>
+                                    <td>
+                                        <div class="user-friend-request-button user-friend-reuest-button-accept" (click)="acceptFriendRequest(request)">Accept</div>
+                                        <div class="user-friend-request-button user-friend-reuest-button-reject" (click)="rejectFriendRequest(request)">Reject</div>
+                                    </td>
+                                </tr></table>
+                            </div>
+                        </div>
+                        <div style="width:1100%">
+                            chat here
+                        </div>
+                    </div>
                 </td>
             </tr></table>
         </lite-ng-tab>

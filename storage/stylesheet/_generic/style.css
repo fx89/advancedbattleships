@@ -1881,9 +1881,23 @@ body.battleships {
     height: 230px !important;
 }
 
-.battleships .social-tabs .friend-chat-container {
+.battleships .social-tabs .friend-chat-container-td {
     height: 100%;
+}
+
+.battleships .social-tabs .friend-chat-container {
+    margin-top: 8px;
+    height: calc(100% - 23px);
+    width: calc(100% - 8px);
+    border-style: solid;
+    border-width: 1px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 5px;
+    border-color: #FAA;
     padding-bottom: 10px;
+    padding-left: 5px;
+    background-color: RGBA(0, 0, 0, .3);
 }
 
 .battleships .social-tabs .friends-list-container .spacer {
@@ -1986,4 +2000,58 @@ body.battleships {
 
 .user-popup-notification-text-cell {
     cursor: pointer;
+}
+
+.user-friend-request {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    margin-top: 3px;
+    margin-right: 3px;
+    margin-left: -2px;
+}
+
+.user-friend-request-icon-td {
+    width: 25px;
+}
+
+.user-friend-request-icon {
+    width: 35px;
+    height: 35px;
+}
+
+.user-friend-request-title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.user-friend-request-body {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.user-friend-request-button {
+    width: 50px;
+    height: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+}
+
+.user-friend-reuest-button-accept {
+    background-color: #090;
+}
+
+.user-friend-reuest-button-accept:hover {
+    background-color: #0F0;
+}
+
+.user-friend-reuest-button-reject {
+    background-color: #900;
+}
+
+.user-friend-reuest-button-reject:hover {
+    background-color: #F00;
 }

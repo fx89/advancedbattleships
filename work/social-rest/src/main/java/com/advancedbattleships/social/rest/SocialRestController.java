@@ -31,4 +31,19 @@ public class SocialRestController {
 	public void inviteFriend(@RequestParam() String nickName) {
 		socialService.inviteFriend(security.getCurrentUser(), nickName);
 	}
+
+	@PostMapping("/rejectFriendRequest")
+	public void rejectFriendRequest(@RequestParam() String friendUserUniqueToken) {
+		socialService.rejectFriendRequest(friendUserUniqueToken, security.getCurrentUser());
+	}
+
+	@PostMapping("/acceptFriendRequest")
+	public void acceptFriendRequest(@RequestParam() String friendUserUniqueToken) {
+		socialService.acceptFriendRequest(friendUserUniqueToken, security.getCurrentUser());
+	}
+
+	@GetMapping("/getUnattendedUserFriendInvitations")
+	public Set<Friend> getUnattendedUserFriendInvitations() {
+		return socialService.getUnattendedUserFriendInvitations(security.getCurrentUser());
+	}
 }

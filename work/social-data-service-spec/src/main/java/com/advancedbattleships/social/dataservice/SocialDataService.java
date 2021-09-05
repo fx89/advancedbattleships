@@ -1,8 +1,10 @@
 package com.advancedbattleships.social.dataservice;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
+import com.advancedbattleships.social.dataservice.model.FriendStatus;
 import com.advancedbattleships.social.dataservice.model.Party;
 import com.advancedbattleships.social.dataservice.model.UserFriend;
 import com.advancedbattleships.social.dataservice.model.UserParty;
@@ -29,6 +31,18 @@ public interface SocialDataService {
 	 * parameter
 	 */
 	public Set<UserFriend> getUserFriends(String userUniqueToken);
+	
+	/**
+	 * Returns a set of unique friends of the user whose unique token is given as
+	 * parameter, as long as the friendship status has the given name
+	 */
+	public Set<UserFriend> getUserFriends(String userUniqueToken, String statusName);
+
+	/**
+	 * Returns a set of unique friends of the user whose unique token is given as
+	 * parameter, as long as the friendship status has one of the given names
+	 */
+	public Set<UserFriend> getUserFriends(String userUniqueToken, List<String> statusNames);
 
 	/**
 	 * Returns a user friend, if exists, or null if it doesn't
@@ -44,6 +58,11 @@ public interface SocialDataService {
 	 * Saves one instance and returns the saved result
 	 */
 	public UserFriend saveUserFriend(UserFriend userFirend);
+
+	/**
+	 * Deletes the referenced user friend
+	 */
+	public void deleteUserFriend(UserFriend userFriend);
 
 	/**
 	 * Saves multiple instances
@@ -84,4 +103,9 @@ public interface SocialDataService {
 	 * Run the given code in a transaction
 	 */
 	public void executeTransaction(Runnable code);
+
+	/**
+	 * Returns a list of all friend statuses defined in the database
+	 */
+	public Iterable<FriendStatus> findAllFriendStatuses();
 }

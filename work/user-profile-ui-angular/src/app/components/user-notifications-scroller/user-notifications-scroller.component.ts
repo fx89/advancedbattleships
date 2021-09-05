@@ -130,11 +130,14 @@ export class UserNotificationsScrollerComponent implements OnInit {
   public activateNotification(notification) {
     this.popNotification(notification)
 
-    if (notification.messageType.name == "friend request"
-     || notification.messageType.name == "party request"
-    ) {
+    if (notification.messageType.name == "friend request") {
       this.navigation.navigateToPage("social")
-      this.navigation.putPageParam("action", "view-messages")
+      this.navigation.putPageParam("action", "show-friends")
+    }
+
+    if (notification.messageType.name == "party request") {
+      this.navigation.navigateToPage("social")
+      this.navigation.putPageParam("action", "show-parties")
     }
 
     // TODO: add more notification types as needed
