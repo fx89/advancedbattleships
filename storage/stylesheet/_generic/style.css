@@ -379,17 +379,25 @@ body.battleships {
     height: 25px;
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%;
-    border-style: solid;
-    border-width: 1px;
-    border-color: RGBA(179, 179, 179, 0.5);
-    background-color: #383838;
+    border-style: none;
+    background-color: var(--list-card-background-color);
     padding-left: 5px;
     padding-top: 5px;
 }
 
-.battleships .list-card-icon img {
-    width: 25px;
-    height: 25px;
+.battleships .list-card-icon-picture {
+    width:100%;
+    height:100%;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    margin-top: -5px;
+}
+
+.battleships .list-card-icon-overlay {
+    width: 10px;
+    height: 10px;
+    margin-left: 19px;
+    margin-top: 16px;
 }
 
 .battleships .list-card-content {

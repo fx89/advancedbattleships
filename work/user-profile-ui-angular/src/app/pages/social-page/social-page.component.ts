@@ -18,9 +18,10 @@ export class SocialPageComponent implements OnInit {
   firends : any[];
   selectedFriend : any;
 
-  friendIconFunction : Function = (friend) => "da";
-  friendTitleFunction : Function = (friend) => "mna";
-  friendDscriptionFunction : Function = (friend) => "ola";
+  friendIconFunction : Function = (friend) => this.paths.getLogoUrl(friend.logoName);
+  friendIconOverlayFunction : Function = (friend) => this.paths.getStylesheetResourceUrl("icon-overlay-" + (friend.isOnline ? "online" : "offline"));
+  friendTitleFunction : Function = (friend) => friend.nickName;
+  friendDscriptionFunction : Function = (friend) => friend.isOnline ? "online" : "offline";
 
   friendSearchDialigShowEvent : EventEmitter<any> = new EventEmitter<any>();
   friendSearchDialigHideEvent : EventEmitter<any> = new EventEmitter<any>();

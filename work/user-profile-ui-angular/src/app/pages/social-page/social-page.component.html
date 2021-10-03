@@ -14,9 +14,11 @@
                 <td class="firends-list-container">
                     <!-- The list -->
                     <lite-ng-list
-                        noDataMessage="No friends :("
+                        [items]="firends"
                         [(selectedItem)]="selectedFriend"
+                        noDataMessage="No friends :("
                         [iconFunction]="friendIconFunction"
+                        [iconOverlayFunction]="friendIconOverlayFunction"
                         [titleFunction]="friendTitleFunction"
                         [descriptionFunction]="friendDscriptionFunction"
                         (onSelectionChanged)="friendSelectionChanged($event)"
