@@ -1,5 +1,6 @@
 package com.advancedbattleships.social.rest;
 
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,33 +18,38 @@ import com.advancedbattleships.social.service.model.Friend;
 @RequestMapping("/social")
 public class SocialRestController {
 	@Autowired
-	SocialService socialService;
+	SocialService social;
 
 	@Autowired
 	SecurityService security;
 
 	@GetMapping("/getCurrentUserFriends")
 	public Set<Friend> getCurrentUserFriends() {
-		return socialService.getUserFriends(security.getCurrentUser().getUniqueToken());
+		return social.getUserFriends(security.getCurrentUser().getUniqueToken());
 	}
 
 	@PostMapping("/inviteFriend")
 	public void inviteFriend(@RequestParam() String nickName) {
-		socialService.inviteFriend(security.getCurrentUser(), nickName);
+		social.inviteFriend(security.getCurrentUser(), nickName);
 	}
 
 	@PostMapping("/rejectFriendRequest")
 	public void rejectFriendRequest(@RequestParam() String friendUserUniqueToken) {
-		socialService.rejectFriendRequest(friendUserUniqueToken, security.getCurrentUser());
+		social.rejectFriendRequest(friendUserUniqueToken, security.getCurrentUser());
 	}
 
 	@PostMapping("/acceptFriendRequest")
 	public void acceptFriendRequest(@RequestParam() String friendUserUniqueToken) {
-		socialService.acceptFriendRequest(friendUserUniqueToken, security.getCurrentUser());
+		social.acceptFriendRequest(friendUserUniqueToken, security.getCurrentUser());
 	}
 
 	@GetMapping("/getUnattendedUserFriendInvitations")
 	public Set<Friend> getUnattendedUserFriendInvitations() {
-		return socialService.getUnattendedUserFriendInvitations(security.getCurrentUser());
+		return social.getUnattendedUserFriendInvitations(security.getCurrentUser());
+	}
+
+	@GetMapping("/getUserFriendStatuses")
+	public Map<String, String> getUserFriendStatuses() {
+		return social.getUserFriendStatuses(security.getCurrentUser().getUniqueToken());
 	}
 }

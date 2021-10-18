@@ -1,10 +1,14 @@
 package com.advancedbattleships.social.service;
 
 import static java.util.stream.Collectors.toSet;
+import static java.util.stream.Collectors.toMap;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.PostConstruct;
 
@@ -22,6 +26,7 @@ import com.advancedbattleships.social.dataservice.model.UserFriend;
 import com.advancedbattleships.social.exception.AdvancedBattleshipsFriendNotFoundSocialException;
 import com.advancedbattleships.social.exception.AdvancedBattleshipsSocialException;
 import com.advancedbattleships.social.service.model.Friend;
+import com.advancedbattleships.userstatustracker.service.UserStatusTrackerService;
 
 @Service
 public class SocialService {
@@ -38,8 +43,18 @@ public class SocialService {
 	@Autowired
 	private MessagingService messaging;
 
+	@Autowired
+	private UserStatusTrackerService userStatusTracker;
+
 	private static FriendStatus FRIEND_STATUS_ACCEPTED;
 	private static FriendStatus FRIEND_STATUS_UNATTENDED;
+
+	private static final String FRIEND_PRESENCE_ONLINE = "online";
+	private static final String FRIEND_PRESENCE_OFFLINE = "offline";
+	private static final String FRIEND_PRESENCE_INGAME = "ingame"; // TODO: handle in computeFriendPresence
+	private static final String FRIEND_PRESENCE_UNKNOWN = "unknown";
+
+	private final Map<String, Set<UserFriend>> userFriendTokens = new ConcurrentHashMap<>();
 
 	@PostConstruct
 	private void init() {
@@ -55,12 +70,19 @@ public class SocialService {
 	 * the invitation. They will be rendered in a distinct way.
 	 */
 	public Set<Friend> getUserFriends(String userUniqueToken) {
+		return getUserFriendDetails(findUserFriends(userUniqueToken));
+	}
+
+	private Set<UserFriend> findUserFriends(String userUniqueToken) {
 		// Get the friends
 		Set<UserFriend> userFriends
 			= dataService.getUserFriends(userUniqueToken, Arrays.asList("accepted", "unattended"));
 
-		// Get the details of the user's friends
-		return getUserFriendDetails(userFriends);
+		// Cache the user friend details for use by getUserFriendStatuses,
+		// which is expected to be called quite frequently
+		userFriendTokens.put(userUniqueToken, userFriends);
+
+		return userFriends;
 	}
 
 	private Set<Friend> getUserFriendDetails(Set<UserFriend> userFriends) {
@@ -83,6 +105,10 @@ public class SocialService {
 		// Get the friends UI configurations from the content service,
 		// using the unique tokens extracted above
 		Set<UserUiConfig> friendUiConfigs = content.getUsersConfig(userFriendUniqueTokens);
+
+		// Get the list of friends who are online according to user status tracker.
+		// This will be used when calling computeFriendPresence().
+		Set<String> onlineFriendTokens = userStatusTracker.getUserTokensStillAlive(userFriendUniqueTokens);
 
 		// Create and return the collection of objects of the composite data type
 		return userFriends.stream()
@@ -110,7 +136,7 @@ public class SocialService {
 				return new Friend(
 					userFriend.getFriendUserUniqueToken(),
 					userFriend.getStatus().getName(),
-					userFriend.getStatus().getName().equals("accepted") ? friendUser.isOnline() : false, // no status unless accepted
+					computeFriendPresence(userFriend, onlineFriendTokens),
 					friendUser.getNickName(),
 					friendConfig.getCurrentLogoName()
 				);
@@ -267,5 +293,65 @@ public class SocialService {
 		return getUserFriendDetails(
 				dataService.getUserFriends(forUser.getUniqueToken(), Arrays.asList("unattended"))
 			);
+	}
+
+	public Map<String, String> getUserFriendStatuses(String userUniqueToken) {
+		// Get the unique tokens of the user's friends
+		Set<UserFriend> userFriends = resolveUserFriends(userUniqueToken);
+
+		// If not found, then return an empty map
+		if (userFriends == null || userFriends.size() == 0) {
+			return new HashMap<>();
+		}
+
+		// Extract the set of friend tokens which are still alive
+		Set<String> loggedInFriendTokens
+			= userStatusTracker.getUserTokensStillAlive(
+					userFriends.stream().map(UserFriend::getFriendUserUniqueToken).collect(toSet())
+				);
+
+		return userFriends.stream()
+			.collect(toMap(
+				UserFriend::getFriendUserUniqueToken,
+				k -> computeFriendPresence(k, loggedInFriendTokens)
+			));
+	}
+
+	private static String computeFriendPresence(UserFriend friend, Set<String> onlineFriendTokens) {
+		// See if the friend's token can be found in the list of online friend tokens
+		String onlineFriendToken = onlineFriendTokens.stream()
+			.filter(f -> f.equals(friend.getFriendUserUniqueToken()))
+			.findFirst().orElse(null);
+
+		// If the friend token is not in the list of online friend tokens,
+		// return OFFLIE
+		if (onlineFriendToken == null) {
+			return FRIEND_PRESENCE_OFFLINE;
+		}
+
+		// If the friend is online, then check if the status is ACCEPTED
+		// and, if so, then return ONLINE
+		if (friend.getStatus().equals(FRIEND_STATUS_ACCEPTED)) {
+			// TODO: handle FRIEND_PRESENCE_INGAME
+			return FRIEND_PRESENCE_ONLINE;
+		}
+
+		// If none of the above checks yielded any result, return UNKNOWN
+		return FRIEND_PRESENCE_UNKNOWN;
+	}
+
+	private Set<UserFriend> resolveUserFriends(String userUniqueToken) {
+		// Try to get the friend tokens from the local cache
+		Set<UserFriend> friendUniqueTokens = userFriendTokens.get(userUniqueToken);
+
+		// If there's nothing cached, then call the getUserFriends() method,
+		// which will cache the friend tokens
+		if (friendUniqueTokens == null) {
+			findUserFriends(userUniqueToken);
+			friendUniqueTokens = userFriendTokens.get(userUniqueToken);
+		}
+
+		// Finally, return the cached tokens
+		return friendUniqueTokens;
 	}
 }

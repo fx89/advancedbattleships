@@ -52,7 +52,23 @@
                             </div>
                         </div>
                         <div style="width:1100%">
-                            chat here
+                            <div *ngIf="selectedFriend"
+                                class="social-chat-status"
+                                [class.online]="selectedFriend?.isOnline"
+                                [class.offline]="!(selectedFriend?.isOnline)"
+                            >
+                                <span *ngIf="selectedFriend?.isOnline">
+                                    {{ selectedFriend?.nickName }} is online and able to receive chat messages
+                                </span>
+                                <span *ngIf="!(selectedFriend?.isOnline)">
+                                    {{ selectedFriend?.nickName }} is offline and will be unable to respond right away
+                                </span>
+                            </div>
+
+
+
+
+
                         </div>
                     </div>
                 </td>

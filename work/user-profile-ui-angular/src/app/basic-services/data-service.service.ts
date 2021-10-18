@@ -6,13 +6,14 @@ import { HTTP_CLIENT_REDIRECT_DECISION_SYNTAX_ERROR } from '@desolatetimelines/l
   providedIn: 'root'
 })
 export class AdvBsUiDataService {
-  public securityRepository : LiteNgLoadingModalWrappedHttpRepository | undefined;
-  public contentRepository : LiteNgLoadingModalWrappedHttpRepository | undefined;
+  public securityRepository            : LiteNgLoadingModalWrappedHttpRepository | undefined;
+  public userStatusTrackerRepository   : LiteNgLoadingModalWrappedHttpRepository | undefined;
+  public contentRepository             : LiteNgLoadingModalWrappedHttpRepository | undefined;
   public battleshipTemplatesRepository : LiteNgLoadingModalWrappedHttpRepository | undefined;
-  public subsystemsRepository : LiteNgLoadingModalWrappedHttpRepository | undefined;
-  public systemParametersRepository : LiteNgLoadingModalWrappedHttpRepository | undefined;
-  public socialRepository : LiteNgLoadingModalWrappedHttpRepository | undefined;
-  public messagingRepository : LiteNgLoadingModalWrappedHttpRepository | undefined;
+  public subsystemsRepository          : LiteNgLoadingModalWrappedHttpRepository | undefined;
+  public systemParametersRepository    : LiteNgLoadingModalWrappedHttpRepository | undefined;
+  public socialRepository              : LiteNgLoadingModalWrappedHttpRepository | undefined;
+  public messagingRepository           : LiteNgLoadingModalWrappedHttpRepository | undefined;
 
   private backendUrl : string = "";
   private loginFormUrl : string = "";
@@ -25,6 +26,7 @@ export class AdvBsUiDataService {
       this.loginFormUrl = config.getAttributeValue("loginFormUrl");
 
       this.securityRepository             = this.createRepository("security"                              , "AUTHENTICATING", "please wait while your session is established"   );
+      this.userStatusTrackerRepository    = this.createRepository("userstatustracker"                     , "SYNCHRONIZING" , "please wait while your status is synchronized"   );
       this.contentRepository              = this.createRepository("content"                               , "LOADING"       , "please wait while the request is being processed");
       this.battleshipTemplatesRepository  = this.createRepository("inventory/battlesipTemplates"          , "LOADING"       , "please wait while the request is being processed");
       this.subsystemsRepository           = this.createRepository("inventory/battlesipTemplateSubsystems" , "LOADING"       , "please wait while the request is being processed");

@@ -19,14 +19,16 @@ export class SocialPageComponent implements OnInit {
   selectedFriend : any;
 
   friendIconFunction : Function = (friend) => this.paths.getLogoUrl(friend.logoName);
-  friendIconOverlayFunction : Function = (friend) => this.paths.getStylesheetResourceUrl("icon-overlay-" + (friend.isOnline ? "online" : "offline"));
+  friendIconOverlayFunction : Function = (friend) => this.paths.getStylesheetResourceUrl("icon-overlay-" + friend.presence);
   friendTitleFunction : Function = (friend) => friend.nickName;
-  friendDscriptionFunction : Function = (friend) => friend.isOnline ? "online" : "offline";
+  friendDscriptionFunction : Function = (friend) => friend.presence;
 
   friendSearchDialigShowEvent : EventEmitter<any> = new EventEmitter<any>();
   friendSearchDialigHideEvent : EventEmitter<any> = new EventEmitter<any>();
   friendSearchDialogExternalValidationMessageEvent : EventEmitter<any> = new EventEmitter<any>();
   soughtFriendNickName : string;
+
+  refreshFriendStatusesTask : any;
 
   constructor(
     public navigation : AdvBsPageManagerService,
@@ -34,13 +36,8 @@ export class SocialPageComponent implements OnInit {
     private paths : AdvBsPathsService,
     private msgBox : LiteNgMsgboxService
   ) {
-    this.dataService.socialRepository.getCustomOperationWithLoadingModal(
-      "getCurrentUserFriends",
-      undefined,
-      (ret) => {
-        this.firends = ret;
-      }
-    );
+    this.refreshFriendsList();
+    this.startRefreshFriendStatusesTask();
 
     this.dataService.socialRepository.addErrFilter((err) =>
       err.error == "AdvancedBattleshipsFriendNotFoundSocialException"
@@ -96,8 +93,36 @@ export class SocialPageComponent implements OnInit {
     // TODO: implement
   }
 
+  private startRefreshFriendStatusesTask() {
+    this.refreshFriendStatusesTask
+      = setInterval(() => this.refreshFriendStatuses(), 5000) // TODO: 5000 should be configurable (in the back-end)
+  }
+
+  private stopRefreshFriendStatusesTask() {
+    if (this.refreshFriendStatusesTask) {
+      clearTimeout(this.refreshFriendStatusesTask)
+    }
+  }
+
+  refreshFriendStatuses() {
+    this.dataService.socialRepository.getCustomOperation(
+      "getUserFriendStatuses",
+      undefined
+    ).subscribe(ret => {
+      this.firends.forEach(friend => {
+        friend.presence = ret[friend.friendUserUniqueToken]
+      })
+    })
+  }
+
   refreshFriendsList() {
-    // TODO: implement
+    this.dataService.socialRepository.getCustomOperationWithLoadingModal(
+      "getCurrentUserFriends",
+      undefined,
+      (ret) => {
+        this.firends = ret;
+      }
+    );
   }
 
   refreshFriendRequests() {

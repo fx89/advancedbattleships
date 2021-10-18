@@ -37,5 +37,9 @@ public interface SecurityDataService {
 
 	Set<User> findUsersByUniqueToken(Set<String> uniqueTokens);
 
+	/**
+	 * Sets the Online flag to the given value for users who's unique tokens
+	 * are found in the given list
+	 */
 	void setOnlineFlagForUsers(Set<String> userUniqueTokens, Boolean loggedIn);
 }

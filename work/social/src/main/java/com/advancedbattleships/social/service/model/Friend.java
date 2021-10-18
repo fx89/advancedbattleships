@@ -13,7 +13,7 @@ public class Friend {
 
 	private String status;
 
-	private Boolean isOnline;
+	private String presence;
 
 	private String nickName;
 

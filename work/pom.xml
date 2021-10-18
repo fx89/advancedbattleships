@@ -30,6 +30,9 @@
 		<module>security-data-service-spec</module>
 		<module>security-data-service-springdata</module>
 
+		<module>user-status-tracker</module>
+		<module>user-status-tracker-rest</module>
+
 		<module>inventory-rest</module>
 		<module>inventory</module>
 		<module>inventory-data-service-spec</module>

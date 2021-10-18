@@ -35,7 +35,7 @@ export class AppComponent implements AfterViewInit {
       ret => {
         const pingMs : number = ret * 1000;
         setInterval(
-          () => this.dataService.securityRepository.getCustomOperation("ping"),
+          () => this.dataService.userStatusTrackerRepository.getCustomOperation("ping"),
           pingMs
         )
       }

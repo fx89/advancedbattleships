@@ -68,6 +68,11 @@
 			<artifactId>messaging-rest</artifactId>
 			<version>${advancedbattleships.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.advancedbattleships</groupId>
+			<artifactId>user-status-tracker-rest</artifactId>
+			<version>${advancedbattleships.version}</version>
+		</dependency>
 
 		<!-- Data layer implementations (can be swapped for other implementations if necessary) -->
 		<dependency>
