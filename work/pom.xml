@@ -48,6 +48,7 @@
 		<module>messaging-data-service-spec</module>
 		<module>messaging-data-service-springdata</module>
 
+		<module>chat-rest</module>
 		<module>chat</module>
 		<module>chat-data-service-spec</module>
 		<module>chat-data-service-springdata</module>

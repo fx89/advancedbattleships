@@ -19,4 +19,6 @@ public class Friend {
 
 	private String logoName;
 
+	private String privatePartyUniqueToken;
+
 }

@@ -1,4 +1,6 @@
-package com.advancedbattleships.social.dataservice.impl.springdata.model;
+package com.advancedbattleships.chat.dataservice.impl.springdata.model;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,8 +39,8 @@ public class ChatChannelBanImpl implements ChatChannelBan {
 	@Column(name = "IS_PERMANENT")
 	private Boolean isPermanent;
 
-	@Column(name = "TIME_TILL_LIFTED_MINS")
-	private Long timeTillLiftedMins;
+	@Column(name = "TIME_WHEN_LIFTED")
+	private Date timeWhenLifted;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CHAT_CHANNEL_ID")
@@ -76,19 +78,19 @@ public class ChatChannelBanImpl implements ChatChannelBan {
 	}
 
 	@Override
-	public Long getTimeTillLiftedMins() {
-		return timeTillLiftedMins;
+	public Date getTimeWhenLifted() {
+		return timeWhenLifted;
 	}
 
 	@Override
-	public void setTimeTillLiftedMins(Long timeTillLiftedMins) {
-		this.timeTillLiftedMins = timeTillLiftedMins;
+	public void setTimeWhenLifted(Date timeWhenLifted) {
+		this.timeWhenLifted = timeWhenLifted;
 	}
 
 	public ChatChannelBanImpl(ChatChannelBan source) {
 		this.setChatChannel(source.getChatChannel());
 		this.setPermanent(source.isPermanent());
-		this.setTimeTillLiftedMins(source.getTimeTillLiftedMins());
+		this.setTimeWhenLifted(source.getTimeWhenLifted());
 		this.setUserUniqueToken(source.getUserUniqueToken());
 
 		if (source instanceof ChatChannelBanImpl) {

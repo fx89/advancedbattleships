@@ -14,6 +14,7 @@ export class AdvBsUiDataService {
   public systemParametersRepository    : LiteNgLoadingModalWrappedHttpRepository | undefined;
   public socialRepository              : LiteNgLoadingModalWrappedHttpRepository | undefined;
   public messagingRepository           : LiteNgLoadingModalWrappedHttpRepository | undefined;
+  public chatRepository                : LiteNgLoadingModalWrappedHttpRepository | undefined;
 
   private backendUrl : string = "";
   private loginFormUrl : string = "";
@@ -33,6 +34,7 @@ export class AdvBsUiDataService {
       this.systemParametersRepository     = this.createRepository("system/parameters"                     , "LOADING"       , "please wait while the request is being processed");
       this.socialRepository               = this.createRepository("social"                                , "LOADING"       , "please wait while the request is being processed");
       this.messagingRepository            = this.createRepository("messaging"                             , "LOADING"       , "please wait while processing messages"           );
+      this.chatRepository                 = this.createRepository("chat"                                  , "LOADING"       , "please wait while processing chat messages"      );
   }
 
   private createRepository(baseUrl : string, loadingTitle : string, loadingMessage : string) {

@@ -36,7 +36,7 @@ public class UserPartyImpl implements UserParty {
 	private String userUniqueToken;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "TYPE_ID")
+	@JoinColumn(name = "PARTY_ID")
 	@Fetch(FetchMode.JOIN)
 	private PartyImpl party;
 

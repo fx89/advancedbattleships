@@ -10,4 +10,6 @@ public interface PartiesRepository extends PagingAndSortingRepository<PartyImpl,
 
 	Set<PartyImpl> findAllByNameLike(String name);
 
+	Set<PartyImpl> findAll();
+
 }

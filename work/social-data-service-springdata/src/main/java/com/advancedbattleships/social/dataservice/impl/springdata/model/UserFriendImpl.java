@@ -48,6 +48,9 @@ public class UserFriendImpl implements UserFriend {
 	@Column(name = "FRIEND_USER_UNIQUE_TOKEN")
 	private String friendUserUniqueToken;
 
+	@Column(name = "PRIVATE_PARTY_UNIQUE_TOKEN")
+	private String privatePartyUniqueToken;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "STATUS_ID")
 	@Fetch(FetchMode.JOIN)
@@ -78,6 +81,16 @@ public class UserFriendImpl implements UserFriend {
 	}
 
 	@Override
+	public String getPrivatePartyUniqueToken() {
+		return privatePartyUniqueToken;
+	}
+
+	@Override
+	public void setPrivatePartyUniqueToken(String privatePartyUniqueToken) {
+		this.privatePartyUniqueToken = privatePartyUniqueToken;
+	}
+
+	@Override
 	public FriendStatus getStatus() {
 		return status;
 	}
@@ -91,6 +104,7 @@ public class UserFriendImpl implements UserFriend {
 		this.setFriendUserUniqueToken(source.getFriendUserUniqueToken());
 		this.setUserUniqueToken(source.getUserUniqueToken());
 		this.setStatus(source.getStatus());
+		this.setPrivatePartyUniqueToken(source.getPrivatePartyUniqueToken());
 
 		if (source instanceof UserFriendImpl) {
 			this.id = ((UserFriendImpl) source).id;

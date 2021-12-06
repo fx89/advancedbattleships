@@ -1895,7 +1895,7 @@ body.battleships {
 
 .battleships .social-tabs .friend-chat-container {
     margin-top: 8px;
-    height: calc(100% - 23px);
+    height: 290px;
     width: calc(100% - 8px);
     border-style: solid;
     border-width: 1px;
@@ -1906,6 +1906,7 @@ body.battleships {
     padding-bottom: 10px;
     padding-left: 5px;
     background-color: RGBA(0, 0, 0, .3);
+    overflow-y: scroll;
 }
 
 .battleships .social-tabs .friends-list-container .spacer {
@@ -2088,4 +2089,57 @@ body.battleships {
 
 .battleships .social-chat-status.ingame {
     background-color: RGBA(176, 80, 80, .3);
+}
+
+.battleships .scrolling-chat-window-message {
+    height: 50px;
+}
+
+.battleships .scrolling-chat-window-balloon {
+    display: inline-block;
+    background-color: #555;
+    border-radius: 10px;
+    padding: 3px 8px 3px 8px;
+    margin-bottom: 3px;
+}
+
+.battleships .scrolling-chat-window-balloon.current-user-ballon {
+    text-align: right;
+    float: right;
+    background-color: #273;
+}
+
+.battleships .scrolling-chat-window-balloon .nickname-row {
+    font-size: 12px;
+}
+
+.battleships .scrolling-chat-window-balloon .message-row {
+    font-size: 10px;
+}
+
+.battleships .chat-message-entry-form {
+    padding-top: 10px;
+}
+
+.battleships .chat-message-entry-form .text-field {
+    color: #FFF;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: RGBA(0, 0, 0, 0);
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: RGBA(20, 20, 20, .3);
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: RGBA(100, 100, 100, .3);
+}
+
+:root {
+    scrollbar-color: RGBA(20, 20, 20, .3) RGBA(0, 0, 0, 0);
 }

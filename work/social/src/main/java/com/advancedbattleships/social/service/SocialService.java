@@ -1,11 +1,17 @@
 package com.advancedbattleships.social.service;
 
-import static java.util.stream.Collectors.toSet;
+import static com.advancedbattleships.common.lang.Suppliers.nullSafeSupplier;
+import static java.util.Collections.synchronizedSet;
 import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toSet;
+import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -22,11 +28,14 @@ import com.advancedbattleships.security.dataservice.model.User;
 import com.advancedbattleships.security.service.SecurityService;
 import com.advancedbattleships.social.dataservice.SocialDataService;
 import com.advancedbattleships.social.dataservice.model.FriendStatus;
+import com.advancedbattleships.social.dataservice.model.Party;
 import com.advancedbattleships.social.dataservice.model.UserFriend;
+import com.advancedbattleships.social.dataservice.model.UserParty;
 import com.advancedbattleships.social.exception.AdvancedBattleshipsFriendNotFoundSocialException;
 import com.advancedbattleships.social.exception.AdvancedBattleshipsSocialException;
 import com.advancedbattleships.social.service.model.Friend;
 import com.advancedbattleships.userstatustracker.service.UserStatusTrackerService;
+import com.advancedbattleships.utilityservices.UniqueTokenProviderService;
 
 @Service
 public class SocialService {
@@ -46,6 +55,9 @@ public class SocialService {
 	@Autowired
 	private UserStatusTrackerService userStatusTracker;
 
+	@Autowired
+	private UniqueTokenProviderService uniqueTokenProvider;
+
 	private static FriendStatus FRIEND_STATUS_ACCEPTED;
 	private static FriendStatus FRIEND_STATUS_UNATTENDED;
 
@@ -56,6 +68,9 @@ public class SocialService {
 
 	private final Map<String, Set<UserFriend>> userFriendTokens = new ConcurrentHashMap<>();
 
+	// TODO: do something about having multiple instances of this thing in multiple containers
+	private final Set<String> validPartyTokens = synchronizedSet(new HashSet<>());
+
 	@PostConstruct
 	private void init() {
 		dataService.findAllFriendStatuses()
@@ -63,6 +78,20 @@ public class SocialService {
 				if ("accepted"  .equals(fStatus.getName())) FRIEND_STATUS_ACCEPTED   = fStatus;
 				if ("unattended".equals(fStatus.getName())) FRIEND_STATUS_UNATTENDED = fStatus;
 			});
+
+		validPartyTokens.addAll(
+				dataService.findAllParties().stream().map(Party::getPartyUniqueToken).collect(toList())
+			);
+		
+	}
+
+	/**
+	 * If the provided token is not found in the locally maintained set of validPartyTokens,
+	 * it means the token is not valid.
+	 */
+	// TODO: change this in case of switching to a micro-services-based architecture
+	public synchronized boolean isPartyUniqueTokenValid(String partyUniqueToken) {
+		return validPartyTokens.contains(partyUniqueToken);
 	}
 
 	/**
@@ -138,7 +167,8 @@ public class SocialService {
 					userFriend.getStatus().getName(),
 					computeFriendPresence(userFriend, onlineFriendTokens),
 					friendUser.getNickName(),
-					friendConfig.getCurrentLogoName()
+					friendConfig.getCurrentLogoName(),
+					userFriend.getPrivatePartyUniqueToken()
 				);
 			})
 			.collect(toSet());
@@ -194,9 +224,10 @@ public class SocialService {
 			throw new AdvancedBattleshipsSocialException("Friend request was already accepted");
 		}
 
-		// Accept the request and create a new UserFriend for the target user
-		// Do it inside a transaction, to be able to roll back in case something
-		// crashes
+		// Accept the request and create a new UserFriend for the target user.
+		// Also create a party and add both users to the party.
+		// Do it all inside a transaction, to be able to roll back in case
+		// something crashes
 		dataService.executeTransaction(() -> {
 			// Accept and save the original request
 			friendRequest.setStatus(FRIEND_STATUS_ACCEPTED);
@@ -208,7 +239,25 @@ public class SocialService {
 			reciprocalUserFriend.setStatus(FRIEND_STATUS_ACCEPTED);
 			reciprocalUserFriend.setUserUniqueToken(fromUserUniqueToken);
 			reciprocalUserFriend.setFriendUserUniqueToken(toUserUniqueToken);
-			dataService.saveUserFriend(reciprocalUserFriend);
+
+			// Create the party for the two users and add it to the cache
+			Party party = dataService.newParty();
+			party.setPartyUniqueToken(uniqueTokenProvider.provide());
+			party.setName("Private party [" + fromUserUniqueToken + "]<->[" + toUserUniqueToken + "]");
+			party = dataService.saveParty(party);
+			validPartyTokens.add(party.getPartyUniqueToken());
+
+			// Add the users to the party
+			UserParty fromUserParty = createUserParty(fromUserUniqueToken, party);
+			UserParty toUserParty = createUserParty(toUserUniqueToken, party);
+			dataService.saveUserParties(Arrays.asList(fromUserParty, toUserParty));
+
+			// Update the private party of both the friend request and the reciprocal user friend
+			friendRequest.setPrivatePartyUniqueToken(party.getPartyUniqueToken());
+			reciprocalUserFriend.setPrivatePartyUniqueToken(party.getPartyUniqueToken());
+
+			// Save the friend request and the reciprocal user friend
+			dataService.saveUserFriends(List.of(friendRequest, reciprocalUserFriend));
 
 			// Send the acceptance message back to the requester
 			messaging.sendFriendRequest(
@@ -218,6 +267,19 @@ public class SocialService {
 				toUser.getNickName() + " has accepted your friend request"
 			);
 		});
+	}
+
+	private UserParty createUserParty(String userUniqueToken, Party party) {
+		return createUserParty(userUniqueToken, party, FRIEND_STATUS_ACCEPTED);
+	}
+
+	private UserParty createUserParty(String userUniqueToken, Party party, FriendStatus status) {
+		UserParty ret = dataService.newUserParty();
+		ret.setParty(party);
+		ret.setUserUniqueToken(userUniqueToken);
+		ret.setStatus(status);
+
+		return ret;
 	}
 
 	/**
@@ -353,5 +415,22 @@ public class SocialService {
 
 		// Finally, return the cached tokens
 		return friendUniqueTokens;
+	}
+
+	public boolean userBelongsToParty(String userUniqueToken, String partyUniqueToken) {
+		Collection<UserParty> userParties = dataService.getUserPartyRecords(userUniqueToken);
+
+		if (userParties == null) {
+			return false;
+		}
+
+		return
+			userParties.stream()
+				.anyMatch(up ->
+						nullSafeSupplier(() ->
+							   up.getParty().getPartyUniqueToken().equals(partyUniqueToken)
+							&& up.getStatus().equals(FRIEND_STATUS_ACCEPTED)
+						, false)
+					);
 	}
 }

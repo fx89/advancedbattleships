@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="Q96f5WNDCmfQpQFSebxe" name="Page-1">
-        <mxGraphModel dx="2676" dy="2860" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="989" dy="1702" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -337,7 +337,7 @@
                 <mxCell id="142" value="UserFriend" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1010" y="-635" width="200" height="90" as="geometry"/>
                 </mxCell>
-                <mxCell id="143" value="USER_UNIQUE_TOKEN&lt;br&gt;FRIEND_USER_UNIQUE_TOKEN&lt;br&gt;status" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="142" vertex="1">
+                <mxCell id="143" value="USER_UNIQUE_TOKEN&lt;br&gt;FRIEND_USER_UNIQUE_TOKEN&lt;br&gt;PRIVATE_PARTY_UNIQUE_TOKEN&lt;br&gt;status" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="142" vertex="1">
                     <mxGeometry y="29" width="200" height="61" as="geometry"/>
                 </mxCell>
                 <mxCell id="146" value="Party" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
@@ -425,7 +425,7 @@
                 <mxCell id="172" value="ChatChannelBan" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1472.5" y="-620" width="215" height="90" as="geometry"/>
                 </mxCell>
-                <mxCell id="173" value="chatChannel&lt;br&gt;USER_UNIQUE_TOKEN&lt;br&gt;isPermanent&lt;br&gt;timeTillLiftedMins" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="172" vertex="1">
+                <mxCell id="173" value="chatChannel&lt;br&gt;USER_UNIQUE_TOKEN&lt;br&gt;isPermanent&lt;br&gt;timeWhenLifted" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#FFFFFF;" parent="172" vertex="1">
                     <mxGeometry y="29" width="215" height="61" as="geometry"/>
                 </mxCell>
                 <mxCell id="178" value="The PARTY_UNIQUE_TOKEN in the chat channel will never be NULL. Each user is added to the preset GENERAL_PARTY channel. Private party channels will be private channels.&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">

@@ -1,6 +1,7 @@
 package com.advancedbattleships.chat.dataservice.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public interface ChatChannelBan extends Serializable {
 
@@ -16,7 +17,7 @@ public interface ChatChannelBan extends Serializable {
 
 	void setPermanent(Boolean isPermanent);
 
-	Long getTimeTillLiftedMins();
+	Date getTimeWhenLifted();
 
-	void setTimeTillLiftedMins(Long timeTillLiftedMins);
+	void setTimeWhenLifted(Date timeWhenLifted);
 }

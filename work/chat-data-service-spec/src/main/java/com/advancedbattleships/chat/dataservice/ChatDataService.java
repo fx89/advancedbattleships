@@ -1,6 +1,7 @@
 package com.advancedbattleships.chat.dataservice;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 
 import com.advancedbattleships.chat.dataservice.model.ChatChannel;
@@ -26,13 +27,9 @@ public interface ChatDataService {
 
 	Collection<ChatChannelBan> findAllChatChannelBansByChatChannelName(String chatChannelName);
 
-	Collection<ChatChannelBan> findAllChatChannelBansByUserUniqueToken(String userUniqueToken);
+	Collection<ChatChannelBan> findAllChatChannelBansByUserUniqueTokenAndChatChannelPartyUniqueTokenAndTimeWhenLiftedAfter(String userUniqueToken, String partyUniqueToken, Date timeWhenLifted);
 
-	Collection<ChatChannelBan> findAllChatChannelBansByUserUniqueTokenAndTimeTillLiftedMinsGreaterThan(String userUniqueToken, Long timeTillLifted);
-
-	Collection<ChatChannelBan> findAllChatChannelBansByUserUniqueTokenAndChatChannelAndTimeTillLiftedMinsGreaterThan(String userUniqueToken, ChatChannel chatChannel, Long timeTillLifted);
-
-	Collection<ChatChannelBan> findAllChatChannelBansByUserUniqueTokenAndChatChannelNameAndTimeTillLiftedMinsGreaterThan(String userUniqueToken, String chatChannelName, Long timeTillLifted);
+	int countAllChatChannelBansByUserUniqueTokenAndChatChannelPartyUniqueTokenAndTimeWhenLiftedAfter(String userUniqueToken, String partyUniqueToken, Date timeWhenLifted);
 
 	ChatChannelBan newChatChannelBan();
 

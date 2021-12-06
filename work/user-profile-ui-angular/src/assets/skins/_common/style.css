@@ -511,3 +511,15 @@ body {
         opacity: 0%;
     }
 }
+
+.thin-scrollbars {
+    scrollbar-width: thin;
+}
+
+.thin-scrollbars::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.thin-scrollbars::-webkit-scrollbar:hover {
+    width: 0.5em;
+}

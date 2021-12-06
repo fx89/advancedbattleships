@@ -158,6 +158,7 @@ public class SpringDataSocialDataService implements SocialDataService {
 		return userFriendsRepository.findOneByUserUniqueTokenAndFriendUserUniqueToken(userUniqueToken, friendUniqueToken);
 	}
 
+	// TODO: __ PRIORITY 0: remove multicast* and just use generics: <? extends interface>
 	@Override
 	public Iterable<FriendStatus> findAllFriendStatuses() {
 		return multicastIterable(friendStatusesRepository.findAll());
@@ -167,5 +168,15 @@ public class SpringDataSocialDataService implements SocialDataService {
 	@Transactional("absSocialTransactionManager")
 	public void executeTransaction(Runnable code) {
 		code.run();
+	}
+
+	@Override
+	public Collection<UserParty> getUserPartyRecords(String userUniqueToken) {
+		return multicastSet(userPartiesRepository.findAllByUserUniqueToken(userUniqueToken));
+	}
+
+	@Override
+	public Set<Party> findAllParties() {
+		return multicastSet(partiesRepository.findAll());
 	}
 }

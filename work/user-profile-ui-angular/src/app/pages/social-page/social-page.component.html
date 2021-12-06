@@ -31,7 +31,7 @@
                     <lite-ng-pushbutton additionalClass="friends-list-button" text="Remove selected"></lite-ng-pushbutton>
                 </td>
                 <td class="friend-chat-container-td" style="vertical-align:top;">
-                    <div class="friend-chat-container">
+                    <div class="friend-chat-container thin-scrollbars">
                         <div style="width:100%">
                             <div *ngFor="let request of unattendedFriendRequests"
                                  class="user-friend-request"
@@ -51,7 +51,7 @@
                                 </tr></table>
                             </div>
                         </div>
-                        <div style="width:1100%">
+                        <div style="width:100%">
                             <div *ngIf="selectedFriend"
                                 class="social-chat-status"
                                 [class.online]="selectedFriend?.isOnline"
@@ -64,11 +64,35 @@
                                     {{ selectedFriend?.nickName }} is offline and will be unable to respond right away
                                 </span>
                             </div>
-
-
-
-
-
+                        </div>
+                        <div
+                            class="scrolling-chat-window"
+                            *ngIf="selectedChatPartyChannelUniqueToken"
+                        >
+                            <div class="scrolling-chat-window-message"
+                                *ngFor="let chatMessage of selectedChatMessagesWindow"
+                            >
+                                <div
+                                    class="scrolling-chat-window-balloon"
+                                    [class.current-user-ballon]="isCurrentUser(chatMessage.fromUserUniqueToken)"
+                                >
+                                    <span class="nickname-row">
+                                        {{userTokenToNickName(chatMessage.fromUserUniqueToken)}}
+                                    </span>
+                                    <br />
+                                    <span class="message-row">
+                                        {{ chatMessage.message }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-message-entry-form">
+                            <lite-ng-text-field
+                                [(value)]="newChatMessage"
+                                placeholder="Enter chat message"
+                                [widthPCT]="100"
+                                (keyUpEvent)="onNewChatMessageFieldKeyUp($event)"
+                            ></lite-ng-text-field>
                         </div>
                     </div>
                 </td>

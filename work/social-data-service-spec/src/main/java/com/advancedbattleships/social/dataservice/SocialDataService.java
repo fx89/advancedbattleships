@@ -17,6 +17,11 @@ public interface SocialDataService {
 	public Set<Party> findPartiesByNameLike(String nameLike);
 
 	/**
+	 * Retrieves all parties
+	 */
+	public Set<Party> findAllParties();
+
+	/**
 	 * Returns a set of unique tokens of the users in the given party
 	 */
 	public Set<String> getPartyUserUniqueTokens(String partyUniqueToken);
@@ -25,6 +30,12 @@ public interface SocialDataService {
 	 * Returns a set of parties to which the current user belongs
 	 */
 	public Set<Party> getUserParties(String userUniqueToken);
+
+	/**
+	 * Returns the actual mapping records between the referenced user and
+	 * any parties it might be part of
+	 */
+	public Collection<UserParty> getUserPartyRecords(String userUniqueToken);
 
 	/**
 	 * Returns a set of unique friends of the user whose unique token is given as
@@ -107,5 +118,5 @@ public interface SocialDataService {
 	/**
 	 * Returns a list of all friend statuses defined in the database
 	 */
-	public Iterable<FriendStatus> findAllFriendStatuses();
+	public Iterable<? extends FriendStatus> findAllFriendStatuses();
 }

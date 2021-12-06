@@ -11,6 +11,10 @@ public interface UserFriend extends Serializable {
 
 	void setFriendUserUniqueToken(String friendUserUniqueToken);
 
+	String getPrivatePartyUniqueToken();
+
+	void setPrivatePartyUniqueToken(String privatePartyUniqueToken);
+
 	FriendStatus getStatus();
 
 	void setStatus(FriendStatus status);

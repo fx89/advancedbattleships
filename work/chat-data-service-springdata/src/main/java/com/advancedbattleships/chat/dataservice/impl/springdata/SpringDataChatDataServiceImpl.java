@@ -1,22 +1,23 @@
-package com.advancedbattleships.social.dataservice.impl.springdata;
+package com.advancedbattleships.chat.dataservice.impl.springdata;
 
 import static com.advancedbattleships.common.lang.Multicast.multicastCollection;
 import static com.advancedbattleships.common.lang.Multicast.multicastSet;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.advancedbattleships.chat.dataservice.ChatDataService;
+import com.advancedbattleships.chat.dataservice.impl.springdata.dao.ChatChannelBansRepository;
+import com.advancedbattleships.chat.dataservice.impl.springdata.dao.ChatChannelsRepository;
+import com.advancedbattleships.chat.dataservice.impl.springdata.model.ChatChannelBanImpl;
+import com.advancedbattleships.chat.dataservice.impl.springdata.model.ChatChannelImpl;
 import com.advancedbattleships.chat.dataservice.model.ChatChannel;
 import com.advancedbattleships.chat.dataservice.model.ChatChannelBan;
-import com.advancedbattleships.social.dataservice.impl.springdata.dao.ChatChannelBansRepository;
-import com.advancedbattleships.social.dataservice.impl.springdata.dao.ChatChannelsRepository;
-import com.advancedbattleships.social.dataservice.impl.springdata.model.ChatChannelBanImpl;
-import com.advancedbattleships.social.dataservice.impl.springdata.model.ChatChannelImpl;
 
 @Service
 public class SpringDataChatDataServiceImpl implements ChatDataService {
@@ -93,62 +94,36 @@ public class SpringDataChatDataServiceImpl implements ChatDataService {
 	}
 
 	@Override
-	public Collection<ChatChannelBan> findAllChatChannelBansByUserUniqueToken(String userUniqueToken) {
+	public Collection<ChatChannelBan> findAllChatChannelBansByUserUniqueTokenAndChatChannelPartyUniqueTokenAndTimeWhenLiftedAfter(
+			String userUniqueToken, String partyUniqueToken, Date timeWhenLifted
+		)
+	{
 		return multicastCollection(
-			chatChannelBansRepository.findAllByUserUniqueToken(userUniqueToken),
+			chatChannelBansRepository
+				.findAllByUserUniqueTokenAndChatChannelPartyUniqueTokenAndTimeWhenLiftedAfter(
+						userUniqueToken,
+						partyUniqueToken,
+						timeWhenLifted
+					),
 			(s) -> new ArrayList<>(s),
 			chatChannelBan -> chatChannelBan
 		);
 	}
 
 	@Override
-	public Collection<ChatChannelBan> findAllChatChannelBansByUserUniqueTokenAndTimeTillLiftedMinsGreaterThan(
+	public int countAllChatChannelBansByUserUniqueTokenAndChatChannelPartyUniqueTokenAndTimeWhenLiftedAfter(
 		String userUniqueToken,
-		Long timeTillLiftedMins
+		String partyUniqueToken,
+		Date timeWhenLifted
 	) {
-		return multicastCollection(
-			chatChannelBansRepository.findAllByUserUniqueTokenAndTimeTillLiftedMinsGreaterThan(
-				userUniqueToken,
-				timeTillLiftedMins
-			),
-			(s) -> new ArrayList<>(s),
-			chatChannelBan -> chatChannelBan
-		);
+		return chatChannelBansRepository
+				.countAllByUserUniqueTokenAndChatChannelPartyUniqueTokenAndTimeWhenLiftedAfter(
+						userUniqueToken,
+						partyUniqueToken,
+						timeWhenLifted
+					);
 	}
 
-	@Override
-	public Collection<ChatChannelBan> findAllChatChannelBansByUserUniqueTokenAndChatChannelAndTimeTillLiftedMinsGreaterThan(
-		String userUniqueToken,
-		ChatChannel chatChannel,
-		Long timeTillLiftedMins
-	) {
-		return multicastCollection(
-			chatChannelBansRepository.findAllByUserUniqueTokenAndChatChannelIdAndTimeTillLiftedMinsGreaterThan(
-				userUniqueToken,
-				((ChatChannelImpl) chatChannel).getId(),
-				timeTillLiftedMins
-			),
-			(s) -> new ArrayList<>(s),
-			chatChannelBan -> chatChannelBan
-		);
-	}
-
-	@Override
-	public Collection<ChatChannelBan> findAllChatChannelBansByUserUniqueTokenAndChatChannelNameAndTimeTillLiftedMinsGreaterThan(
-		String userUniqueToken,
-		String chatChannelName,
-		Long timeTillLiftedMins
-	) {
-		return multicastCollection(
-			chatChannelBansRepository.findAllByUserUniqueTokenAndChatChannelNameAndTimeTillLiftedMinsGreaterThan(
-				userUniqueToken,
-				chatChannelName,
-				timeTillLiftedMins
-			),
-			(s) -> new ArrayList<>(s),
-			chatChannelBan -> chatChannelBan
-		);
-	}
 
 	@Override
 	public ChatChannelBan newChatChannelBan() {
