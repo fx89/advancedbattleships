@@ -35,7 +35,7 @@ public interface SecurityDataService {
 
 	User findUserByNickName(String nickName);
 
-	Set<User> findUsersByUniqueToken(Set<String> uniqueTokens);
+	Set<? extends User> findUsersByUniqueToken(Set<String> uniqueTokens);
 
 	/**
 	 * Sets the Online flag to the given value for users who's unique tokens

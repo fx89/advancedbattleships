@@ -1,7 +1,5 @@
 package com.advancedbattleships.security.dataservice.impl.springdata;
 
-import static com.advancedbattleships.common.lang.Multicast.multicastSet;
-
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,8 +99,8 @@ public class SpringDataSecurityDataService implements SecurityDataService {
 	}
 
 	@Override
-	public Set<User> findUsersByUniqueToken(Set<String> uniqueTokens) {
-		return multicastSet(usersRepository.findAllByUniqueTokenIn(uniqueTokens));
+	public Set<? extends User> findUsersByUniqueToken(Set<String> uniqueTokens) {
+		return usersRepository.findAllByUniqueTokenIn(uniqueTokens);
 	}
 
 	@Override

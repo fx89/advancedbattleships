@@ -178,8 +178,9 @@ public class ContentService {
 		saveUserUiConfig(userUiConfig);
 	}
 
+	@SuppressWarnings("unchecked")
 	public Set<UserUiConfig> getUsersConfig(Set<String> userUniqueTokens) {
-		return dataService.findAllUsersByUniqueToken(userUniqueTokens);
+		return (Set<UserUiConfig>) dataService.findAllUsersByUniqueToken(userUniqueTokens);
 	}
 
 	private void verifyAvailableLogo(String userUniqueToken, String logoName) {

@@ -1,7 +1,5 @@
 package com.advancedbattleships.content.dataservice.impl.springdata;
 
-import static com.advancedbattleships.common.lang.Multicast.multicastSet;
-
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,8 +65,8 @@ public class SpringDataContentDataService implements ContentDataService {
 	}
 
 	@Override
-	public Set<UserAccessibleIconTheme> findAllUserAccessibleIconThemes(String userUniqueToken) {
-		return multicastSet(userAccessibleIconThemesRepository.findAllByUserUserUniqueToken(userUniqueToken));
+	public Set<? extends UserAccessibleIconTheme> findAllUserAccessibleIconThemes(String userUniqueToken) {
+		return userAccessibleIconThemesRepository.findAllByUserUserUniqueToken(userUniqueToken);
 	}
 
 	@Override
@@ -80,8 +78,8 @@ public class SpringDataContentDataService implements ContentDataService {
 	}
 
 	@Override
-	public Set<UserAccessibleLogo> findAllUserAccessibleLogos(String userUniqueToken) {
-		return multicastSet(userAccessibleLogosRepository.findAllByUserUserUniqueToken(userUniqueToken));
+	public Set<? extends UserAccessibleLogo> findAllUserAccessibleLogos(String userUniqueToken) {
+		return userAccessibleLogosRepository.findAllByUserUserUniqueToken(userUniqueToken);
 	}
 
 	@Override
@@ -93,8 +91,8 @@ public class SpringDataContentDataService implements ContentDataService {
 	}
 
 	@Override
-	public Set<UserAccessibleStylesheet> findAllUserAccessibleStylesheets(String userUniqueToken) {
-		return multicastSet(userAccessibleStylesheetsRepository.findAllByUserUserUniqueToken(userUniqueToken));
+	public Set<? extends UserAccessibleStylesheet> findAllUserAccessibleStylesheets(String userUniqueToken) {
+		return userAccessibleStylesheetsRepository.findAllByUserUserUniqueToken(userUniqueToken);
 	}
 
 	@Override
@@ -106,8 +104,8 @@ public class SpringDataContentDataService implements ContentDataService {
 	}
 
 	@Override
-	public Set<UserAccessibleWallpaper> findAllUserAccessibleWallpapaers(String userUniqueToken) {
-		return multicastSet(userAccessibleWallpapersRepository.findAllByUserUserUniqueToken(userUniqueToken));
+	public Set<? extends UserAccessibleWallpaper> findAllUserAccessibleWallpapaers(String userUniqueToken) {
+		return userAccessibleWallpapersRepository.findAllByUserUserUniqueToken(userUniqueToken);
 	}
 
 	@Override
@@ -125,7 +123,7 @@ public class SpringDataContentDataService implements ContentDataService {
 	}
 
 	@Override
-	public Set<UserUiConfig> findAllUsersByUniqueToken(Set<String> userUniqueTokens) {
-		return multicastSet(usersRepository.findAllByUserUniqueTokenIn(userUniqueTokens));
+	public Set<? extends UserUiConfig> findAllUsersByUniqueToken(Set<String> userUniqueTokens) {
+		return usersRepository.findAllByUserUniqueTokenIn(userUniqueTokens);
 	}
 }

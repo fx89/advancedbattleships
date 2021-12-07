@@ -1,9 +1,5 @@
 package com.advancedbattleships.inventory.dataservice.impl.springdata;
 
-import static com.advancedbattleships.common.lang.Multicast.multicastSet;
-import static com.advancedbattleships.common.lang.Multicast.multicastList;
-import static com.advancedbattleships.common.lang.Multicast.multicastIterable;
-
 import java.util.List;
 import java.util.Set;
 
@@ -67,8 +63,8 @@ public class SpringDataInventoryDataService implements InventoryDataService {
 	}
 
 	@Override
-	public List<BattleshipTemplate> getUserBattleshipTemplates(String userUniqueToken) {
-		return multicastList(battleshipTemplatesRepository.findAllByUserUniqueToken(userUniqueToken));
+	public List<? extends BattleshipTemplate> getUserBattleshipTemplates(String userUniqueToken) {
+		return battleshipTemplatesRepository.findAllByUserUniqueToken(userUniqueToken);
 	}
 
 	@Override
@@ -77,9 +73,9 @@ public class SpringDataInventoryDataService implements InventoryDataService {
 	}
 
 	@Override
-	public List<BattleshipTemplateSubsystem> getBattleshipTemplateSubsystems(BattleshipTemplate battleshipTemplate) {
+	public List<? extends BattleshipTemplateSubsystem> getBattleshipTemplateSubsystems(BattleshipTemplate battleshipTemplate) {
 		BattleshipTemplateImpl t = castBattleshipTemplate(battleshipTemplate);
-		return multicastList(battleshipTemplateSubsystemsRepository.findAllByBattleshipTemplateId(t.getId()));
+		return battleshipTemplateSubsystemsRepository.findAllByBattleshipTemplateId(t.getId());
 	}
 
 	@Override
@@ -116,8 +112,8 @@ public class SpringDataInventoryDataService implements InventoryDataService {
 	}
 
 	@Override
-	public List<SubsystemRef> getSubsystemRefs() {
-		return multicastList(subsystemRefsRepository.findAll());
+	public List<? extends SubsystemRef> getSubsystemRefs() {
+		return subsystemRefsRepository.findAll();
 	}
 
 	private static BattleshipTemplateImpl castBattleshipTemplate(BattleshipTemplate battleshipTemplate) {
@@ -151,13 +147,13 @@ public class SpringDataInventoryDataService implements InventoryDataService {
 	}
 
 	@Override
-	public Iterable<SubsystemType> getSubsystemTypes() {
-		return multicastIterable(subsystemTypesRepository.findAll());
+	public Iterable<? extends SubsystemType> getSubsystemTypes() {
+		return subsystemTypesRepository.findAll();
 	}
 
 	@Override
-	public Set<SubsystemRef> getSubsystemsByTypeName(String subsystemTypeName) {
-		return multicastSet(subsystemRefsRepository.findAllByTypeName(subsystemTypeName));
+	public Set<? extends SubsystemRef> getSubsystemsByTypeName(String subsystemTypeName) {
+		return subsystemRefsRepository.findAllByTypeName(subsystemTypeName);
 	}
 
 	@Override

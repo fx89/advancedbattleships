@@ -60,8 +60,9 @@ public class MessagingService {
 	}
 
 	private void initMessageTypes() {
+		@SuppressWarnings("unchecked")
 		Set<PersistentMessageType> messageTypes
-			= messagingDataService.findAllPersistentMessageTypes();
+			= (Set<PersistentMessageType>) messagingDataService.findAllPersistentMessageTypes();
 
 		msgTypeFriendRequest  = extractMessageType(MSG_TYPE_FRIEND_REQUEST , messageTypes);
 		msgTypePartyRequest   = extractMessageType(MSG_TYPE_PARTY_REQUEST  , messageTypes);
@@ -80,8 +81,9 @@ public class MessagingService {
 	}
 
 	private void initChannels() {
+		@SuppressWarnings("unchecked")
 		Set<PersistentMessageChannel> channels
-			= messagingDataService.findAllPersistentMessageChannels();
+			= (Set<PersistentMessageChannel>) messagingDataService.findAllPersistentMessageChannels();
 
 		chFriendRequests   = extractMessageChannel(CH_FRIEND_REQUESTS , channels);
 		chPartyRequests    = extractMessageChannel(CH_PARTY_REQUESTS  , channels);
@@ -100,8 +102,9 @@ public class MessagingService {
 	}
 
 	private void initSourceTypes() {
+		@SuppressWarnings("unchecked")
 		Set<PersistentMessageSourceType> sourceTypes
-			= messagingDataService.findAllPersistentMessageSourceTypes();
+			= (Set<PersistentMessageSourceType>) messagingDataService.findAllPersistentMessageSourceTypes();
 
 		srcTypeUser   = extractSourceType(SRC_USER  , sourceTypes);
 		srcTypeSystem = extractSourceType(SRC_SYSTEM, sourceTypes);
@@ -119,7 +122,7 @@ public class MessagingService {
 	/**
 	 * Get unread messages for the referenced users on the given channel
 	 */
-	public List<PersistentMessage> getUnreadPersistentMessagesForUserOnChannel(String userUniqueToken, PersistentMessageChannel channel) {
+	public List<? extends PersistentMessage> getUnreadPersistentMessagesForUserOnChannel(String userUniqueToken, PersistentMessageChannel channel) {
 		return
 			messagingDataService
 				.findPersistentMessagesByUserUniqueTokenAndReadAndChannel(
@@ -129,7 +132,7 @@ public class MessagingService {
 	/**
 	 * Get unread friend requests for the referenced user
 	 */
-	public List<PersistentMessage> getUnresolvedFriendRequests(String userUniqueToken) {
+	public List<? extends PersistentMessage> getUnresolvedFriendRequests(String userUniqueToken) {
 		return getUnreadPersistentMessagesForUserOnChannel(userUniqueToken, chFriendRequests);
 	}
 
@@ -183,10 +186,12 @@ public class MessagingService {
 	 * Fetches a list of persistent messages that require the attention of the
 	 * user having the given unique token while also marking them as notified. 
 	 */
+	@SuppressWarnings("unchecked")
 	public List<PersistentMessage> getUserNotifications(String userUniqueToken) {
 		List<PersistentMessage> messages
-			= messagingDataService
-				.findPersistentMessagesByUserUniqueTokenAndIsUserNotified(userUniqueToken, false);
+			= (List<PersistentMessage>)
+				messagingDataService
+					.findPersistentMessagesByUserUniqueTokenAndIsUserNotified(userUniqueToken, false);
 
 		if (messages.size() > 0) {
 			messages.forEach(msg -> msg.setUserNotified(true));

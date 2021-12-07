@@ -1,8 +1,6 @@
 package com.advancedbattleships.social.dataservice.impl.springdata;
 
 import static com.advancedbattleships.common.lang.Multicast.multicastCollection;
-import static com.advancedbattleships.common.lang.Multicast.multicastIterable;
-import static com.advancedbattleships.common.lang.Multicast.multicastSet;
 import static java.util.stream.Collectors.toSet;
 
 import java.util.ArrayList;
@@ -43,8 +41,8 @@ public class SpringDataSocialDataService implements SocialDataService {
 	private FriendStatusesRepository friendStatusesRepository;
 
 	@Override
-	public Set<Party> findPartiesByNameLike(String nameLike) {
-		return multicastSet(partiesRepository.findAllByNameLike(nameLike));
+	public Set<? extends Party> findPartiesByNameLike(String nameLike) {
+		return partiesRepository.findAllByNameLike(nameLike);
 	}
 
 	@Override
@@ -56,7 +54,7 @@ public class SpringDataSocialDataService implements SocialDataService {
 	}
 
 	@Override
-	public Set<Party> getUserParties(String userUniqueToken) {
+	public Set<? extends Party> getUserParties(String userUniqueToken) {
 		return userPartiesRepository.findAllByUserUniqueToken(userUniqueToken)
 			.stream()
 				.map(UserPartyImpl::getParty)
@@ -64,18 +62,18 @@ public class SpringDataSocialDataService implements SocialDataService {
 	}
 
 	@Override
-	public Set<UserFriend> getUserFriends(String userUniqueToken) {
-		return multicastSet(userFriendsRepository.findAllByUserUniqueToken(userUniqueToken));
+	public Set<? extends UserFriend> getUserFriends(String userUniqueToken) {
+		return userFriendsRepository.findAllByUserUniqueToken(userUniqueToken);
 	}
 
 	@Override
-	public Set<UserFriend> getUserFriends(String userUniqueToken, String statusName) {
-		return multicastSet(userFriendsRepository.findAllByUserUniqueTokenAndStatusName(userUniqueToken, statusName));
+	public Set<? extends UserFriend> getUserFriends(String userUniqueToken, String statusName) {
+		return userFriendsRepository.findAllByUserUniqueTokenAndStatusName(userUniqueToken, statusName);
 	}
 
 	@Override
-	public Set<UserFriend> getUserFriends(String userUniqueToken, List<String> statusNames) {
-		return multicastSet(userFriendsRepository.findAllByUserUniqueTokenAndStatusNameIn(userUniqueToken, statusNames));
+	public Set<? extends UserFriend> getUserFriends(String userUniqueToken, List<String> statusNames) {
+		return userFriendsRepository.findAllByUserUniqueTokenAndStatusNameIn(userUniqueToken, statusNames);
 	}
 
 	@Override
@@ -90,7 +88,7 @@ public class SpringDataSocialDataService implements SocialDataService {
 	}
 
 	@Override
-	public void saveUserFriends(Collection<UserFriend> userFriends) {
+	public void saveUserFriends(Collection<? extends UserFriend> userFriends) {
 		userFriendsRepository.saveAll(
 			multicastCollection(
 				userFriends,
@@ -122,7 +120,7 @@ public class SpringDataSocialDataService implements SocialDataService {
 	}
 
 	@Override
-	public void saveUserParties(Collection<UserParty> userParties) {
+	public void saveUserParties(Collection<? extends UserParty> userParties) {
 		userPartiesRepository.saveAll(
 			multicastCollection(
 					userParties,
@@ -143,7 +141,7 @@ public class SpringDataSocialDataService implements SocialDataService {
 	}
 
 	@Override
-	public void saveParties(Collection<Party> parties) {
+	public void saveParties(Collection<? extends Party> parties) {
 		partiesRepository.saveAll(
 			multicastCollection(
 					parties,
@@ -158,10 +156,10 @@ public class SpringDataSocialDataService implements SocialDataService {
 		return userFriendsRepository.findOneByUserUniqueTokenAndFriendUserUniqueToken(userUniqueToken, friendUniqueToken);
 	}
 
-	// TODO: __ PRIORITY 0: remove multicast* and just use generics: <? extends interface>
+
 	@Override
-	public Iterable<FriendStatus> findAllFriendStatuses() {
-		return multicastIterable(friendStatusesRepository.findAll());
+	public Iterable<? extends FriendStatus> findAllFriendStatuses() {
+		return friendStatusesRepository.findAll();
 	}
 
 	@Override
@@ -171,12 +169,12 @@ public class SpringDataSocialDataService implements SocialDataService {
 	}
 
 	@Override
-	public Collection<UserParty> getUserPartyRecords(String userUniqueToken) {
-		return multicastSet(userPartiesRepository.findAllByUserUniqueToken(userUniqueToken));
+	public Collection<? extends UserParty> getUserPartyRecords(String userUniqueToken) {
+		return userPartiesRepository.findAllByUserUniqueToken(userUniqueToken);
 	}
 
 	@Override
-	public Set<Party> findAllParties() {
-		return multicastSet(partiesRepository.findAll());
+	public Set<? extends Party> findAllParties() {
+		return partiesRepository.findAll();
 	}
 }

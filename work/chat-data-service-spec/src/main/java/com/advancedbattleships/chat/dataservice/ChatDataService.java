@@ -9,25 +9,25 @@ import com.advancedbattleships.chat.dataservice.model.ChatChannelBan;
 
 public interface ChatDataService {
 
-	Set<ChatChannel> findAllChatChannels();
+	Set<? extends ChatChannel> findAllChatChannels();
 
-	Set<ChatChannel> findAllPublicChatChannels();
+	Set<? extends ChatChannel> findAllPublicChatChannels();
 
-	Set<ChatChannel> findChatChannelsForParties(Collection<String> partyUniqueTokens);
+	Set<? extends ChatChannel> findChatChannelsForParties(Collection<String> partyUniqueTokens);
 
 	ChatChannel newChatChannel();
 
 	ChatChannel saveChatChannel(ChatChannel chatChannel);
 
-	void saveChatChannels(Collection<ChatChannel> chatChannels);
+	void saveChatChannels(Collection<? extends ChatChannel> chatChannels);
 
-	Collection<ChatChannelBan> findAllChatChannelBans();
+	Collection<? extends ChatChannelBan> findAllChatChannelBans();
 
-	Collection<ChatChannelBan> findAllChatChannelBansByChatChannel(ChatChannel chatChannel);
+	Collection<? extends ChatChannelBan> findAllChatChannelBansByChatChannel(ChatChannel chatChannel);
 
-	Collection<ChatChannelBan> findAllChatChannelBansByChatChannelName(String chatChannelName);
+	Collection<? extends ChatChannelBan> findAllChatChannelBansByChatChannelName(String chatChannelName);
 
-	Collection<ChatChannelBan> findAllChatChannelBansByUserUniqueTokenAndChatChannelPartyUniqueTokenAndTimeWhenLiftedAfter(String userUniqueToken, String partyUniqueToken, Date timeWhenLifted);
+	Collection<? extends ChatChannelBan> findAllChatChannelBansByUserUniqueTokenAndChatChannelPartyUniqueTokenAndTimeWhenLiftedAfter(String userUniqueToken, String partyUniqueToken, Date timeWhenLifted);
 
 	int countAllChatChannelBansByUserUniqueTokenAndChatChannelPartyUniqueTokenAndTimeWhenLiftedAfter(String userUniqueToken, String partyUniqueToken, Date timeWhenLifted);
 
@@ -35,9 +35,9 @@ public interface ChatDataService {
 
 	ChatChannelBan saveChatChannelBan(ChatChannelBan chatChannelBan);
 
-	void saveChatChannelBans(Collection<ChatChannelBan> chatChannelBans);
+	void saveChatChannelBans(Collection<? extends ChatChannelBan> chatChannelBans);
 
 	void deleteChatChannelBan(ChatChannelBan chatChannelBan);
 
-	void deleteChatChannelBans(Collection<ChatChannelBan> chatChannelBans);
+	void deleteChatChannelBans(Collection<? extends ChatChannelBan> chatChannelBans);
 }

@@ -1,7 +1,6 @@
 package com.advancedbattleships.chat.dataservice.impl.springdata;
 
 import static com.advancedbattleships.common.lang.Multicast.multicastCollection;
-import static com.advancedbattleships.common.lang.Multicast.multicastSet;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,18 +28,18 @@ public class SpringDataChatDataServiceImpl implements ChatDataService {
 	ChatChannelBansRepository chatChannelBansRepository;
 
 	@Override
-	public Set<ChatChannel> findAllChatChannels() {
-		return multicastSet(chatChannelsRepository.findAll());
+	public Set<? extends ChatChannel> findAllChatChannels() {
+		return chatChannelsRepository.findAll();
 	}
 
 	@Override
-	public Set<ChatChannel> findAllPublicChatChannels() {
-		return multicastSet(chatChannelsRepository.findAllByIsPrivate(false));
+	public Set<? extends ChatChannel> findAllPublicChatChannels() {
+		return chatChannelsRepository.findAllByIsPrivate(false);
 	}
 
 	@Override
-	public Set<ChatChannel> findChatChannelsForParties(Collection<String> partyUniqueTokens) {
-		return multicastSet(chatChannelsRepository.findAllByPartyUniqueTokenIn(partyUniqueTokens));
+	public Set<? extends ChatChannel> findChatChannelsForParties(Collection<String> partyUniqueTokens) {
+		return chatChannelsRepository.findAllByPartyUniqueTokenIn(partyUniqueTokens);
 	}
 
 	@Override
@@ -54,7 +53,7 @@ public class SpringDataChatDataServiceImpl implements ChatDataService {
 	}
 
 	@Override
-	public void saveChatChannels(Collection<ChatChannel> chatChannels) {
+	public void saveChatChannels(Collection<? extends ChatChannel> chatChannels) {
 		chatChannelsRepository.saveAll(
 			multicastCollection(
 				chatChannels,
@@ -65,49 +64,35 @@ public class SpringDataChatDataServiceImpl implements ChatDataService {
 	}
 
 	@Override
-	public Collection<ChatChannelBan> findAllChatChannelBans() {
-		return multicastCollection(
-			chatChannelBansRepository.findAll(),
-			(s) -> new ArrayList<>(s),
-			chatChannelBan -> chatChannelBan
-		);
+	public Collection<? extends ChatChannelBan> findAllChatChannelBans() {
+		return chatChannelBansRepository.findAll();
 	}
 
 	@Override
-	public Collection<ChatChannelBan> findAllChatChannelBansByChatChannel(ChatChannel chatChannel) {
-		return multicastCollection(
+	public Collection<? extends ChatChannelBan> findAllChatChannelBansByChatChannel(ChatChannel chatChannel) {
+		return 
 			chatChannelBansRepository.findAllByChatChannelId(
 				((ChatChannelImpl) chatChannel).getId()
-			),
-			(s) -> new ArrayList<>(s),
-			chatChannelBan -> chatChannelBan
-		);
+			);
 	}
 
 	@Override
-	public Collection<ChatChannelBan> findAllChatChannelBansByChatChannelName(String chatChannelName) {
-		return multicastCollection(
-			chatChannelBansRepository.findAllByChatChannelName(chatChannelName),
-			(s) -> new ArrayList<>(s),
-			chatChannelBan -> chatChannelBan
-		);
+	public Collection<? extends ChatChannelBan> findAllChatChannelBansByChatChannelName(String chatChannelName) {
+		return chatChannelBansRepository.findAllByChatChannelName(chatChannelName);
 	}
 
 	@Override
-	public Collection<ChatChannelBan> findAllChatChannelBansByUserUniqueTokenAndChatChannelPartyUniqueTokenAndTimeWhenLiftedAfter(
+	public Collection<? extends ChatChannelBan> findAllChatChannelBansByUserUniqueTokenAndChatChannelPartyUniqueTokenAndTimeWhenLiftedAfter(
 			String userUniqueToken, String partyUniqueToken, Date timeWhenLifted
 		)
 	{
-		return multicastCollection(
+		return
 			chatChannelBansRepository
 				.findAllByUserUniqueTokenAndChatChannelPartyUniqueTokenAndTimeWhenLiftedAfter(
 						userUniqueToken,
 						partyUniqueToken,
 						timeWhenLifted
-					),
-			(s) -> new ArrayList<>(s),
-			chatChannelBan -> chatChannelBan
-		);
+					);
 	}
 
 	@Override
@@ -136,7 +121,7 @@ public class SpringDataChatDataServiceImpl implements ChatDataService {
 	}
 
 	@Override
-	public void saveChatChannelBans(Collection<ChatChannelBan> chatChannelBans) {
+	public void saveChatChannelBans(Collection<? extends ChatChannelBan> chatChannelBans) {
 		chatChannelBansRepository.saveAll(
 			multicastCollection(
 				chatChannelBans,
@@ -152,7 +137,7 @@ public class SpringDataChatDataServiceImpl implements ChatDataService {
 	}
 
 	@Override
-	public void deleteChatChannelBans(Collection<ChatChannelBan> chatChannelBans) {
+	public void deleteChatChannelBans(Collection<? extends ChatChannelBan> chatChannelBans) {
 		chatChannelBansRepository.deleteAll(
 			multicastCollection(
 				chatChannelBans,

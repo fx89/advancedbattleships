@@ -34,7 +34,7 @@ public interface InventoryDataService {
 	/**
 	 * Returns a list of the battleship templates in the user's inventory
 	 */
-	List<BattleshipTemplate> getUserBattleshipTemplates(String userUniqueToken);
+	List<? extends BattleshipTemplate> getUserBattleshipTemplates(String userUniqueToken);
 
 	/**
 	 * Returns a reference to the battleship template having the given unique token
@@ -44,7 +44,7 @@ public interface InventoryDataService {
 	/**
 	 * Returns a list of subsystems belonging to the referenced battleship template.
 	 */
-	List<BattleshipTemplateSubsystem> getBattleshipTemplateSubsystems(BattleshipTemplate battleshipTemplate);
+	List<? extends BattleshipTemplateSubsystem> getBattleshipTemplateSubsystems(BattleshipTemplate battleshipTemplate);
 
 	/**
 	 * Adds a subsystem of the referenced type to the referenced battleship template
@@ -75,7 +75,7 @@ public interface InventoryDataService {
 	 * Returns a list of all available subsystem references to be used in a battleship
 	 * template. These are defined by the admin and are not editable by users.
 	 */
-	List<SubsystemRef> getSubsystemRefs();
+	List<? extends SubsystemRef> getSubsystemRefs();
 
 	/**
 	 * Returns a the subsystem reference identified by the given unique token.
@@ -85,12 +85,12 @@ public interface InventoryDataService {
 	/**
 	 * Returns a list of all subsystem types
 	 */
-	Iterable<SubsystemType> getSubsystemTypes();
+	Iterable<? extends SubsystemType> getSubsystemTypes();
 
 	/**
 	 * Returns a set of subsystem references of the named subsystem type
 	 */
-	Set<SubsystemRef> getSubsystemsByTypeName(String subsystemTypeName);
+	Set<? extends SubsystemRef> getSubsystemsByTypeName(String subsystemTypeName);
 
 	/**
 	 * Removes all subsystems related to the battleship template having the

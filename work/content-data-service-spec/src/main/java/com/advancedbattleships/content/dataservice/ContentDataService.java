@@ -12,25 +12,25 @@ public interface ContentDataService {
 
 	UserUiConfig findUserByUniqueToken(String userUniqueToken);
 
-	Set<UserUiConfig> findAllUsersByUniqueToken(Set<String> userUniqueTokens);
+	Set<? extends UserUiConfig> findAllUsersByUniqueToken(Set<String> userUniqueTokens);
 
 	UserUiConfig saveUserUiConfig(UserUiConfig userConfig);
 
 	UserUiConfig createNewUser(String userUniqueToken, String currentWallpaperName, String currentStylesheetName, String currentIconThemeName, String currentLogoName);
 
-	Set<UserAccessibleIconTheme> findAllUserAccessibleIconThemes(String userUniqueToken);
+	Set<? extends UserAccessibleIconTheme> findAllUserAccessibleIconThemes(String userUniqueToken);
 
 	UserAccessibleIconTheme addUserAccessibleIconTheme(UserUiConfig userUiConfig, String iconThemeName);
 
-	Set<UserAccessibleLogo> findAllUserAccessibleLogos(String userUniqueToken);
+	Set<? extends UserAccessibleLogo> findAllUserAccessibleLogos(String userUniqueToken);
 
 	UserAccessibleLogo addUserAccessibleLogo(UserUiConfig userUiConfig, String logoName);
 
-	Set<UserAccessibleStylesheet> findAllUserAccessibleStylesheets(String userUniqueToken);
+	Set<? extends UserAccessibleStylesheet> findAllUserAccessibleStylesheets(String userUniqueToken);
 
 	UserAccessibleStylesheet addUserAccessibleStylesheet(UserUiConfig userUiConfig, String stylesheetName);
 
-	Set<UserAccessibleWallpaper> findAllUserAccessibleWallpapaers(String userUniqueToken);
+	Set<? extends UserAccessibleWallpaper> findAllUserAccessibleWallpapaers(String userUniqueToken);
 
 	UserAccessibleWallpaper addUserAccessibleWallpaper(UserUiConfig userUiConfig, String wallpaperName);
 

@@ -14,12 +14,12 @@ public interface SocialDataService {
 	/**
 	 * Returns a set of parties for which the name contains the given string
 	 */
-	public Set<Party> findPartiesByNameLike(String nameLike);
+	public Set<? extends Party> findPartiesByNameLike(String nameLike);
 
 	/**
 	 * Retrieves all parties
 	 */
-	public Set<Party> findAllParties();
+	public Set<? extends Party> findAllParties();
 
 	/**
 	 * Returns a set of unique tokens of the users in the given party
@@ -29,31 +29,31 @@ public interface SocialDataService {
 	/**
 	 * Returns a set of parties to which the current user belongs
 	 */
-	public Set<Party> getUserParties(String userUniqueToken);
+	public Set<? extends Party> getUserParties(String userUniqueToken);
 
 	/**
 	 * Returns the actual mapping records between the referenced user and
 	 * any parties it might be part of
 	 */
-	public Collection<UserParty> getUserPartyRecords(String userUniqueToken);
+	public Collection<? extends UserParty> getUserPartyRecords(String userUniqueToken);
 
 	/**
 	 * Returns a set of unique friends of the user whose unique token is given as
 	 * parameter
 	 */
-	public Set<UserFriend> getUserFriends(String userUniqueToken);
+	public Set<? extends UserFriend> getUserFriends(String userUniqueToken);
 	
 	/**
 	 * Returns a set of unique friends of the user whose unique token is given as
 	 * parameter, as long as the friendship status has the given name
 	 */
-	public Set<UserFriend> getUserFriends(String userUniqueToken, String statusName);
+	public Set<? extends UserFriend> getUserFriends(String userUniqueToken, String statusName);
 
 	/**
 	 * Returns a set of unique friends of the user whose unique token is given as
 	 * parameter, as long as the friendship status has one of the given names
 	 */
-	public Set<UserFriend> getUserFriends(String userUniqueToken, List<String> statusNames);
+	public Set<? extends UserFriend> getUserFriends(String userUniqueToken, List<String> statusNames);
 
 	/**
 	 * Returns a user friend, if exists, or null if it doesn't
@@ -78,7 +78,7 @@ public interface SocialDataService {
 	/**
 	 * Saves multiple instances
 	 */
-	public void saveUserFriends(Collection<UserFriend> userFriends);
+	public void saveUserFriends(Collection<? extends UserFriend> userFriends);
 
 	/**
 	 * Returns a new empty instance of the data type used by the data layer
@@ -93,7 +93,7 @@ public interface SocialDataService {
 	/**
 	 * Saves multiple instances
 	 */
-	public void saveUserParties(Collection<UserParty> userParties);
+	public void saveUserParties(Collection<? extends UserParty> userParties);
 
 	/**
 	 * Returns a new empty instance of the data type used by the data layer
@@ -108,7 +108,7 @@ public interface SocialDataService {
 	/**
 	 * Saves multiple instances
 	 */
-	public void saveParties(Collection<Party> parties);
+	public void saveParties(Collection<? extends Party> parties);
 
 	/**
 	 * Run the given code in a transaction

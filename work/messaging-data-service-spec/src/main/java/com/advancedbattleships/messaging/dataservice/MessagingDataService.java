@@ -11,42 +11,42 @@ import com.advancedbattleships.messaging.dataservice.model.PersistentMessageType
 
 public interface MessagingDataService {
 
-	List<PersistentMessage> findPersistentMessagesByUserUniqueTokenAndRead(String userUniqueToken, Boolean read);
+	List<? extends PersistentMessage> findPersistentMessagesByUserUniqueTokenAndRead(String userUniqueToken, Boolean read);
 
-	List<PersistentMessage> findPersistentMessagesByUserUniqueTokenAndReadAndChannelName(String userUniqueToken,
+	List<? extends PersistentMessage> findPersistentMessagesByUserUniqueTokenAndReadAndChannelName(String userUniqueToken,
 			Boolean read, String channelName);
 
-	List<PersistentMessage> findPersistentMessagesByUserUniqueTokenAndReadAndChannel(String userUniqueToken,
+	List<? extends PersistentMessage> findPersistentMessagesByUserUniqueTokenAndReadAndChannel(String userUniqueToken,
 			Boolean read, PersistentMessageChannel channel);
 
-	List<PersistentMessage> findPersistentMessagesByUserUniqueTokenAndIsUserNotified(
+	List<? extends PersistentMessage> findPersistentMessagesByUserUniqueTokenAndIsUserNotified(
 			String userUniqueToken, Boolean isUserNotified);
 
 	PersistentMessage newPersistentMessage();
 
 	PersistentMessage savePersistentMessage(PersistentMessage persistentMessage);
 
-	void savePersistentMessages(Collection<PersistentMessage> persistentMessages);
+	void savePersistentMessages(Collection<? extends PersistentMessage> persistentMessages);
 
-	Set<PersistentMessageChannel> findAllPersistentMessageChannels();
+	Set<? extends PersistentMessageChannel> findAllPersistentMessageChannels();
 
-	Set<PersistentMessageChannel> findAllPersistentMessageChannelsByMessageType(PersistentMessageType messageType);
+	Set<? extends PersistentMessageChannel> findAllPersistentMessageChannelsByMessageType(PersistentMessageType messageType);
 
-	Set<PersistentMessageChannel> findAllPersistentMessageChannelsByMessageTypeName(String messageTypeName);
+	Set<? extends PersistentMessageChannel> findAllPersistentMessageChannelsByMessageTypeName(String messageTypeName);
 
 	PersistentMessageChannel newPersistentMessageChannel();
 
 	PersistentMessageChannel savePersistentMessageChannel(PersistentMessageChannel peristentMessageChannel);
 
-	void savePersistentMessageChannels(Collection<PersistentMessageChannel> persistentMessageChannels);
+	void savePersistentMessageChannels(Collection<? extends PersistentMessageChannel> persistentMessageChannels);
 
-	Set<PersistentMessageType> findAllPersistentMessageTypes();
+	Set<? extends PersistentMessageType> findAllPersistentMessageTypes();
 
 	PersistentMessageType newPersistentMessageType();
 
 	PersistentMessageType savePersistentMessageType(PersistentMessageType persistentMessageType);
 
-	void savePersistentMessageTypes(Collection<PersistentMessageType> persistentMessageTypes);
+	void savePersistentMessageTypes(Collection<? extends PersistentMessageType> persistentMessageTypes);
 
-	Set<PersistentMessageSourceType> findAllPersistentMessageSourceTypes();
+	Set<? extends PersistentMessageSourceType> findAllPersistentMessageSourceTypes();
 }

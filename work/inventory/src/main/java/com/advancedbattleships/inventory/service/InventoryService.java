@@ -39,8 +39,9 @@ public class InventoryService {
 	// Don't want to cache the data service, since it's supposed to be interchangeable and there's a risk of forgetting about the cache when writing new implementations
 	private final Map<String, SubsystemRef> subsystemRefsCache = new ConcurrentHashMap<>();
 
+	@SuppressWarnings("unchecked")
 	public List<BattleshipTemplate> getUserBattleshipTemplates(String userUniqueToken) {
-		return dataService.getUserBattleshipTemplates(userUniqueToken);
+		return (List<BattleshipTemplate>) dataService.getUserBattleshipTemplates(userUniqueToken);
 	}
 
 	public BattleshipTemplate createNewBattleshipTemplate(String userUniqueToken, String templateName, int width, int height) {
@@ -63,14 +64,15 @@ public class InventoryService {
 	 * identified by the given unique token, belonging to the user with the given
 	 * unique token. If the tokens don't match, an exception is thrown.
 	 */
+	@SuppressWarnings("unchecked")
 	public List<BattleshipTemplateSubsystem> getBattleshipTemplateSubsystems(
-			String userUniqueToken,
-			String battleshipTemplateUniqueToken
+		String userUniqueToken,
+		String battleshipTemplateUniqueToken
 	) {
 		BattleshipTemplate battleshipTemplate
 			= getUserBattleshipTemplate(userUniqueToken, battleshipTemplateUniqueToken);
 
-		return dataService.getBattleshipTemplateSubsystems(battleshipTemplate);
+		return (List<BattleshipTemplateSubsystem>) dataService.getBattleshipTemplateSubsystems(battleshipTemplate);
 	}
 
 	public BattleshipTemplateSubsystem getBattleshipTemplateSubsystem(
@@ -160,8 +162,9 @@ public class InventoryService {
 		subsystem.setPosition(new Point2I(posX, posY));
 
 		// Get all the subsystems
+		@SuppressWarnings("unchecked")
 		List<BattleshipTemplateSubsystem> allSubsystems
-			= dataService.getBattleshipTemplateSubsystems(subsystem.getBattleshipTemplate());
+			= (List<BattleshipTemplateSubsystem>) dataService.getBattleshipTemplateSubsystems(subsystem.getBattleshipTemplate());
 
 		// Validate subsystems placement
 		validateSubsystemPlacementOnHull(subsystem.getBattleshipTemplate(), posX, posY);
@@ -185,8 +188,9 @@ public class InventoryService {
 			dataService.deleteBattleshipTemplateSubsystem(subsystem);
 
 			// Get all subsystems
+			@SuppressWarnings("unchecked")
 			List<BattleshipTemplateSubsystem> allSubsystems
-				= dataService.getBattleshipTemplateSubsystems(subsystem.getBattleshipTemplate());
+				= (List<BattleshipTemplateSubsystem>) dataService.getBattleshipTemplateSubsystems(subsystem.getBattleshipTemplate());
 
 			// Re-compute the cost
 			computeBattleshipTemplateStats(subsystem.getBattleshipTemplate(), allSubsystems);
@@ -199,8 +203,9 @@ public class InventoryService {
 		return subsystem.getBattleshipTemplate();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SubsystemRef> getSubsystemRefs() {
-		return dataService.getSubsystemRefs();
+		return (List<SubsystemRef>) dataService.getSubsystemRefs();
 	}
 
 	public void validateBattleshipTemplate(BattleshipTemplate battleshipTemplate) {
@@ -209,8 +214,9 @@ public class InventoryService {
 		Point2I hullSize = battleshipTemplate.getHullSize();
 		validateBattleshipHullSize(hullSize.x, hullSize.y);
 
+		@SuppressWarnings("unchecked")
 		List<BattleshipTemplateSubsystem> subsystems
-			= dataService.getBattleshipTemplateSubsystems(battleshipTemplate);
+			= (List<BattleshipTemplateSubsystem>) dataService.getBattleshipTemplateSubsystems(battleshipTemplate);
 
 		validateSubsystems(battleshipTemplate, subsystems);
 	}
@@ -283,7 +289,11 @@ public class InventoryService {
 		}
 	}
 
-	private void validateSubsystemPlacementInRelationToOtherSubsystems(String battleshipTemplateUniqueToken, int posX, int posY, List<BattleshipTemplateSubsystem> allSubsystems) {
+	private void validateSubsystemPlacementInRelationToOtherSubsystems(
+		String battleshipTemplateUniqueToken,
+		int posX, int posY,
+		List<BattleshipTemplateSubsystem> allSubsystems
+	) {
 		int minDistanceFromSubsystem
 			= system.getDataService().getIntParameter("SUBSYSTEM.DISTANCE_FROM_OTHERS");
 
@@ -372,8 +382,9 @@ public class InventoryService {
 		bsTemplate.getHull()[y][x] = value;
 
 		// Get subsystems
+		@SuppressWarnings("unchecked")
 		List<BattleshipTemplateSubsystem> subsystems
-			= dataService.getBattleshipTemplateSubsystems(bsTemplate);
+			= (List<BattleshipTemplateSubsystem>) dataService.getBattleshipTemplateSubsystems(bsTemplate);
 
 		// Check if the subsystems placement is still valid (if not, an exception will be thrown)
 		validateSubsystems(bsTemplate, subsystems);
@@ -405,8 +416,9 @@ public class InventoryService {
 		bsTemplate.setHull(hull);
 
 		// Get subsystems
+		@SuppressWarnings("unchecked")
 		List<BattleshipTemplateSubsystem> subsystems
-			= dataService.getBattleshipTemplateSubsystems(bsTemplate);
+			= (List<BattleshipTemplateSubsystem>) dataService.getBattleshipTemplateSubsystems(bsTemplate);
 
 		// Check if the subsystems placement is still valid (if not, an exception will be thrown)
 		validateSubsystems(bsTemplate, subsystems);
@@ -421,12 +433,14 @@ public class InventoryService {
 		return bsTemplate;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Iterable<SubsystemType> getSubsystemTypes() {
-		return dataService.getSubsystemTypes();
+		return (Iterable<SubsystemType>) dataService.getSubsystemTypes();
 	}
 
+	@SuppressWarnings("unchecked")
 	public Set<SubsystemRef> getSubsystemsByTypeName(String subsystemTypeName) {
-		return dataService.getSubsystemsByTypeName(subsystemTypeName);
+		return (Set<SubsystemRef>) dataService.getSubsystemsByTypeName(subsystemTypeName);
 	}
 
 	private void computeBattleshipTemplateStats(

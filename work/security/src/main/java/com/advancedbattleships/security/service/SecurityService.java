@@ -177,8 +177,9 @@ public class SecurityService {
 		return ret;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Set<User> getUsers(Set<String> userUniqueTokens) {
-		return securityDataService.findUsersByUniqueToken(userUniqueTokens);
+		return (Set<User>) securityDataService.findUsersByUniqueToken(userUniqueTokens);
 	}
 
 	public User findUserByNickName(String nickName) {

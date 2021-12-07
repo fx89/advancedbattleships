@@ -2,9 +2,9 @@ package com.advancedbattleships.social.service;
 
 import static com.advancedbattleships.common.lang.Suppliers.nullSafeSupplier;
 import static java.util.Collections.synchronizedSet;
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toSet;
-import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -104,8 +104,9 @@ public class SocialService {
 
 	private Set<UserFriend> findUserFriends(String userUniqueToken) {
 		// Get the friends
+		@SuppressWarnings("unchecked")
 		Set<UserFriend> userFriends
-			= dataService.getUserFriends(userUniqueToken, Arrays.asList("accepted", "unattended"));
+			= (Set<UserFriend>) dataService.getUserFriends(userUniqueToken, Arrays.asList("accepted", "unattended"));
 
 		// Cache the user friend details for use by getUserFriendStatuses,
 		// which is expected to be called quite frequently
@@ -352,9 +353,11 @@ public class SocialService {
 	}
 
 	public Set<Friend> getUnattendedUserFriendInvitations(User forUser) {
-		return getUserFriendDetails(
-				dataService.getUserFriends(forUser.getUniqueToken(), Arrays.asList("unattended"))
-			);
+		@SuppressWarnings("unchecked")
+		Set<UserFriend> userFriends
+			= (Set<UserFriend>) dataService.getUserFriends(forUser.getUniqueToken(), Arrays.asList("unattended"));
+
+		return getUserFriendDetails(userFriends);
 	}
 
 	public Map<String, String> getUserFriendStatuses(String userUniqueToken) {
@@ -418,7 +421,8 @@ public class SocialService {
 	}
 
 	public boolean userBelongsToParty(String userUniqueToken, String partyUniqueToken) {
-		Collection<UserParty> userParties = dataService.getUserPartyRecords(userUniqueToken);
+		@SuppressWarnings("unchecked")
+		Collection<UserParty> userParties = (Collection<UserParty>) dataService.getUserPartyRecords(userUniqueToken);
 
 		if (userParties == null) {
 			return false;

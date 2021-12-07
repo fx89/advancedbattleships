@@ -1,7 +1,6 @@
 package com.advancedbattleships.messaging.dataservice.impl.springdata;
 
 import static com.advancedbattleships.common.lang.Multicast.multicastCollection;
-import static com.advancedbattleships.common.lang.Multicast.multicastList;
 import static com.advancedbattleships.common.lang.Multicast.multicastSet;
 
 import java.util.ArrayList;
@@ -41,33 +40,26 @@ public class SpringDataMessagingDataService implements MessagingDataService {
 	PersistentMessageSourceTypesRepository persistentMessageSourceTypesRepository;
 
 	@Override
-	public List<PersistentMessage> findPersistentMessagesByUserUniqueTokenAndRead(String userUniqueToken, Boolean read) {
-		return multicastList(
-			persistentMessagesRepository.findAllByUserUniqueTokenAndIsRead(userUniqueToken, read)
-		);
-		
+	public List<? extends PersistentMessage> findPersistentMessagesByUserUniqueTokenAndRead(String userUniqueToken, Boolean read) {
+		return persistentMessagesRepository.findAllByUserUniqueTokenAndIsRead(userUniqueToken, read);
 	}
 
 	@Override
-	public List<PersistentMessage> findPersistentMessagesByUserUniqueTokenAndReadAndChannelName(
+	public List<? extends PersistentMessage> findPersistentMessagesByUserUniqueTokenAndReadAndChannelName(
 		String userUniqueToken,
 		Boolean read,
 		String channelName
 	) {
-		return multicastList(
-			persistentMessagesRepository.findAllByUserUniqueTokenAndIsReadAndChannelName(userUniqueToken, read, channelName)
-		);
+		return persistentMessagesRepository.findAllByUserUniqueTokenAndIsReadAndChannelName(userUniqueToken, read, channelName);
 	}
 
 	@Override
-	public List<PersistentMessage> findPersistentMessagesByUserUniqueTokenAndReadAndChannel(
+	public List<? extends PersistentMessage> findPersistentMessagesByUserUniqueTokenAndReadAndChannel(
 		String userUniqueToken,
 		Boolean read,
 		PersistentMessageChannel channel
 	) {
-		return multicastList(
-			persistentMessagesRepository.findAllByUserUniqueTokenAndIsReadAndChannelId(userUniqueToken, read, (new PersistentMessageChannelImpl(channel)).getId())
-		);
+		return persistentMessagesRepository.findAllByUserUniqueTokenAndIsReadAndChannelId(userUniqueToken, read, (new PersistentMessageChannelImpl(channel)).getId());
 	}
 
 	@Override
@@ -81,7 +73,7 @@ public class SpringDataMessagingDataService implements MessagingDataService {
 	}
 
 	@Override
-	public void savePersistentMessages(Collection<PersistentMessage> persistentMessages) {
+	public void savePersistentMessages(Collection<? extends PersistentMessage> persistentMessages) {
 		persistentMessagesRepository.saveAll(
 			multicastCollection(
 				persistentMessages,
@@ -92,22 +84,18 @@ public class SpringDataMessagingDataService implements MessagingDataService {
 	}
 
 	@Override
-	public Set<PersistentMessageChannel> findAllPersistentMessageChannels() {
-		return multicastSet(persistentMessageChannelsRepository.findAll());
+	public Set<? extends PersistentMessageChannel> findAllPersistentMessageChannels() {
+		return persistentMessageChannelsRepository.findAll();
 	}
 
 	@Override
-	public Set<PersistentMessageChannel> findAllPersistentMessageChannelsByMessageType(PersistentMessageType messageType) {
-		return multicastSet(
-			persistentMessageChannelsRepository.findAllByMessageTypeId(((PersistentMessageTypeImpl)messageType).getId())
-		);
+	public Set<? extends PersistentMessageChannel> findAllPersistentMessageChannelsByMessageType(PersistentMessageType messageType) {
+		return persistentMessageChannelsRepository.findAllByMessageTypeId(((PersistentMessageTypeImpl)messageType).getId());
 	}
 
 	@Override
-	public Set<PersistentMessageChannel> findAllPersistentMessageChannelsByMessageTypeName(String messageTypeName) {
-		return multicastSet(
-			persistentMessageChannelsRepository.findAllByMessageTypeName(messageTypeName)
-		);
+	public Set<? extends PersistentMessageChannel> findAllPersistentMessageChannelsByMessageTypeName(String messageTypeName) {
+		return persistentMessageChannelsRepository.findAllByMessageTypeName(messageTypeName);
 	}
 
 	@Override
@@ -122,7 +110,7 @@ public class SpringDataMessagingDataService implements MessagingDataService {
 	}
 
 	@Override
-	public void savePersistentMessageChannels(Collection<PersistentMessageChannel> persistentMessageChannels) {
+	public void savePersistentMessageChannels(Collection<? extends PersistentMessageChannel> persistentMessageChannels) {
 		persistentMessageChannelsRepository.saveAll(
 			multicastCollection(
 				persistentMessageChannels,
@@ -133,7 +121,7 @@ public class SpringDataMessagingDataService implements MessagingDataService {
 	}
 
 	@Override
-	public Set<PersistentMessageType> findAllPersistentMessageTypes() {
+	public Set<? extends PersistentMessageType> findAllPersistentMessageTypes() {
 		return multicastSet(persistentMessageTypesRepository.findAll());
 	}
 
@@ -148,7 +136,7 @@ public class SpringDataMessagingDataService implements MessagingDataService {
 	}
 
 	@Override
-	public void savePersistentMessageTypes(Collection<PersistentMessageType> persistentMessageTypes) {
+	public void savePersistentMessageTypes(Collection<? extends PersistentMessageType> persistentMessageTypes) {
 		persistentMessageTypesRepository.saveAll(
 			multicastCollection(
 				persistentMessageTypes,
@@ -159,18 +147,16 @@ public class SpringDataMessagingDataService implements MessagingDataService {
 	}
 
 	@Override
-	public Set<PersistentMessageSourceType> findAllPersistentMessageSourceTypes() {
+	public Set<? extends PersistentMessageSourceType> findAllPersistentMessageSourceTypes() {
 		return multicastSet(persistentMessageSourceTypesRepository.findAll());
 	}
 
 	@Override
-	public List<PersistentMessage> findPersistentMessagesByUserUniqueTokenAndIsUserNotified(
+	public List<? extends PersistentMessage> findPersistentMessagesByUserUniqueTokenAndIsUserNotified(
 		String userUniqueToken, Boolean isUserNotified
 	) {
 		return
-			multicastList(
-				persistentMessagesRepository
-					.findAllByUserUniqueTokenAndIsUserNotified(userUniqueToken, isUserNotified)
-			);
+			persistentMessagesRepository
+				.findAllByUserUniqueTokenAndIsUserNotified(userUniqueToken, isUserNotified);
 	}
 }
