@@ -1,13 +1,11 @@
 package com.advancedbattleships.common.lang.longtokenizer;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.assertj.core.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 import com.advancedbattleships.common.lang.LongTokenizer;
 
-@SpringBootTest
 public class AlphanumericLongTokenizerTest {
 
 	@Test
