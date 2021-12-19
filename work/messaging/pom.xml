@@ -23,12 +23,12 @@
 		<dependency>
 			<groupId>com.advancedbattleships</groupId>
 			<artifactId>messaging-data-service-spec</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.advancedbattleships</groupId>
 			<artifactId>utility-services</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 
 		<dependency>

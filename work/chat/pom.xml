@@ -23,22 +23,22 @@
 		<dependency>
 			<groupId>com.advancedbattleships</groupId>
 			<artifactId>chat-data-service-spec</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.advancedbattleships</groupId>
 			<artifactId>utility-services</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.advancedbattleships</groupId>
 			<artifactId>system</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.advancedbattleships</groupId>
 			<artifactId>social</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 
 		<dependency>

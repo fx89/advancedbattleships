@@ -5,6 +5,8 @@ import java.util.Set;
 
 import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplate;
 import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplateSubsystem;
+import com.advancedbattleships.inventory.dataservice.model.GameWorld;
+import com.advancedbattleships.inventory.dataservice.model.GameWorldCellType;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemRef;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemType;
 
@@ -97,6 +99,21 @@ public interface InventoryDataService {
 	 * given unique token
 	 */
 	void deleteBattleshipTemplateSubsystems(String battleshipTemplateUniqueToken);
+
+	/**
+	 * Retrieves all game worlds
+	 */
+	Iterable<? extends GameWorld> getGameWorlds();
+
+	/**
+	 * Persists the referenced game world
+	 */
+	GameWorld saveGameWorld(GameWorld gameWorld);
+
+	/**
+	 * Retrieves all game world square types
+	 */
+	Set<? extends GameWorldCellType> getGameWorldSquareTypes();
 
 	/**
 	 * Wraps the given runnable in a transaction

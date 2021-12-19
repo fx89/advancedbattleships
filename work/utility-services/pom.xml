@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>com.advancedbattleships</groupId>
 			<artifactId>common-lang</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 
 		<dependency>

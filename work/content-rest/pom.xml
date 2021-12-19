@@ -23,13 +23,13 @@
     	<dependency>
 			<groupId>com.advancedbattleships</groupId>
 			<artifactId>security</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.advancedbattleships</groupId>
 			<artifactId>content</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 
 		<dependency>

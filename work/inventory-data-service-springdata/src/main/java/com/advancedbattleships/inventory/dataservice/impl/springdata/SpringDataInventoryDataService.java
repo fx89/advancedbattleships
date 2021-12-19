@@ -17,6 +17,8 @@ import com.advancedbattleships.inventory.dataservice.impl.springdata.model.Battl
 import com.advancedbattleships.inventory.dataservice.impl.springdata.model.BattleshipTemplateSubsystemImpl;
 import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplate;
 import com.advancedbattleships.inventory.dataservice.model.BattleshipTemplateSubsystem;
+import com.advancedbattleships.inventory.dataservice.model.GameWorld;
+import com.advancedbattleships.inventory.dataservice.model.GameWorldCellType;
 import com.advancedbattleships.inventory.dataservice.model.Point2I;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemRef;
 import com.advancedbattleships.inventory.dataservice.model.SubsystemType;
@@ -166,5 +168,23 @@ public class SpringDataInventoryDataService implements InventoryDataService {
 	@Transactional(transactionManager = "absInventoryTransactionManager")
 	public void executeTransaction(Runnable transaction) {
 		transaction.run();
+	}
+
+	@Override
+	public Iterable<? extends GameWorld> getGameWorlds() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public GameWorld saveGameWorld(GameWorld gameWorld) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Set<? extends GameWorldCellType> getGameWorldSquareTypes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
